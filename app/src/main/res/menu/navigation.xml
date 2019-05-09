@@ -8,11 +8,11 @@
     <item
         android:id="@+id/navigation_buscar"
         android:icon="@drawable/icono_menu_buscar"
-        android:title="@string/title_home" />
+        android:title="@string/title_buscar" />
     <item
         android:id="@+id/navigation_carrito"
         android:icon="@drawable/icono_menu_carrito"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_carrito" />
 
     <item
         android:id="@+id/navigation_notificaciones"
