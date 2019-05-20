@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-
 import com.example.agrostore01.R;
 import com.example.agrostore01.adaptadores.BusquedaAdapter;
 
@@ -27,12 +27,22 @@ public class BuscarActivity extends AppCompatActivity {
         BusquedaAdapter adaptador = new BusquedaAdapter(this, R.layout.list_item_buscar, items);
         listViewBuscar = findViewById(R.id.listViewBuscar);
         listViewBuscar.setAdapter(adaptador);
+
+        listViewBuscar.setOnItemClickListener(listViewBuscarListener);
     }
 
     private final View.OnClickListener buttonFiltrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), FiltrosActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private AdapterView.OnItemClickListener listViewBuscarListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(view.getContext(), DetallesProductoActivity.class);
             startActivity(intent);
         }
     };

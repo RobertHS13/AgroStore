@@ -6,4 +6,7 @@
     <string name="title_carrito">Carrito</string>
     <string name="title_notifications">Notificaciones</string>
 
+    <string name="title_activity_detalles_productos">Detalles del Producto</string>
+    <string name="title_activity_estado_venta">Map</string>
+
 </resources>

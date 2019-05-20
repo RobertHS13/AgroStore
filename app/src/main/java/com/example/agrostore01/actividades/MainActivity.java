@@ -1,5 +1,6 @@
 package com.example.agrostore01.actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_notificaciones:
                     fragmento = notificacionesFragment;
+                    break;
+
+                case R.id.navigation_faq:
+                    Intent intent = new Intent(MainActivity.this, MisComprasActivity.class);
+                    startActivity(intent);
                     break;
             }
 

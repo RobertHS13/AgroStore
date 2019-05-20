@@ -44,13 +44,6 @@ public class BusquedaAdapter extends ArrayAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layoutResourceId, parent, false);
             data = new Datos();
-            /*
-            public ImageView imageViewItemBuscar;
-        public TextView textViewItemBuscarTitulo;
-        public TextView textViewItemBuscarPrecio;
-        public LinearLayout linearLayoutItemBuscar;
-        public TextView textViewItemBuscarVentas;
-             */
 
             data.imageViewItemBuscar = convertView.findViewById(R.id.imageViewItemBuscar);
             data.textViewItemBuscarTitulo = convertView.findViewById(R.id.textViewItemBuscarTitulo);

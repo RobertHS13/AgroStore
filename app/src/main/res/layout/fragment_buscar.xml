@@ -8,7 +8,8 @@
     <SearchView
         android:id="@+id/searchViewBuscadorFragmento"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:outlineAmbientShadowColor="@color/cardview_dark_background"/>
     \
     <ScrollView
         android:layout_width="match_parent"
@@ -23,25 +24,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/hort"/>
+                android:src="@drawable/banner_hortalizas"/>
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/lacteos"/>
+                android:src="@drawable/banner_lacteos"/>
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/meat"/>
+                android:src="@drawable/banner_carnes"/>
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/seeds"/>
+                android:src="@drawable/banner_semillas"
+                android:scrollbarSize="@dimen/activity_horizontal_margin"/>
 
          </LinearLayout>
     </ScrollView>
