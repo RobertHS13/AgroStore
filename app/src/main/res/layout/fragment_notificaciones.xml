@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:background="@drawable/button_background"
+        android:id="@+id/listViewNotificaciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hola android"
-        android:textAlignment="center"/>
+        ></ListView>
 
-    <android.support.v7.widget.CardView
+    <android.support.design.widget.FloatingActionButton
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:backgroundTint="#9CCC65"
+        android:src="@drawable/cargar"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true" />
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        style="@style/Animation.Design.BottomSheetDialog"
+        android:backgroundTint="#9CCC65"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/estados"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:clickable="true" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -4,72 +4,104 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".actividades.EstadoCompraActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@drawable/map"/>
-</LinearLayout>
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+        android:src="@drawable/mapita"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="INFO DEL PRODUCTO"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/hortalizas_icono"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="0dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Sandia"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="50 unidades"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Num de rastreo: 8367864"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Direccion: Col ladrillera, calle los ancinos #283 ote" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Num de pedido: 946736"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Vendedor: alfonso cuaron"/>
+        </LinearLayout>
+
     </LinearLayout>
 
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="5dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#DBDBDB"/>
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/estados"/>
-    </LinearLayout>
-    <view
-        android:layout_width="match_parent"
-        android:layout_height="5dp"/>
+            android:layout_height="120dp"
+            android:src="@drawable/rastreo"
+            android:layout_margin="@dimen/activity_vertical_margin"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#DBDBDB"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:gravity="center|bottom">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/calificar"
-            android:layout_gravity="start"/>
-
+            android:src="@drawable/atencioncliente"/>
         <Space
-            android:layout_width="150dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/preguntas"/>
+        <Space
+            android:layout_width="50dp"
             android:layout_height="30dp" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/servicio"
-            android:layout_gravity="end"/>
-
+            android:src="@drawable/proveedor" />
     </LinearLayout>
+
+
 </LinearLayout>

@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.agrostore01.R;
+import com.example.agrostore01.adaptadores.ImagenAdapter;
 import com.example.agrostore01.fragmentos.BuscarFragment;
 import com.example.agrostore01.fragmentos.CarritoFragment;
 import com.example.agrostore01.fragmentos.DashboardFragment;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //ViewPager viewPager = findViewById(R.id.ViewPagerOfertas);
+        //ImagenAdapter adapter = new ImagenAdapter(this);
+        //viewPager.setAdapter(adapter);
 
         navegador = findViewById(R.id.navigation);
         navegador.setOnNavigationItemSelectedListener(navegadorListener);
@@ -55,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_faq:
-                    Intent intent = new Intent(MainActivity.this, MisComprasActivity.class);
+                    //Intent intent = new Intent(MainActivity.this, MisComprasActivity.class);
+                    Intent intent = new Intent(MainActivity.this, Vender1Activity.class);
                     startActivity(intent);
                     break;
             }

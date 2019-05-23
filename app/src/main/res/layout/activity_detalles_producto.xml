@@ -89,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:gravity="center">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,38 +98,41 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="40dp"
                         android:layout_height="50dp"
-                        android:textAlignment="center"
-                        android:src="@drawable/icono_mas"/>
+                        android:src="@drawable/icono_mas"
+                        android:textAlignment="center" />
+
                     <NumberPicker
-                        android:layout_width="50dp"
+                        android:layout_width="40dp"
                         android:layout_height="60dp"
-                        android:textAlignment="center"
-                        android:inputType="numberDecimal"/>
+                        android:inputType="numberDecimal"
+                        android:textAlignment="center" />
+
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="40dp"
                         android:layout_height="50dp"
-                        android:textAlignment="center"
-                        android:src="@drawable/icono_menos"/>
+                        android:src="@drawable/icono_menos"
+                        android:textAlignment="center" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/add"
+                    android:src="@drawable/add2"
                     android:layout_margin="10dp"/>
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/delete"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:src="@drawable/delete2" />
 
-                <ImageView
-                    android:layout_width="50dp"
+                <Button
+                    android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/buy"
+                    android:text="Comprar"
+                    app:backgroundTint="#C5E1A5"
                     android:layout_margin="10dp"/>
             </LinearLayout>
             <Space
@@ -310,6 +314,7 @@
                         <ImageButton
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:background="#FFFFFF"
                             android:src="@android:drawable/ic_menu_send"/>
 
                     </LinearLayout>

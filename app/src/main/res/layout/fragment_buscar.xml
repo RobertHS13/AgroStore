@@ -20,28 +20,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/banner_hortalizas"/>
 
-            <ImageButton
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/banner_lacteos"/>
 
-            <ImageButton
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/banner_carnes"/>
 
-            <ImageButton
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/banner_semillas"
                 android:scrollbarSize="@dimen/activity_horizontal_margin"/>
 
