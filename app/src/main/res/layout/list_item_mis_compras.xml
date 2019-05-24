@@ -11,7 +11,7 @@
         android:id="@+id/imageViewItemMisCompras"
         android:layout_width="105dp"
         android:layout_height="105dp"
-        android:src="@drawable/icono_cuadricula"/>
+        android:src="@drawable/ermitanio"/>
 
     <Space
         android:layout_width="15dp"
@@ -33,8 +33,8 @@
             android:id="@+id/textViewItemMisComprasPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="..."
-            android:textColor="#FFFFFF"
+            android:text="#00002323"
+            android:textColor="#454957"
             android:textSize="15sp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -46,8 +46,8 @@
             android:id="@+id/textViewItemMisComprasVendedor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="..."
+            android:textColor="#FF454957"
+            android:text="Maestro Karim"
             android:textSize="15sp"/>
 
     </LinearLayout>

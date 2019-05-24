@@ -41,7 +41,7 @@ public class MisVentasAdapter extends ArrayAdapter {
             data = new Datos();
 
             data.imageViewItemMisVentas = convertView.findViewById(R.id.imageViewItemMisVentas);
-            data.textViewItemMisVentasPedido = convertView.findViewById(R.id.textViewItemMisVentasPedido);
+            data.textViewItemMisVentasCliente = convertView.findViewById(R.id.textViewItemMisVentasCliente);
             data.textViewItemMisVentasPedido = convertView.findViewById(R.id.textViewItemMisVentasPedido);
             data.linearLayoutItemMisVentas = convertView.findViewById(R.id.linearLayoutItemMisVentas);
 

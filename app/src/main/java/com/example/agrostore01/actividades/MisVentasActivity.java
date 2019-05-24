@@ -21,9 +21,9 @@ public class MisVentasActivity extends AppCompatActivity {
 
         Object[] items = new Object[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
         MisVentasAdapter adaptador = new MisVentasAdapter(this, R.layout.list_item_mis_ventas, items);
-        //listViewMisVentas = findViewById(R.id.listViewMisVentas);
+        listViewMisVentas = findViewById(R.id.listViewMisVentas);
         listViewMisVentas.setAdapter(adaptador);
-       //listViewMisVentas.setOnItemClickListener(listViewMisVentas);
+        listViewMisVentas.setOnItemClickListener(listViewMisVentasListener);
     }
 
     private AdapterView.OnItemClickListener listViewMisVentasListener = new AdapterView.OnItemClickListener() {

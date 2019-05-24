@@ -10,7 +10,6 @@ public class EstadoCompraActivity extends AppCompatActivity {
 
     private Button buttonEstadoCompra;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

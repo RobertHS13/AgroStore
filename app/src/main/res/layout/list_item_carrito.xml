@@ -10,7 +10,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="10dp"
-        android:src="@drawable/icono_cuadricula"/>
+        android:src="@drawable/ermitanio"/>
 
     <LinearLayout
         android:id="@+id/linearLayoutItemCarrito"
@@ -23,14 +23,14 @@
             android:id="@+id/textViewItemCarritoTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Titulo del Producto"
+            android:text="Mandrágoras"
             android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/textViewItemCarritoCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="unidades"
+            android:text="10 unidades"
             android:textSize="15sp"/>
 
         <Space
@@ -41,7 +41,8 @@
             android:id="@+id/textViewItemCarritoPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$50"
+            android:text="$60"
+            android:textColor="@color/colorPrimary"
             android:textSize="30sp"/>
     </LinearLayout>
 

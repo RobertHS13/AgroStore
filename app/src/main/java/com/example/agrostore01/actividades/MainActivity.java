@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.navigation_faq:
                     //Intent intent = new Intent(MainActivity.this, MisComprasActivity.class);
-                    Intent intent = new Intent(MainActivity.this, Vender1Activity.class);
+                      Intent intent = new Intent(MainActivity.this, MisVentasActivity.class);
+                    //Intent intent = new Intent(MainActivity.this, Vender1Activity.class);
                     startActivity(intent);
                     break;
             }

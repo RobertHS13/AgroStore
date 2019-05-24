@@ -9,7 +9,7 @@
         android:id="@+id/searchViewBuscadorFragmento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:outlineAmbientShadowColor="@color/cardview_dark_background"/>
+        android:background="#B9DA93"/>
     \
     <ScrollView
         android:layout_width="match_parent"

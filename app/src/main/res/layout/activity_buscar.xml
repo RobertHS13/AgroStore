@@ -8,8 +8,10 @@
     android:orientation="vertical">
 
     <SearchView
+        android:id="@+id/searchViewBuscador"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></SearchView>
+        android:layout_height="wrap_content"
+        android:background="#B9DA93"></SearchView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

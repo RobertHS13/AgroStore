@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.agrostore01">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -36,11 +37,14 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".actividades.EstadoVentaActivity"
-            android:label="@string/title_activity_estado_venta" />
+        android:name=".actividades.EstadoVentaActivity"
+        android:label="Estado de Mis Ventas" />
         <activity
             android:name=".actividades.MisComprasActivity"
             android:label="Mis Compras" />
+        <activity
+            android:name=".actividades.MisVentasActivity"
+            android:label="Mis Ventas" />
         <activity
             android:name=".actividades.EstadoCompraActivity"
             android:label="Estado de Mis Compras" />
