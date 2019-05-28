@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".actividades.Vender3Activity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agrega fotos de tu producto"
+        android:fontFamily="@font/comfortaa_light"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:layout_margin="20dp"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:src="@drawable/icono_cuadricula"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:src="@drawable/icono_cuadricula"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/icono_cuadricula"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/icono_cuadricula"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Desde tu camara"
+            android:textSize="15sp"
+            android:drawableTop="@drawable/camara"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Desde tu galeria"
+            android:textSize="15sp"
+            android:drawableTop="@drawable/galeria"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/buttonSiguienteVender3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Siguiente"
+        android:drawableLeft="@drawable/seguir"
+        android:background="#E5EE81"
+        android:shadowRadius="@integer/google_play_services_version"
+        android:textSize="15sp"/>
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".actividades.Vender4Activity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informacion de tu producto"
+        android:fontFamily="@font/comfortaa_light"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:layout_margin="20dp"/>
+
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#000000"
+        android:text="Titulo de la publicacion"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="El titulo visualizado por los compradores"
+        android:inputType="textMultiLine"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Descripcion de tu producto"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Una descripcion detallada de tu producto"
+        android:inputType="textMultiLine"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Clasificacion de producto"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
+
+    <Spinner
+        android:id="@+id/spinnerClasificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:popupBackground="@color/colorGris" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Precio"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icono_money"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Precio de tu producto"
+            android:inputType="numberDecimal"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Unidad de venta"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
+
+    <Spinner
+        android:id="@+id/spinnerUnidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:popupBackground="@color/colorGris" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/buttonSiguienteVender4"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Siguiente"
+        android:drawableLeft="@drawable/seguir"
+        android:background="#E5EE81"
+        android:shadowRadius="@integer/google_play_services_version"
+        android:textSize="15sp"/>
+
+</LinearLayout>
+</ScrollView>
