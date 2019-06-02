@@ -136,7 +136,6 @@
         android:text="Publicar"
         android:drawableLeft="@drawable/publicar"
         android:background="#57AF4B"
-        android:shadowRadius="@integer/google_play_services_version"
         android:textSize="15sp"/>
 
 </LinearLayout>

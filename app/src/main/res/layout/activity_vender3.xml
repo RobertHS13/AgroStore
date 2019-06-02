@@ -105,7 +105,6 @@
         android:text="Siguiente"
         android:drawableLeft="@drawable/seguir"
         android:background="#E5EE81"
-        android:shadowRadius="@integer/google_play_services_version"
         android:textSize="15sp"/>
 
 </LinearLayout>
