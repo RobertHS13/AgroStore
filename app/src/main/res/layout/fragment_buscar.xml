@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#B9DA93"/>
-    \
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,6 +21,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imageViewBuscarHortalizas"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
@@ -28,6 +29,7 @@
                 android:src="@drawable/banner_hortalizas"/>
 
             <ImageView
+                android:id="@+id/imageViewBuscarLacteos"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
@@ -35,6 +37,7 @@
                 android:src="@drawable/banner_lacteos"/>
 
             <ImageView
+                android:id="@+id/imageViewBuscarCarnes"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
@@ -42,6 +45,7 @@
                 android:src="@drawable/banner_carnes"/>
 
             <ImageView
+                android:id="@+id/imageViewBuscarSemillas"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"

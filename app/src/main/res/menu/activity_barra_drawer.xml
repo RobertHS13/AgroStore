@@ -8,17 +8,12 @@
         <item
             android:id="@+id/perfil"
             android:icon="@drawable/usuario"
-            android:title="Perfil"
+            android:title="Mi Perfil"
             android:textSize="18sp"/>
         <item
             android:id="@+id/miterreno"
             android:icon="@drawable/terreno"
             android:title="Mis terrenos"
-            android:textSize="18sp"/>
-        <item
-            android:id="@+id/misproductos"
-            android:icon="@drawable/b"
-            android:title="Mis productos"
             android:textSize="18sp"/>
         <item
             android:id="@+id/compras"
@@ -31,6 +26,11 @@
             android:title="Mis ventas"
             android:textSize="18sp"/>
         <item
+            android:id="@+id/vender"
+            android:icon="@drawable/b"
+            android:title="Vender"
+            android:textSize="18sp"/>
+        <item
             android:id="@+id/faq"
             android:icon="@drawable/e"
             android:title="FAQ"
@@ -40,7 +40,6 @@
             android:icon="@drawable/f"
             android:title="Cerrar sesión"
             android:textSize="18sp"/>
-
         <item
             android:id="@+id/ventana"
             android:icon="@drawable/luna"

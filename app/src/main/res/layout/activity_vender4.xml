@@ -23,7 +23,6 @@
         android:textAlignment="center"
         android:layout_margin="20dp"/>
 
-
     <Space
         android:layout_width="0dp"
         android:layout_height="20dp" />
@@ -86,7 +85,8 @@
         android:id="@+id/spinnerClasificacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:popupBackground="@color/colorGris" />
+        android:background="@color/colorPrimary"
+        android:popupBackground="@color/colorGrisClaro"/>
 
     <Space
         android:layout_width="0dp"
@@ -140,7 +140,8 @@
         android:id="@+id/spinnerUnidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:popupBackground="@color/colorGris" />
+        android:background="@color/colorPrimary"
+        android:popupBackground="@color/colorGrisClaro"/>
 
     <Space
         android:layout_width="0dp"

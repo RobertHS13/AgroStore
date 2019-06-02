@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,13 +19,26 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.agrostore01.R;
+import com.example.agrostore01.fragmentos.BuscarFragment;
+import com.example.agrostore01.fragmentos.CarritoFragment;
+import com.example.agrostore01.fragmentos.DashboardFragment;
+import com.example.agrostore01.fragmentos.NotificacionesFragment;
 
 public class BarraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private BottomNavigationView navegador;
+
+    private DashboardFragment dashboardFragment = new DashboardFragment();
+    private BuscarFragment buscarFragment = new BuscarFragment();
+    private CarritoFragment carritoFragment = new CarritoFragment();
+    private NotificacionesFragment notificacionesFragment = new NotificacionesFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barra);
+
+        // DRAWER //////////////////////////////////////////////////////////////////////////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,11 +50,51 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // NAVIGATION //////////////////////////////////////////////////////////////////////////////
+        //ViewPager viewPager = findViewById(R.id.ViewPagerOfertas);
+        //ImagenAdapter adapter = new ImagenAdapter(this);
+        //viewPager.setAdapter(adapter);
+
+        navegador = findViewById(R.id.navigation);
+        navegador.setOnNavigationItemSelectedListener(navegadorListener);
+
+        // fragmento for defecto
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, dashboardFragment).commit();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navegadorListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            Fragment fragmento = null;
+
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_home:
+                    fragmento = dashboardFragment;
+                    break;
+                case R.id.navigation_buscar:
+                    fragmento = buscarFragment;
+                    break;
+                case R.id.navigation_carrito:
+                    fragmento = carritoFragment;
+                    break;
+                case R.id.navigation_notificaciones:
+                    fragmento = notificacionesFragment;
+                    break;
+            }
+
+            if (fragmento == null)
+                return false;
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragmento).commit();
+
+            return true;
+        }
+    };
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -86,10 +140,6 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
         }
 
-        else if (id == R.id.misproductos) {
-
-        }
-
         else if (id == R.id.compras) {
             Intent intent= new Intent(BarraActivity.this,MisComprasActivity.class);
             startActivity(intent);
@@ -97,6 +147,11 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
 
         else if (id == R.id.ventas) {
             Intent intent= new Intent(BarraActivity.this,MisVentasActivity.class);
+            startActivity(intent);
+        }
+
+        else if (id == R.id.vender) {
+            Intent intent= new Intent(BarraActivity.this,Vender1Activity.class);
             startActivity(intent);
         }
 

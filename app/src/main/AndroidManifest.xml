@@ -62,9 +62,6 @@
         <activity
             android:name=".actividades.BuscarActivity"
             android:label="Buscar" />
-        <activity
-            android:name=".actividades.MainActivity"
-            android:label="AgroStore" />
     </application>
 
 </manifest>
