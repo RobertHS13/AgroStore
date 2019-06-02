@@ -9,43 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".actividades.RegistroProductorActivity" />
+        <activity android:name=".actividades.RegistroClienteActivity" />
+        <activity android:name=".actividades.RegistroActivity" />
+        <activity android:name=".actividades.LoginActivity" />
+        <activity android:name=".actividades.CargaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <activity android:name=".actividades.Vender1Activity"></activity>
-        <activity android:name=".actividades.Vender2Activity"></activity>
-        <activity android:name=".actividades.Vender3Activity"></activity>
-        <activity android:name=".actividades.Vender4Activity"></activity>
-        <activity android:name=".actividades.Vender5Activity"></activity>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".actividades.Vender1Activity" />
+        <activity android:name=".actividades.Vender2Activity" />
+        <activity android:name=".actividades.Vender3Activity" />
+        <activity android:name=".actividades.Vender4Activity" />
+        <activity android:name=".actividades.Vender5Activity" />
         <activity
-        android:name=".actividades.EstadoVentaActivity"
-        android:label="Estado de Mis Ventas" />
+            android:name=".actividades.EstadoVentaActivity"
+            android:label="Estado de Mis Ventas" />
         <activity
             android:name=".actividades.MisComprasActivity"
             android:label="Mis Compras" />
@@ -69,8 +51,7 @@
             android:label="Buscar" />
         <activity
             android:name=".actividades.MainActivity"
-            android:label="AgroStore">
-        </activity>
+            android:label="AgroStore" />
     </application>
 
 </manifest>
