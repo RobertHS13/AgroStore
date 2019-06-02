@@ -432,7 +432,6 @@
             android:background="@android:color/holo_green_dark"
             android:text="Aplicar Filtros"
             android:textAllCaps="false"
-            android:textColor="@color/common_google_signin_btn_text_dark_pressed"
             android:textSize="18dp" />
     </LinearLayout>
     </ScrollView>

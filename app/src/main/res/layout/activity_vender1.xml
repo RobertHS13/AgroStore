@@ -25,7 +25,6 @@
             android:fontFamily="@font/comfortaa_light"
             android:text="¿Que deseas vender?"
             android:textAlignment="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="35sp"
             android:typeface="normal" />
 
