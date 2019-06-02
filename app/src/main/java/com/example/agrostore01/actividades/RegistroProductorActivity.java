@@ -67,7 +67,7 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
     private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(RegistroProductorActivity.this, MainActivity.class);
+            Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
             startActivity(intent);
         }
     };

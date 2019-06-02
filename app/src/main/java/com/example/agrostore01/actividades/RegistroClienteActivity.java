@@ -67,7 +67,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
     private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(RegistroClienteActivity.this,MainActivity.class);
+            Intent intent= new Intent(RegistroClienteActivity.this,BarraActivity.class);
             startActivity(intent);
         }
     };
