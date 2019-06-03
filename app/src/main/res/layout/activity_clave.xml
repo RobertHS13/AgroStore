@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actividades.ClaveActivity">
+    tools:context=".CapaPresentacion.actividades.ClaveActivity">
 
     <ImageView
         android:id="@+id/imageView48"

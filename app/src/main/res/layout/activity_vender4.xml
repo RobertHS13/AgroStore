@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actividades.Vender4Activity">
+    tools:context=".CapaPresentacion.actividades.Vender4Activity">
 
 <LinearLayout
     android:layout_width="match_parent"
