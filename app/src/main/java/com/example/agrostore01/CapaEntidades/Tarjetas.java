@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaEntidades;
 
-public class Tarjetas {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Tarjetas extends Entidad implements Parcelable {
 
     private String numTarjeta;
     private String cdv;
@@ -22,6 +25,25 @@ public class Tarjetas {
         this.mes = mes;
         this.año = año;
     }
+
+    protected Tarjetas(Parcel in) {
+        numTarjeta = in.readString();
+        cdv = in.readString();
+        mes = in.readString();
+        año = in.readString();
+    }
+
+    public static final Creator<Tarjetas> CREATOR = new Creator<Tarjetas>() {
+        @Override
+        public Tarjetas createFromParcel(Parcel in) {
+            return new Tarjetas(in);
+        }
+
+        @Override
+        public Tarjetas[] newArray(int size) {
+            return new Tarjetas[size];
+        }
+    };
 
     public String getNumTarjeta() {
         return numTarjeta;
@@ -63,5 +85,18 @@ public class Tarjetas {
                 ", mes='" + mes + '\'' +
                 ", año='" + año + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(numTarjeta);
+        dest.writeString(cdv);
+        dest.writeString(mes);
+        dest.writeString(año);
     }
 }

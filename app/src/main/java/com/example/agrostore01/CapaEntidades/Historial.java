@@ -1,6 +1,10 @@
 package com.example.agrostore01.CapaEntidades;
 
-public class Historial {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Historial extends Entidad implements Parcelable {
+
     private long idHistorial;
     private String busqueda;
     private String idUsuario;
@@ -18,6 +22,24 @@ public class Historial {
         this.busqueda = busqueda;
         this.idUsuario = idUsuario;
     }
+
+    protected Historial(Parcel in) {
+        idHistorial = in.readLong();
+        busqueda = in.readString();
+        idUsuario = in.readString();
+    }
+
+    public static final Creator<Historial> CREATOR = new Creator<Historial>() {
+        @Override
+        public Historial createFromParcel(Parcel in) {
+            return new Historial(in);
+        }
+
+        @Override
+        public Historial[] newArray(int size) {
+            return new Historial[size];
+        }
+    };
 
     public long getIdHistorial() {
         return idHistorial;
@@ -50,5 +72,17 @@ public class Historial {
                 ", busqueda='" + busqueda + '\'' +
                 ", idUsuario='" + idUsuario + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idHistorial);
+        dest.writeString(busqueda);
+        dest.writeString(idUsuario);
     }
 }

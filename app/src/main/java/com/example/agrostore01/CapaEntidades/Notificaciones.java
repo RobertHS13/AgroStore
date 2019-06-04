@@ -1,6 +1,10 @@
 package com.example.agrostore01.CapaEntidades;
 
-public class Notificaciones {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Notificaciones extends Entidad implements Parcelable {
+
     private long idNotificacion;
     private String detalle;
 
@@ -15,6 +19,23 @@ public class Notificaciones {
         this.idNotificacion = idNotificacion;
         this.detalle = detalle;
     }
+
+    protected Notificaciones(Parcel in) {
+        idNotificacion = in.readLong();
+        detalle = in.readString();
+    }
+
+    public static final Creator<Notificaciones> CREATOR = new Creator<Notificaciones>() {
+        @Override
+        public Notificaciones createFromParcel(Parcel in) {
+            return new Notificaciones(in);
+        }
+
+        @Override
+        public Notificaciones[] newArray(int size) {
+            return new Notificaciones[size];
+        }
+    };
 
     public long getIdNotificacion() {
         return idNotificacion;
@@ -38,5 +59,16 @@ public class Notificaciones {
                 "idNotificacion=" + idNotificacion +
                 ", detalle='" + detalle + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idNotificacion);
+        dest.writeString(detalle);
     }
 }

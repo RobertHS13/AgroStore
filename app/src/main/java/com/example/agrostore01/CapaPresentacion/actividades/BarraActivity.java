@@ -1,5 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,14 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.fragmentos.BuscarFragment;
 import com.example.agrostore01.CapaPresentacion.fragmentos.CarritoFragment;
 import com.example.agrostore01.CapaPresentacion.fragmentos.DashboardFragment;
 import com.example.agrostore01.CapaPresentacion.fragmentos.NotificacionesFragment;
 
-public class BarraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class BarraActivity extends RecieveBundlesActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView navegador;
 
@@ -28,6 +31,8 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
     private BuscarFragment buscarFragment = new BuscarFragment();
     private CarritoFragment carritoFragment = new CarritoFragment();
     private NotificacionesFragment notificacionesFragment = new NotificacionesFragment();
+
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,9 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
         //ViewPager viewPager = findViewById(R.id.ViewPagerOfertas);
         //ImagenAdapter adapter = new ImagenAdapter(this);
         //viewPager.setAdapter(adapter);
+
+        recieveBundles(this);
+        String idUsuario = usuario.getIdUsuario();
 
         navegador = findViewById(R.id.navigation);
         navegador.setOnNavigationItemSelectedListener(navegadorListener);
@@ -166,5 +174,11 @@ public class BarraActivity extends AppCompatActivity implements NavigationView.O
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        Toast.makeText(context, usuario.toString(), Toast.LENGTH_SHORT).show();
     }
 }

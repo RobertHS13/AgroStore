@@ -1,9 +1,13 @@
 package com.example.agrostore01.CapaEntidades;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class ProductoComprado {
+public class ProductoComprado extends Entidad implements Parcelable {
+
     private long idProdComprado;
     private long idTerreno;
     private byte[] localizacion;
@@ -27,6 +31,25 @@ public class ProductoComprado {
         this.tiempo = tiempo;
         this.estado = estado;
     }
+
+    protected ProductoComprado(Parcel in) {
+        idProdComprado = in.readLong();
+        idTerreno = in.readLong();
+        localizacion = in.createByteArray();
+        estado = in.readByte() != 0;
+    }
+
+    public static final Creator<ProductoComprado> CREATOR = new Creator<ProductoComprado>() {
+        @Override
+        public ProductoComprado createFromParcel(Parcel in) {
+            return new ProductoComprado(in);
+        }
+
+        @Override
+        public ProductoComprado[] newArray(int size) {
+            return new ProductoComprado[size];
+        }
+    };
 
     public long getIdProdComprado() {
         return idProdComprado;
@@ -77,5 +100,18 @@ public class ProductoComprado {
                 ", tiempo=" + tiempo +
                 ", estado=" + estado +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idProdComprado);
+        dest.writeLong(idTerreno);
+        dest.writeByteArray(localizacion);
+        dest.writeByte((byte) (estado ? 1 : 0));
     }
 }

@@ -1,9 +1,13 @@
 package com.example.agrostore01.CapaEntidades;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class Producto {
+public class Producto extends Entidad implements Parcelable {
+
     private long idProducto;
     private String producto;
     private java.math.BigDecimal precioTonelada;
@@ -33,6 +37,26 @@ public class Producto {
         this.idCategoria = idCategoria;
         this.precioKilogramo = precioKilogramo;
     }
+
+    protected Producto(Parcel in) {
+        idProducto = in.readLong();
+        producto = in.readString();
+        foto = in.createByteArray();
+        temporada = in.readByte() != 0;
+        idCategoria = in.readInt();
+    }
+
+    public static final Creator<Producto> CREATOR = new Creator<Producto>() {
+        @Override
+        public Producto createFromParcel(Parcel in) {
+            return new Producto(in);
+        }
+
+        @Override
+        public Producto[] newArray(int size) {
+            return new Producto[size];
+        }
+    };
 
     public long getIdProducto() {
         return idProducto;
@@ -101,5 +125,19 @@ public class Producto {
                 ", idCategoria=" + idCategoria +
                 ", precioKilogramo=" + precioKilogramo +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idProducto);
+        dest.writeString(producto);
+        dest.writeByteArray(foto);
+        dest.writeByte((byte) (temporada ? 1 : 0));
+        dest.writeInt(idCategoria);
     }
 }

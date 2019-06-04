@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaEntidades;
 
-public class Empresa {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Empresa extends Entidad implements Parcelable {
 
     private int idEmpresa;
     private String nombre;
@@ -25,6 +28,26 @@ public class Empresa {
         this.numTelefono = numTelefono;
         this.correo = correo;
     }
+
+    protected Empresa(Parcel in) {
+        idEmpresa = in.readInt();
+        nombre = in.readString();
+        direccion = in.readString();
+        numTelefono = in.readString();
+        correo = in.readString();
+    }
+
+    public static final Creator<Empresa> CREATOR = new Creator<Empresa>() {
+        @Override
+        public Empresa createFromParcel(Parcel in) {
+            return new Empresa(in);
+        }
+
+        @Override
+        public Empresa[] newArray(int size) {
+            return new Empresa[size];
+        }
+    };
 
     public int getIdEmpresa() {
         return idEmpresa;
@@ -75,5 +98,19 @@ public class Empresa {
                 ", numTelefono='" + numTelefono + '\'' +
                 ", correo='" + correo + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idEmpresa);
+        dest.writeString(nombre);
+        dest.writeString(direccion);
+        dest.writeString(numTelefono);
+        dest.writeString(correo);
     }
 }

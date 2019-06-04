@@ -1,6 +1,10 @@
 package com.example.agrostore01.CapaEntidades;
 
-public class TerrenosUsuario {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TerrenosUsuario extends Entidad implements Parcelable {
+
     private String idUsuario;
     private long idTerreno;
 
@@ -11,6 +15,23 @@ public class TerrenosUsuario {
         this.idUsuario = idUsuario;
         this.idTerreno = idTerreno;
     }
+
+    protected TerrenosUsuario(Parcel in) {
+        idUsuario = in.readString();
+        idTerreno = in.readLong();
+    }
+
+    public static final Creator<TerrenosUsuario> CREATOR = new Creator<TerrenosUsuario>() {
+        @Override
+        public TerrenosUsuario createFromParcel(Parcel in) {
+            return new TerrenosUsuario(in);
+        }
+
+        @Override
+        public TerrenosUsuario[] newArray(int size) {
+            return new TerrenosUsuario[size];
+        }
+    };
 
     public String getIdUsuario() {
         return idUsuario;
@@ -34,5 +55,16 @@ public class TerrenosUsuario {
                 "idUsuario='" + idUsuario + '\'' +
                 ", idTerreno=" + idTerreno +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idUsuario);
+        dest.writeLong(idTerreno);
     }
 }

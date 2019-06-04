@@ -1,14 +1,17 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
-public class PerfilUsuarioActivity extends AppCompatActivity {
+public class PerfilUsuarioActivity extends RecieveBundlesActivity {
 
     private ImageButton ibMisDatos, ibClave, ibReputacion, ibConfiguracionCuenta;
 
@@ -28,10 +31,15 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         ibReputacion.setOnClickListener(ibReputacionListener);
     }
 
+    @Override
+    public void recieveBundles(Context context) {
+
+    }
+
     private final View.OnClickListener ibMisDatosListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(PerfilUsuarioActivity.this,MisDatosActivity.class);
+            Intent intent = new Intent(PerfilUsuarioActivity.this, MisDatosActivity.class);
             startActivity(intent);
         }
     };
@@ -63,32 +71,24 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     public ImageButton getIbMisDatos() {
         return ibMisDatos;
     }
-
     public ImageButton getIbClave() {
         return ibClave;
     }
-
     public ImageButton getIbReputacion() {
         return ibReputacion;
     }
-
     public ImageButton getIbConfiguracionCuenta() {
         return ibConfiguracionCuenta;
     }
-
     public View.OnClickListener getIbMisDatosListener() {
         return ibMisDatosListener;
     }
-
-    public View.OnClickListener getIbConfiguracionCuentaListener() {
-        return ibConfiguracionCuentaListener;
-    }
-
+    public View.OnClickListener getIbConfiguracionCuentaListener() { return ibConfiguracionCuentaListener; }
     public View.OnClickListener getIbClaveListener() {
         return ibClaveListener;
     }
-
     public View.OnClickListener getIbReputacionListener() {
         return ibReputacionListener;
     }
+
 }

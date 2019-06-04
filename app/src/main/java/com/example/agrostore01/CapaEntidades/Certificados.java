@@ -1,10 +1,13 @@
 package com.example.agrostore01.CapaEntidades;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class Certificados {
-    
+public class Certificados extends Entidad implements Parcelable {
+
     private int idCertificados;
     private String nombre;
     private java.sql.Timestamp vigencia;
@@ -31,6 +34,25 @@ public class Certificados {
         this.fechaExpedido = fechaExpedido;
         this.sello = sello;
     }
+
+    protected Certificados(Parcel in) {
+        idCertificados = in.readInt();
+        nombre = in.readString();
+        tituloCertificado = in.readString();
+        sello = in.createByteArray();
+    }
+
+    public static final Creator<Certificados> CREATOR = new Creator<Certificados>() {
+        @Override
+        public Certificados createFromParcel(Parcel in) {
+            return new Certificados(in);
+        }
+
+        @Override
+        public Certificados[] newArray(int size) {
+            return new Certificados[size];
+        }
+    };
 
     public int getIdCertificados() {
         return idCertificados;
@@ -90,5 +112,18 @@ public class Certificados {
                 ", fechaExpedido=" + fechaExpedido +
                 ", sello=" + Arrays.toString(sello) +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(idCertificados);
+        dest.writeString(nombre);
+        dest.writeString(tituloCertificado);
+        dest.writeByteArray(sello);
     }
 }

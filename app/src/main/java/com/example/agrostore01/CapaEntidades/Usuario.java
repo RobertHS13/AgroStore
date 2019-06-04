@@ -1,8 +1,12 @@
 package com.example.agrostore01.CapaEntidades;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Arrays;
 
-public class Usuario {
+public class Usuario extends Entidad implements Parcelable {
+
     private String idUsuario;
     private String contraseñaUsuario;
     private int idTipo;
@@ -10,8 +14,7 @@ public class Usuario {
     private byte[] foto;
     private String correo;
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public Usuario(String contraseñaUsuario, int idTipo, long idDetalles, byte[] foto, String correo) {
         this.contraseñaUsuario = contraseñaUsuario;
@@ -29,6 +32,27 @@ public class Usuario {
         this.foto = foto;
         this.correo = correo;
     }
+
+    protected Usuario(Parcel in) {
+        idUsuario = in.readString();
+        contraseñaUsuario = in.readString();
+        idTipo = in.readInt();
+        idDetalles = in.readLong();
+        foto = in.createByteArray();
+        correo = in.readString();
+    }
+
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+        @Override
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
+
+        @Override
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
 
     public String getIdUsuario() {
         return idUsuario;
@@ -89,4 +113,20 @@ public class Usuario {
                 ", correo='" + correo + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idUsuario);
+        dest.writeString(contraseñaUsuario);
+        dest.writeInt(idTipo);
+        dest.writeLong(idDetalles);
+        dest.writeByteArray(foto);
+        dest.writeString(correo);
+    }
+
 }

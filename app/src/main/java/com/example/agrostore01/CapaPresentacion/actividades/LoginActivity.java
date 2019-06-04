@@ -9,12 +9,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.agrostore01.CapaDatos.conexiones.BaseDeDatos;
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ImageButton ibInicioSesion, ibIniciar, ibRecuperarCuenta;
     private EditText etCorreoElectronico, etContrasena;
+
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private final View.OnClickListener ibInicioSesionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(LoginActivity.this,RegistroActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
             startActivity(intent);
         }
     };
@@ -43,7 +46,20 @@ public class LoginActivity extends AppCompatActivity {
     private final View.OnClickListener ibIniciarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(LoginActivity.this, BarraActivity.class);
+            /*
+             * private String idUsuario;
+             * private String contraseñaUsuario;
+             * private int idTipo;
+             * private long idDetalles;
+             * private byte[] foto;
+             * private String correo;
+             */
+            usuario = new Usuario("AlexCR97", "12345", 1, 1, null, "ale@live.com");
+
+            Intent intent = new Intent(LoginActivity.this, BarraActivity.class);
+
+            intent.putExtra(usuario.getClassName(), usuario);
+
             startActivity(intent);
         }
     };
@@ -51,11 +67,8 @@ public class LoginActivity extends AppCompatActivity {
     private final View.OnClickListener ibRecuperarCuentaListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            // test connection
             BaseDeDatos bd = new BaseDeDatos();
-
             boolean success = bd.getConexion() != null;
-
             if (!success)
                 Toast.makeText(v.getContext(), "Connection failed :(", Toast.LENGTH_SHORT).show();
             else
