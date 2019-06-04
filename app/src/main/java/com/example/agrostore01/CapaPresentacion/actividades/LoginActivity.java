@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.agrostore01.CapaDatos.conexiones.BaseDeDatos;
 import com.example.agrostore01.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -19,15 +21,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ibInicioSesion=(ImageButton)findViewById(R.id.imageButton2);
-        ibIniciar=(ImageButton)findViewById(R.id.imageButton);
-        ibRecuperarCuenta=(ImageButton)findViewById(R.id.ibRecuperarCuenta);
-        etCorreoElectronico=(EditText) findViewById(R.id.etCorreoElec);
-        etContrasena=(EditText) findViewById(R.id.etContra);
+        ibInicioSesion = findViewById(R.id.imageButton2);
+        ibIniciar = findViewById(R.id.imageButton);
+        ibRecuperarCuenta = findViewById(R.id.ibRecuperarCuenta);
+        etCorreoElectronico = findViewById(R.id.etCorreoElec);
+        etContrasena = findViewById(R.id.etContra);
 
         ibInicioSesion.setOnClickListener(ibInicioSesionListener);
         ibIniciar.setOnClickListener(ibIniciarListener);
-
+        ibRecuperarCuenta.setOnClickListener(ibRecuperarCuentaListener);
     }
 
     private final View.OnClickListener ibInicioSesionListener = new View.OnClickListener() {
@@ -46,19 +48,23 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-    public ImageButton getIbInicioSesion() {
-        return ibInicioSesion;
-    }
+    private final View.OnClickListener ibRecuperarCuentaListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // test connection
+            BaseDeDatos bd = new BaseDeDatos();
 
-    public ImageButton getIbIniciar() {
-        return ibIniciar;
-    }
+            boolean success = bd.getConexion() != null;
 
-    public EditText getEtCorreoElectronico() {
-        return etCorreoElectronico;
-    }
+            if (!success)
+                Toast.makeText(v.getContext(), "Connection failed :(", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(v.getContext(), "Connection successful! :D", Toast.LENGTH_SHORT).show();
+        }
+    };
 
-    public EditText getEtContrasema() {
-        return etContrasena;
-    }
+    public ImageButton getIbInicioSesion() { return ibInicioSesion; }
+    public ImageButton getIbIniciar() { return ibIniciar; }
+    public EditText getEtCorreoElectronico() { return etCorreoElectronico; }
+    public EditText getEtContrasema() { return etContrasena; }
 }
