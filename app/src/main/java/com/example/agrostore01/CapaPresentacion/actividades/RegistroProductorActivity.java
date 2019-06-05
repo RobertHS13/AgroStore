@@ -36,7 +36,7 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
         etConfirmarContra=(EditText)findViewById(R.id.etConfirmarContra);
         etCorreoElectr=(EditText)findViewById(R.id.etCorreoElectronico);
         etNumTel=(EditText)findViewById(R.id.etTelefono);
-        etDomicilioLab=(EditText)findViewById(R.id.etDireccionLab);
+        etDomicilioLab=(EditText)findViewById(R.id.etCalle);
         etCorreoRespa=(EditText)findViewById(R.id.etCorreoRespaldo);
 
         ibFecha.setOnClickListener((View.OnClickListener) this);
