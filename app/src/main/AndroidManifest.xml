@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.agrostore01">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -9,68 +13,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <activity android:name=".actividades.Vender1Activity"></activity>
-        <activity android:name=".actividades.Vender2Activity"></activity>
-        <activity android:name=".actividades.Vender3Activity"></activity>
-        <activity android:name=".actividades.Vender4Activity"></activity>
-        <activity android:name=".actividades.Vender5Activity"></activity>
-
+        <activity android:name=".CapaPresentacion.actividades.AgregarTerrenoActivity"></activity>
+        <activity android:name=".CapaPresentacion.actividades.MiTerrenoActivity" />
+        <activity android:name=".CapaPresentacion.actividades.ReputacionActivity" />
+        <activity android:name=".CapaPresentacion.actividades.SeguridadActivity" />
+        <activity android:name=".CapaPresentacion.actividades.ClaveActivity" />
+        <activity android:name=".CapaPresentacion.actividades.ConfigurarCuentaActivity" />
+        <activity android:name=".CapaPresentacion.actividades.ActualizarMisDatosActivity" />
+        <activity android:name=".CapaPresentacion.actividades.MisDatosActivity" />
+        <activity android:name=".CapaPresentacion.actividades.PerfilUsuarioActivity" />
         <activity
-        android:name=".actividades.EstadoVentaActivity"
-        android:label="Estado de Mis Ventas" />
+            android:name=".CapaPresentacion.actividades.BarraActivity"
+            android:label="@string/title_activity_barra"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CapaPresentacion.actividades.RegistroProductorActivity" />
+        <activity android:name=".CapaPresentacion.actividades.RegistroClienteActivity" />
+        <activity android:name=".CapaPresentacion.actividades.RegistroActivity" />
+        <activity android:name=".CapaPresentacion.actividades.LoginActivity" />
+        <activity android:name=".CapaPresentacion.actividades.CargaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CapaPresentacion.actividades.Vender1Activity" />
+        <activity android:name=".CapaPresentacion.actividades.Vender2Activity" />
+        <activity android:name=".CapaPresentacion.actividades.Vender3Activity" />
+        <activity android:name=".CapaPresentacion.actividades.Vender4Activity" />
+        <activity android:name=".CapaPresentacion.actividades.Vender5Activity" />
         <activity
-            android:name=".actividades.MisComprasActivity"
+            android:name=".CapaPresentacion.actividades.EstadoVentaActivity"
+            android:label="Estado de Mis Ventas" />
+        <activity
+            android:name=".CapaPresentacion.actividades.MisComprasActivity"
             android:label="Mis Compras" />
         <activity
-            android:name=".actividades.MisVentasActivity"
+            android:name=".CapaPresentacion.actividades.MisVentasActivity"
             android:label="Mis Ventas" />
         <activity
-            android:name=".actividades.EstadoCompraActivity"
+            android:name=".CapaPresentacion.actividades.EstadoCompraActivity"
             android:label="Estado de Mis Compras" />
         <activity
-            android:name=".actividades.CompraActivity"
+            android:name=".CapaPresentacion.actividades.CompraActivity"
             android:label="Comprar" />
         <activity
-            android:name=".actividades.DetallesProductoActivity"
+            android:name=".CapaPresentacion.actividades.DetallesProductoActivity"
             android:label="Detalles del Producto" />
         <activity
-            android:name=".actividades.FiltrosActivity"
+            android:name=".CapaPresentacion.actividades.FiltrosActivity"
             android:label="Filtrado" />
         <activity
-            android:name=".actividades.BuscarActivity"
+            android:name=".CapaPresentacion.actividades.BuscarActivity"
             android:label="Buscar" />
-        <activity
-            android:name=".actividades.MainActivity"
-            android:label="AgroStore">
-        </activity>
     </application>
 
 </manifest>
