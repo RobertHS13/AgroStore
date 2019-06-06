@@ -7,12 +7,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
 public class MisDatosActivity extends RecieveBundlesActivity {
 
     private ImageButton ibActualizar;
     private TextView tvNombre, tvUsuario, tvEmail, tvTelefono, tvDireccion;
+
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +36,15 @@ public class MisDatosActivity extends RecieveBundlesActivity {
 
     @Override
     public void recieveBundles(Context context) {
-
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
     }
 
     private final View.OnClickListener ibActualizarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(MisDatosActivity.this,ActualizarMisDatosActivity.class);
+            Intent intent = new Intent(MisDatosActivity.this, ActualizarMisDatosActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+
             startActivity(intent);
         }
     };

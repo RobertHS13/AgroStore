@@ -1,24 +1,30 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
-public class Vender1Activity extends AppCompatActivity {
+public class Vender1Activity extends RecieveBundlesActivity {
 
     private ImageView imageViewLacteos;
     private ImageView imageViewCarnes;
     private ImageView imageViewHoritalizas;
     private ImageView imageViewSemillas;
 
+    private Usuario usuario = new Usuario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vender1);
+
+        recieveBundles(this);
 
         imageViewCarnes = findViewById(R.id.imageViewCategoriaCarnes);
         imageViewLacteos = findViewById(R.id.imageViewCategoriaLacteos);
@@ -38,4 +44,10 @@ public class Vender1Activity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+    }
+
 }

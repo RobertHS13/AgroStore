@@ -2,18 +2,25 @@ package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.conexiones.BaseDeDatos;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Repositorio {
-    protected BaseDeDatos bd = new BaseDeDatos("hola","hola","hola","hola");
-    //falta mandarle bien los parametros
+
+    protected BaseDeDatos bd = new BaseDeDatos();
 
     protected PreparedStatement sentencia;
     protected ResultSet resultado;
     protected ArrayList<Object> parametros = new ArrayList<>();
+
+    protected CallableStatement procedimiento;
+    protected ArrayList<Integer> parametrosDeSalida = new ArrayList<>();
 
     protected String sqlAlta;
     protected String sqlBaja;
@@ -35,6 +42,12 @@ public class Repositorio {
             System.out.println("Datos: " + parametros);
 
             sentencia.executeUpdate();
+
+            return true;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            return false;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -46,7 +59,6 @@ public class Repositorio {
             try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
             try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
         }
-        return true;
     }
 
     protected ResultSet ejecutarLectura(String sql) {
@@ -60,7 +72,11 @@ public class Repositorio {
             System.out.println("Lectura: " + sql);
             System.out.println("Datos: " + parametros);
 
-            resultado = sentencia.executeQuery();
+            return sentencia.executeQuery();
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +85,57 @@ public class Repositorio {
         finally {
             parametros.clear();
         }
-        return resultado;
+    }
+
+    protected ResultSet ejecutarProcedimientoConSalida(String sql) {
+        try {
+
+            procedimiento = bd.getConexion().prepareCall(sql);
+
+            int i = 1;
+            for (Object p : parametros)
+                procedimiento.setObject(i++, p);
+
+            for (Integer type : parametrosDeSalida)
+            {
+                System.out.println("Setting sql type " + type + " on index " + i);
+                procedimiento.registerOutParameter(i++, type);
+            }
+
+            System.out.println("Procedimiento: " + sql);
+            System.out.println("Parametros de entrada: " + parametros);
+            System.out.println("Parametros de salida: " + parametrosDeSalida);
+
+            boolean generatedResultSet = procedimiento.execute();
+            if (generatedResultSet) {
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("The proc generated a result set!");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                return procedimiento.getResultSet();
+            }
+
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("The proc did NOT generate a result set!");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            return null;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            parametros.clear();
+            parametrosDeSalida.clear();
+        }
     }
 
 }

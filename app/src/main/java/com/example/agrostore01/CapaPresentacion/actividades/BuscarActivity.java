@@ -1,5 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,13 +8,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.adaptadores.BusquedaAdapter;
 
-public class BuscarActivity extends AppCompatActivity {
+public class BuscarActivity extends RecieveBundlesActivity {
 
     private Button buttonFiltrar;
     private ListView listViewBuscar;
+
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,8 @@ public class BuscarActivity extends AppCompatActivity {
         listViewBuscar.setAdapter(adaptador);
 
         listViewBuscar.setOnItemClickListener(listViewBuscarListener);
+
+        recieveBundles(this);
     }
 
     private final View.OnClickListener buttonFiltrarListener = new View.OnClickListener() {
@@ -47,4 +54,8 @@ public class BuscarActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+    }
 }

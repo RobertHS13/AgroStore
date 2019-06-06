@@ -1,5 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.fragmentos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,14 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaPresentacion.actividades.RecieveBundlesFragment;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.actividades.CompraActivity;
 import com.example.agrostore01.CapaPresentacion.adaptadores.NotificacionesAdapter;
 
-public class NotificacionesFragment extends Fragment {
+public class NotificacionesFragment extends RecieveBundlesFragment {
 
     private ListView listViewNotificaciones;
+
+    private Usuario usuario = new Usuario();
 
     @Nullable
     @Override
@@ -28,13 +34,21 @@ public class NotificacionesFragment extends Fragment {
         listViewNotificaciones = vista.findViewById(R.id.listViewNotificaciones);
         listViewNotificaciones.setAdapter(adapter);
 
+        recieveBundles(vista.getContext());
+
         return vista;
     }
     private final View.OnClickListener buttonNotificacionesListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), CompraActivity.class);
-            startActivity(intent);
+
         }
     };
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getArguments().getParcelable(usuario.getClassName());
+        Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
+    }
+
 }

@@ -15,15 +15,19 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
 
     private ImageButton ibMisDatos, ibClave, ibReputacion, ibConfiguracionCuenta;
 
+    private Usuario usuario = new Usuario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
 
-        ibMisDatos=(ImageButton)findViewById(R.id.ibMisDatos);
-        ibConfiguracionCuenta=(ImageButton)findViewById(R.id.ibConfiguracionCuenta);
-        ibReputacion=(ImageButton)findViewById(R.id.ibReputacion);
-        ibClave=(ImageButton)findViewById(R.id.ibClave);
+        recieveBundles(this);
+
+        ibMisDatos = findViewById(R.id.ibMisDatos);
+        ibConfiguracionCuenta = findViewById(R.id.ibConfiguracionCuenta);
+        ibReputacion = findViewById(R.id.ibReputacion);
+        ibClave = findViewById(R.id.ibClave);
 
         ibMisDatos.setOnClickListener(ibMisDatosListener);
         ibConfiguracionCuenta.setOnClickListener(ibConfiguracionCuentaListener);
@@ -33,21 +37,15 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
 
     @Override
     public void recieveBundles(Context context) {
-
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
     }
 
     private final View.OnClickListener ibMisDatosListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(PerfilUsuarioActivity.this, MisDatosActivity.class);
-            startActivity(intent);
-        }
-    };
+            intent.putExtra(usuario.getClassName(), usuario);
 
-    private final View.OnClickListener ibConfiguracionCuentaListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent= new Intent(PerfilUsuarioActivity.this,ConfigurarCuentaActivity.class);
             startActivity(intent);
         }
     };
@@ -55,7 +53,9 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibClaveListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(PerfilUsuarioActivity.this,ClaveActivity.class);
+            Intent intent = new Intent(PerfilUsuarioActivity.this, ClaveActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+
             startActivity(intent);
         }
     };
@@ -63,7 +63,19 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibReputacionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(PerfilUsuarioActivity.this,ReputacionActivity.class);
+            Intent intent = new Intent(PerfilUsuarioActivity.this, ReputacionActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+
+            startActivity(intent);
+        }
+    };
+
+    private final View.OnClickListener ibConfiguracionCuentaListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(PerfilUsuarioActivity.this, ConfigurarCuentaActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+
             startActivity(intent);
         }
     };
@@ -79,16 +91,6 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
     }
     public ImageButton getIbConfiguracionCuenta() {
         return ibConfiguracionCuenta;
-    }
-    public View.OnClickListener getIbMisDatosListener() {
-        return ibMisDatosListener;
-    }
-    public View.OnClickListener getIbConfiguracionCuentaListener() { return ibConfiguracionCuentaListener; }
-    public View.OnClickListener getIbClaveListener() {
-        return ibClaveListener;
-    }
-    public View.OnClickListener getIbReputacionListener() {
-        return ibReputacionListener;
     }
 
 }
