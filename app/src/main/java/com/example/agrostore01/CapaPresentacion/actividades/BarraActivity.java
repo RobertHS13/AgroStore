@@ -57,14 +57,30 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         //ImagenAdapter adapter = new ImagenAdapter(this);
         //viewPager.setAdapter(adapter);
 
-        recieveBundles(this);
-        String idUsuario = usuario.getIdUsuario();
-
         navegador = findViewById(R.id.navigation);
         navegador.setOnNavigationItemSelectedListener(navegadorListener);
 
-        // fragmento for defecto
+        // Fragmento for defecto
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, dashboardFragment).commit();
+
+        // Bundles de los fragmentos
+        recieveBundles(this);
+
+        Bundle bundleDashboard = new Bundle();
+        bundleDashboard.putParcelable(usuario.getClassName(), usuario);
+        dashboardFragment.setArguments(bundleDashboard);
+
+        Bundle bundleBuscar = new Bundle();
+        bundleBuscar.putParcelable(usuario.getClassName(), usuario);
+        buscarFragment.setArguments(bundleBuscar);
+
+        Bundle bundleCarrito = new Bundle();
+        bundleCarrito.putParcelable(usuario.getClassName(), usuario);
+        carritoFragment.setArguments(bundleCarrito);
+
+        Bundle bundleNotificaciones = new Bundle();
+        bundleNotificaciones.putParcelable(usuario.getClassName(), usuario);
+        notificacionesFragment.setArguments(bundleNotificaciones);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navegadorListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -128,50 +144,49 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = null;
 
         if (id == R.id.perfil) {
-            Intent intent= new Intent(BarraActivity.this,PerfilUsuarioActivity.class);
-            startActivity(intent);
+            intent = new Intent(BarraActivity.this, PerfilUsuarioActivity.class);
         }
 
         else if (id == R.id.miterreno){
-            Intent intent= new Intent(BarraActivity.this,MiTerrenoActivity.class);
-            startActivity(intent);
+            intent = new Intent(BarraActivity.this, MiTerrenoActivity.class);
         }
 
         else if (id == R.id.compras) {
-            Intent intent= new Intent(BarraActivity.this,MisComprasActivity.class);
-            startActivity(intent);
+            intent = new Intent(BarraActivity.this, MisComprasActivity.class);
         }
 
         else if (id == R.id.ventas) {
-            Intent intent= new Intent(BarraActivity.this,MisVentasActivity.class);
-            startActivity(intent);
+            intent = new Intent(BarraActivity.this, MisVentasActivity.class);
         }
 
         else if (id == R.id.vender) {
-            Intent intent= new Intent(BarraActivity.this,Vender1Activity.class);
-            startActivity(intent);
+            intent = new Intent(BarraActivity.this, Vender1Activity.class);
         }
 
         else if (id == R.id.faq) {
 
         }
 
-        else if (id == R.id.cerrarsesion){
-            Intent intent= new Intent(BarraActivity.this,LoginActivity.class);
-            startActivity(intent);
+        else if (id == R.id.cerrarsesion) {
+            intent = new Intent(BarraActivity.this, LoginActivity.class);
 
-        } else if (id == R.id.ventana){
+        } else if (id == R.id.ventana) {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (intent != null) {
+            intent.putExtra(usuario.getClassName(), usuario);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -179,6 +194,7 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
-        Toast.makeText(context, usuario.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "¡Has iniciado sesion! :D\n" + usuario.toString(), Toast.LENGTH_SHORT).show();
     }
+
 }

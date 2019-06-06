@@ -8,37 +8,41 @@ import java.util.Arrays;
 public class Usuario extends Entidad implements Parcelable {
 
     private String idUsuario;
-    private String contraseñaUsuario;
+    private byte[] foto;
     private int idTipo;
     private long idDetalles;
-    private byte[] foto;
+    private String usuario;
+    private String contrasenaUsuario;
     private String correo;
 
     public Usuario() {}
 
-    public Usuario(String contraseñaUsuario, int idTipo, long idDetalles, byte[] foto, String correo) {
-        this.contraseñaUsuario = contraseñaUsuario;
+    public Usuario(byte[] foto, int idTipo, long idDetalles, String usuario, String contrasenaUsuario, String correo) {
+        this.foto = foto;
         this.idTipo = idTipo;
         this.idDetalles = idDetalles;
-        this.foto = foto;
+        this.usuario = usuario;
+        this.contrasenaUsuario = contrasenaUsuario;
         this.correo = correo;
     }
 
-    public Usuario(String idUsuario, String contraseñaUsuario, int idTipo, long idDetalles, byte[] foto, String correo) {
+    public Usuario(String idUsuario, byte[] foto, int idTipo, long idDetalles, String usuario, String contrasenaUsuario, String correo) {
         this.idUsuario = idUsuario;
-        this.contraseñaUsuario = contraseñaUsuario;
+        this.foto = foto;
         this.idTipo = idTipo;
         this.idDetalles = idDetalles;
-        this.foto = foto;
+        this.usuario = usuario;
+        this.contrasenaUsuario = contrasenaUsuario;
         this.correo = correo;
     }
 
     protected Usuario(Parcel in) {
         idUsuario = in.readString();
-        contraseñaUsuario = in.readString();
+        foto = in.createByteArray();
         idTipo = in.readInt();
         idDetalles = in.readLong();
-        foto = in.createByteArray();
+        usuario = in.readString();
+        contrasenaUsuario = in.readString();
         correo = in.readString();
     }
 
@@ -62,12 +66,12 @@ public class Usuario extends Entidad implements Parcelable {
         this.idUsuario = idUsuario;
     }
 
-    public String getContraseñaUsuario() {
-        return contraseñaUsuario;
+    public String getContrasenaUsuario() {
+        return contrasenaUsuario;
     }
 
-    public void setContraseñaUsuario(String contraseñaUsuario) {
-        this.contraseñaUsuario = contraseñaUsuario;
+    public void setContrasenaUsuario(String contrasenaUsuario) {
+        this.contrasenaUsuario = contrasenaUsuario;
     }
 
     public int getIdTipo() {
@@ -106,10 +110,11 @@ public class Usuario extends Entidad implements Parcelable {
     public String toString() {
         return "Usuario{" +
                 "idUsuario='" + idUsuario + '\'' +
-                ", contraseñaUsuario='" + contraseñaUsuario + '\'' +
+                ", foto=" + Arrays.toString(foto) +
                 ", idTipo=" + idTipo +
                 ", idDetalles=" + idDetalles +
-                ", foto=" + Arrays.toString(foto) +
+                ", usuario='" + usuario + '\'' +
+                ", contrasenaUsuario='" + contrasenaUsuario + '\'' +
                 ", correo='" + correo + '\'' +
                 '}';
     }
@@ -122,7 +127,7 @@ public class Usuario extends Entidad implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(idUsuario);
-        dest.writeString(contraseñaUsuario);
+        dest.writeString(contrasenaUsuario);
         dest.writeInt(idTipo);
         dest.writeLong(idDetalles);
         dest.writeByteArray(foto);

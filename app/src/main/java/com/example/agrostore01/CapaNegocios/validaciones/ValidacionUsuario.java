@@ -14,7 +14,7 @@ public class ValidacionUsuario extends Validacion<Usuario> {
         return true ;
     }
     public boolean validarContrasenaUsuario(){
-        if (entidad.getContraseñaUsuario().isEmpty())
+        if (entidad.getContrasenaUsuario().isEmpty())
             return false;
         return true ;
     }

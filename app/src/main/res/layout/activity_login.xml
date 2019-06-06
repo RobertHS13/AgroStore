@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CapaPresentacion.actividades.LoginActivity">
+
     <ImageView
-        android:id="@+id/imageView54"
+        android:id="@+id/imageViewFaqLogin"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"

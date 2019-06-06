@@ -1,5 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,18 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
-public class Vender4Activity extends AppCompatActivity {
+public class Vender4Activity extends RecieveBundlesActivity {
 
     private Spinner spinnerClasificacion;
     private Spinner spinnerUnidad;
     private Button buttonSiguiente;
 
+    private Usuario usuario = new Usuario();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vender4);
+
+        recieveBundles(this);
 
         // Spinner de clasificacion de producto
         spinnerClasificacion = findViewById(R.id.spinnerClasificacion);
@@ -52,4 +58,9 @@ public class Vender4Activity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+    }
 }
