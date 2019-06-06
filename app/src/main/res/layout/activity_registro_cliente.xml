@@ -1,269 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CapaPresentacion.actividades.RegistroClienteActivity">
 
-    <ImageView
-        android:id="@+id/imageView55"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/help_verde" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cuenta cliente"
-        android:textColor="@color/colorGris"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etNombre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:color/background_light" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/etNombre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icono_usuario" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etUsuario"
+                    app:layout_constraintEnd_toStartOf="@+id/etUsuario"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/etUsuario"
+                    app:srcCompat="@drawable/usuario" />
 
-    <EditText
-        android:id="@+id/etContrasena"
-        android:layout_width="288dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmarContra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etConfirmarContra" />
+                <EditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="288dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:hint="Usuario"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.552"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="288dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Nombre"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/etContrasena"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etContrasena" />
+                <ImageView
+                    android:id="@+id/imageView55"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.956"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023"
+                    app:srcCompat="@drawable/help_verde" />
 
-    <EditText
-        android:id="@+id/etConfirmarContra"
-        android:layout_width="288dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:ems="10"
-        android:hint="Confirmar contraseña"
-        android:inputType="textPassword"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/etCorreoElec"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etCorreoElec" />
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icono_usuario" />
 
-    <EditText
-        android:id="@+id/etCorreoElec"
-        android:layout_width="288dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Correo electronico"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tvFecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/colorVerdeFuerte"
+                    android:textSize="18sp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/ibFecha"
+                    app:layout_constraintStart_toStartOf="@+id/ibFecha"
+                    app:layout_constraintTop_toBottomOf="@+id/ibFecha" />
 
-    <EditText
-        android:id="@+id/etCorreoRespaldo"
-        android:layout_width="288dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Correo de respaldo"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etCorreoElec"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreoElec" />
+                <EditText
+                    android:id="@+id/etCorreoElec"
+                    android:layout_width="288dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Correo electrónico"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView15"
+                    app:layout_constraintTop_toBottomOf="@+id/etConfirmarContra" />
 
-    <EditText
-        android:id="@+id/etDireccion"
-        android:layout_width="288dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Dirección"
-        android:inputType="textPostalAddress"
-        android:textColor="@color/colorGrisClaro"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etCorreoRespaldo"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreoRespaldo" />
+                <ImageButton
+                    android:id="@+id/ibRegistrar"
+                    android:layout_width="323dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/ibFecha"
+                    app:layout_constraintStart_toStartOf="@+id/ibFecha"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox"
+                    app:srcCompat="@drawable/tbn_registrar" />
 
-    <ImageButton
-        android:id="@+id/ibFecha"
-        android:layout_width="323dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDireccion"
-        app:srcCompat="@drawable/fecha_nacimiento" />
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etNombre"
+                    app:layout_constraintEnd_toStartOf="@+id/etNombre"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/etNombre"
+                    app:layout_constraintVertical_bias="0.50"
+                    app:srcCompat="@drawable/usuario" />
 
-    <ImageButton
-        android:id="@+id/ibRegistrar"
-        android:layout_width="323dp"
-        android:layout_height="63dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox"
-        app:srcCompat="@drawable/tbn_registrar" />
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etContrasena"
+                    app:layout_constraintStart_toStartOf="@+id/imageView13"
+                    app:layout_constraintTop_toTopOf="@+id/etContrasena"
+                    app:srcCompat="@drawable/password" />
 
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etNombre"
-        app:layout_constraintEnd_toStartOf="@+id/etNombre"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etNombre"
-        app:srcCompat="@drawable/usuario" />
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etCorreoElec"
+                    app:layout_constraintStart_toStartOf="@+id/imageView15"
+                    app:layout_constraintTop_toTopOf="@+id/etCorreoElec"
+                    app:srcCompat="@drawable/email" />
 
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etContrasena"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/etContrasena"
-        app:srcCompat="@drawable/password" />
+                <EditText
+                    android:id="@+id/etCorreoRespaldo"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Correo de respaldo"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView16"
+                    app:layout_constraintTop_toBottomOf="@+id/etCorreoElec" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etConfirmarContra"
-        app:layout_constraintEnd_toEndOf="@+id/imageView14"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/etConfirmarContra"
-        app:srcCompat="@drawable/password" />
+                <EditText
+                    android:id="@+id/etConfirmarContra"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Confirmar contraseña"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etContrasena"
+                    app:layout_constraintTop_toBottomOf="@+id/etContrasena" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etCorreoElec"
-        app:layout_constraintEnd_toEndOf="@+id/imageView15"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView15"
-        app:layout_constraintTop_toTopOf="@+id/etCorreoElec"
-        app:srcCompat="@drawable/email" />
+                <EditText
+                    android:id="@+id/etCalle"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="Calle"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView29"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etDireccion"
-        app:layout_constraintEnd_toEndOf="@+id/imageView29"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView29"
-        app:layout_constraintTop_toTopOf="@+id/etDireccion"
-        app:srcCompat="@drawable/empresa" />
+                <EditText
+                    android:id="@+id/etColonia"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Colonía"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView29"
+                    app:layout_constraintTop_toBottomOf="@+id/etCalle" />
 
-    <ImageView
-        android:id="@+id/imageView29"
-        android:layout_width="40dp"
-        android:layout_height="29dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/etCorreoRespaldo"
-        app:layout_constraintEnd_toEndOf="@+id/imageView16"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView16"
-        app:layout_constraintTop_toTopOf="@+id/etCorreoRespaldo"
-        app:srcCompat="@drawable/email" />
+                <EditText
+                    android:id="@+id/etCiudad"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Ciudad"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etColonia"
+                    app:layout_constraintTop_toBottomOf="@+id/etColonia" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Acepto términos y condiciones"
-        android:textColor="@color/colorGris"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFecha" />
+                <EditText
+                    android:id="@+id/etCodigoPostal"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Código postal"
+                    android:inputType="number"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etCiudad"
+                    app:layout_constraintTop_toBottomOf="@+id/etCiudad" />
 
-    <TextView
-        android:id="@+id/tvFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/colorVerdeFuerte"
-        android:textSize="18sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/ibFecha"
-        app:layout_constraintStart_toStartOf="@+id/ibFecha"
-        app:layout_constraintTop_toBottomOf="@+id/ibFecha" />
+                <EditText
+                    android:id="@+id/etEstado"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Estado"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etCodigoPostal"
+                    app:layout_constraintTop_toBottomOf="@+id/etCodigoPostal" />
 
-</android.support.constraint.ConstraintLayout>
+                <EditText
+                    android:id="@+id/etPais"
+                    android:layout_width="288dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="País"
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etEstado"
+                    app:layout_constraintTop_toBottomOf="@+id/etEstado" />
+
+                <EditText
+                    android:id="@+id/etContrasena"
+                    android:layout_width="288dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/etNombre"
+                    app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+
+                <ImageView
+                    android:id="@+id/imageView29"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etCorreoRespaldo"
+                    app:layout_constraintStart_toStartOf="@+id/imageView16"
+                    app:layout_constraintTop_toTopOf="@+id/etCorreoRespaldo"
+                    app:srcCompat="@drawable/email" />
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etCalle"
+                    app:layout_constraintStart_toStartOf="@+id/imageView29"
+                    app:layout_constraintTop_toTopOf="@+id/etCalle"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etCiudad"
+                    app:layout_constraintStart_toStartOf="@+id/imageView29"
+                    app:layout_constraintTop_toTopOf="@+id/etCiudad"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etCodigoPostal"
+                    app:layout_constraintStart_toStartOf="@+id/imageView29"
+                    app:layout_constraintTop_toTopOf="@+id/etCodigoPostal"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageView
+                    android:id="@+id/imageView32"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etPais"
+                    app:layout_constraintStart_toStartOf="@+id/imageView33"
+                    app:layout_constraintTop_toTopOf="@+id/etPais"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageView
+                    android:id="@+id/imageView33"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etEstado"
+                    app:layout_constraintStart_toStartOf="@+id/imageView12"
+                    app:layout_constraintTop_toTopOf="@+id/etEstado"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etColonia"
+                    app:layout_constraintStart_toStartOf="@+id/imageView29"
+                    app:layout_constraintTop_toTopOf="@+id/etColonia"
+                    app:srcCompat="@drawable/empresa" />
+
+                <ImageButton
+                    android:id="@+id/ibFecha"
+                    android:layout_width="323dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPais"
+                    app:srcCompat="@drawable/fecha_nacimiento" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Acepto términos y condiciones"
+                    android:textColor="@color/colorGris"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ibFecha"
+                    app:layout_constraintStart_toStartOf="@+id/ibFecha"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFecha" />
+
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etConfirmarContra"
+                    app:layout_constraintStart_toStartOf="@+id/imageView14"
+                    app:layout_constraintTop_toTopOf="@+id/etConfirmarContra"
+                    app:srcCompat="@drawable/password" />
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Cuenta cliente"
+                    android:textColor="@color/colorGris"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView10"
+                    app:layout_constraintStart_toStartOf="@+id/imageView10"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Domicilio"
+                    android:textColor="@color/colorGris"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etCorreoRespaldo" />
+
+                <EditText
+                    android:id="@+id/etNombre"
+                    android:layout_width="288dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Nombre"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/colorGrisClaro"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/etUsuario"
+                    app:layout_constraintTop_toBottomOf="@+id/etUsuario" />
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
