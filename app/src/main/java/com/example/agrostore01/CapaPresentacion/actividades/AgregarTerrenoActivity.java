@@ -35,7 +35,7 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
         etMedidasAlto = findViewById(R.id.etMedidasAl);
 
         String[] datos = new String[] {"Suelo arenoso", "Suelo calizo", "Suelo limoso", "Suelo humífero", "Suelo arcilloso", "Suelo pedregoso", "Suelo de turba", "Suelo salino"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_spinner, datos);
         sTipoTerreno.setAdapter(adapter);
 
         ibAceptar.setOnClickListener(ibAceptarListener);
