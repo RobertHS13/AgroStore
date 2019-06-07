@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -13,41 +14,55 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaNegocios.validaciones.ValidacionCarrito;
+import com.example.agrostore01.CapaNegocios.validaciones.ValidacionDetalles;
+import com.example.agrostore01.CapaNegocios.validaciones.ValidacionUsuario;
 import com.example.agrostore01.R;
 
 import java.util.Calendar;
 
 public class RegistroClienteActivity extends AppCompatActivity {
 
-    private ImageButton ibRegistrar,ibFecha;
+    private EditText etUsuario, etNombres, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
+    private EditText etCalle, etColonia, etCiudad, etCodigoPostal, etEstado, etPais;
+    private ImageButton ibFecha, ibRegistrar;
+    private CheckBox cbTerminos;
     private String sFecha;
     private TextView tvFecha;
-    private EditText etNombre, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo, etDireccion;
     private int dia, mes, anno;
 
-    private Usuario usuario;
-    private DetallesUsuario detallesUsuario;
+    private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_cliente);
 
-        ibRegistrar = findViewById(R.id.ibRegistrar);
-        ibFecha = findViewById(R.id.ibFecha);
+        etUsuario = findViewById(R.id.etRegistroClienteUsuario);
+        etNombres = findViewById(R.id.etRegistroClienteNombres);
+        etContrasena = findViewById(R.id.etRegistroClienteContrasena);
+        etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
+        etCorreoElectronico = findViewById(R.id.etRegistroClienteCorreoElectronico);
+        etCorreoRespaldo = findViewById(R.id.etRegistroClienteCorreoRespaldo);
 
+        etCalle = findViewById(R.id.etRegistroClienteCalle);
+        etColonia = findViewById(R.id.etRegistroClienteColonia);
+        etCiudad = findViewById(R.id.etRegistroClienteCiudad);
+        etCodigoPostal = findViewById(R.id.etRegistroClienteCodigoPostal);
+        etEstado = findViewById(R.id.etRegistroClienteEstado);
+        etPais = findViewById(R.id.etRegistroClientePais);
+
+        ibFecha = findViewById(R.id.ibRegistroClienteFechaNac);
+        ibRegistrar = findViewById(R.id.ibRegistroClienteRegistrar);
         tvFecha = findViewById(R.id.tvFecha);
+        cbTerminos = findViewById(R.id.cbRegistroClienteTerminos);
 
         ibFecha.setOnClickListener(ibFechaListener);
         ibRegistrar.setOnClickListener(ibRegistrarListener);
-
-        etNombre = findViewById(R.id.etNombre);
-        etContrasena = findViewById(R.id.etContra);
-        etConfirmarContrasena = findViewById(R.id.etConfirmarContra);
-        etCorreoElectronico = findViewById(R.id.etCorreoElec);
-        etCorreoRespaldo = findViewById(R.id.etCorreoRespaldo);
     }
 
     private final View.OnClickListener ibFechaListener = new View.OnClickListener() {
@@ -66,7 +81,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
                     tvFecha.setVisibility(View.VISIBLE);
                 }
             }
-            , dia, mes, anno);
+            , anno, mes, dia);
             datePickerDialog.show();
         }
     };
@@ -86,52 +101,69 @@ public class RegistroClienteActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            String nombre = etNombre.getText().toString();
-            String contrasena = etContrasena.getText().toString();
-            String confirmarContrasena = etConfirmarContrasena.getText().toString();
-            String correoElectronico = etCorreoElectronico.getText().toString();
-            String correoRespaldo = etCorreoRespaldo.getText().toString();
-
-            if (!contrasena.equals(confirmarContrasena)) {
-                Toast.makeText(RegistroClienteActivity.this, "Verifica las contraseñas", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Usuario
-            String idUsuario = "";
+            // Datos del usuario
+            String idUsuario = "User" + etUsuario.getText().toString();
             byte[] foto = null;
             int idTipo = 0;
             long idDetalles = 0;
-            String usuario = "";
-            String contrasenaUsuario = "";
-            String correo = "";
+            String nombreUsuario = etUsuario.getText().toString();
+            String contrasena = etContrasena.getText().toString();
+            String confirmarContrasena = etConfirmarContrasena.getText().toString();
+            String correoElectronico = etCorreoElectronico.getText().toString();
 
-            RegistroClienteActivity.this.usuario = new Usuario(idUsuario, foto, idTipo, idDetalles, usuario, contrasenaUsuario, correo);
-
-            // Detalles Usuario
-
-            String calle = "";
-            String colonia = "";
-            String ciudad = "";
-            String estado = "";
-            String pais = "";
-            int cp = 0;
+            // Detalles del usuario
+            String calle = etCalle.getText().toString();
+            String colonia = etColonia.getText().toString();
+            String ciudad = etCiudad.getText().toString();
+            String estado = etEstado.getText().toString();
+            String pais = etPais.getText().toString();
+            String codigoPostal = etCodigoPostal.getText().toString();
+            int cp = codigoPostal.isEmpty()? 0 : Integer.parseInt(codigoPostal);
             String escrituraOPermiso = "";
             double estrellas = 0;
             String rfc = "";
             String firmaElectronica = "";
-            String nombres = "";
-            String apellidos = "";
+            String nombres = etNombres.getText().toString();
+            String apellidos = etNombres.getText().toString();
 
+            if (!cbTerminos.isChecked()) {
+                Toast.makeText(RegistroClienteActivity.this, "Debes aceptar los terminos y condiciones", Toast.LENGTH_SHORT).show();
+                exito = false;
+                return;
+            }
+
+            if (!contrasena.equals(confirmarContrasena)) {
+                Toast.makeText(RegistroClienteActivity.this, "Verifica las contraseñas", Toast.LENGTH_SHORT).show();
+                exito = false;
+                return;
+            }
+
+            usuario = new Usuario(idUsuario, foto, idTipo, idDetalles, nombreUsuario, contrasena, correoElectronico);
             detallesUsuario = new DetallesUsuario(calle, colonia, ciudad, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, nombres, apellidos);
+
+            ValidacionUsuario validacionUsuario = new ValidacionUsuario(usuario);
+            boolean validarUsuario = validacionUsuario.validar();
+
+            ValidacionDetalles validacionDetalles = new ValidacionDetalles(detallesUsuario);
+            boolean validarDetalles = validacionDetalles.validar();
+
+            if (!validarUsuario) {
+                Toast.makeText(RegistroClienteActivity.this, "Verifica que hayas ingresado correctamente tus datos de usuario", Toast.LENGTH_SHORT).show();
+                exito = false;
+                return;
+            }
+
+            if (!validarDetalles) {
+                Toast.makeText(RegistroClienteActivity.this, "Verifica que hayas ingresado correctamente tu domicilio", Toast.LENGTH_SHORT).show();
+                exito = false;
+                return;
+            }
 
             exito = true;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-
-
             return null;
         }
 
@@ -139,14 +171,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            if (!exito) {
-                Toast.makeText(
-                        RegistroClienteActivity.this,
-                        "Hubo un error en el registro. Verifica todos tus datos e intenta de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+            if (!exito)
                 return;
-            }
 
             Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
@@ -156,43 +182,15 @@ public class RegistroClienteActivity extends AppCompatActivity {
         }
     }
 
-    public ImageButton getIbRegistrar() {
-        return ibRegistrar;
-    }
-
-    public ImageButton getIbFecha() {
-        return ibFecha;
-    }
-
-    public String getsFecha() {
-        return sFecha;
-    }
-
-    public TextView getTvFecha() {
-        return tvFecha;
-    }
-
-    public EditText getEtNombre() {
-        return etNombre;
-    }
-
-    public EditText getEtContrasena() {
-        return etContrasena;
-    }
-
-    public EditText getEtConfirmarContrasena() {
-        return etConfirmarContrasena;
-    }
-
-    public EditText getEtCorreoElectronico() {
-        return etCorreoElectronico;
-    }
-
-    public EditText getEtCorreoRespaldo() {
-        return etCorreoRespaldo;
-    }
-
-    public EditText getEtDireccion() {
-        return etDireccion;
-    }
+    public ImageButton getIbRegistrar() { return ibRegistrar; }
+    public ImageButton getIbFecha() { return ibFecha; }
+    public String getFecha() { return sFecha; }
+    public TextView getTvFecha() { return tvFecha; }
+    public EditText getEtNombres() { return etNombres; }
+    public EditText getEtContrasena() { return etContrasena; }
+    public EditText getEtConfirmarContrasena() { return etConfirmarContrasena; }
+    public EditText getEtCorreoElectronico() { return etCorreoElectronico; }
+    public EditText getEtCorreoRespaldo() { return etCorreoRespaldo; }
 }
+
+

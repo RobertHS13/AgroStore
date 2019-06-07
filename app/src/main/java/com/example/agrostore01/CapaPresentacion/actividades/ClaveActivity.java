@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.EditText;
 
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
@@ -18,6 +19,7 @@ public class ClaveActivity extends RecieveBundlesActivity {
     private EditText etClave;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class ClaveActivity extends RecieveBundlesActivity {
         public void onClick(View v) {
             Intent intent = new Intent(ClaveActivity.this, SeguridadActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
             startActivity(intent);
         }
@@ -52,6 +55,7 @@ public class ClaveActivity extends RecieveBundlesActivity {
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
     }
 
 }

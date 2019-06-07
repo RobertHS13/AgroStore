@@ -41,6 +41,7 @@ public class Vender1Activity extends RecieveBundlesActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(Vender1Activity.this, Vender2Activity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
             startActivity(intent);
         }
     };

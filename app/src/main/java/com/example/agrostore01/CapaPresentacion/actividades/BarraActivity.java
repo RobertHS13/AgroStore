@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.fragmentos.BuscarFragment;
@@ -33,11 +34,14 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
     private NotificacionesFragment notificacionesFragment = new NotificacionesFragment();
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barra);
+
+        recieveBundles(this);
 
         // DRAWER //////////////////////////////////////////////////////////////////////////////////
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -64,8 +68,6 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, dashboardFragment).commit();
 
         // Bundles de los fragmentos
-        recieveBundles(this);
-
         Bundle bundleDashboard = new Bundle();
         bundleDashboard.putParcelable(usuario.getClassName(), usuario);
         dashboardFragment.setArguments(bundleDashboard);
@@ -148,26 +150,37 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Intent intent = null;
+        Intent intent;
 
         if (id == R.id.perfil) {
             intent = new Intent(BarraActivity.this, PerfilUsuarioActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+            startActivity(intent);
         }
 
         else if (id == R.id.miterreno){
             intent = new Intent(BarraActivity.this, MiTerrenoActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            startActivity(intent);
         }
 
         else if (id == R.id.compras) {
             intent = new Intent(BarraActivity.this, MisComprasActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            startActivity(intent);
         }
 
         else if (id == R.id.ventas) {
             intent = new Intent(BarraActivity.this, MisVentasActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            startActivity(intent);
         }
 
         else if (id == R.id.vender) {
             intent = new Intent(BarraActivity.this, Vender1Activity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            startActivity(intent);
         }
 
         else if (id == R.id.faq) {
@@ -176,14 +189,11 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
 
         else if (id == R.id.cerrarsesion) {
             intent = new Intent(BarraActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
 
         } else if (id == R.id.ventana) {
 
-        }
-
-        if (intent != null) {
-            intent.putExtra(usuario.getClassName(), usuario);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -194,7 +204,8 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
-        Toast.makeText(context, "¡Has iniciado sesion! :D\n" + usuario.toString(), Toast.LENGTH_SHORT).show();
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
+        Toast.makeText(context, "¡Has iniciado sesion! :D\n\n" + usuario +"\n\n" + detallesUsuario, Toast.LENGTH_LONG).show();
     }
 
 }

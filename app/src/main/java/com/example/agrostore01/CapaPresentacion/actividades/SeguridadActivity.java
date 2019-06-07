@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
@@ -18,6 +19,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
     private EditText etClave, etConfirmarClave;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         public void onClick(View v) {
             Intent intent = new Intent(SeguridadActivity.this, PerfilUsuarioActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
             startActivity(intent);
             finish();
@@ -55,6 +58,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
     }
 
 }
