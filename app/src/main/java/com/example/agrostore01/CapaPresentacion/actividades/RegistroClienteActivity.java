@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
     private String sFecha;
     private TextView tvFecha;
     private int dia, mes, anno;
+    private Spinner eEstado, ePais;
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
@@ -48,6 +50,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
         etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
         etCorreoElectronico = findViewById(R.id.etRegistroClienteCorreoElectronico);
         etCorreoRespaldo = findViewById(R.id.etRegistroClienteCorreoRespaldo);
+        eEstado = findViewById(R.id.sEstado);
+        ePais = findViewById(R.id.sPais);
 
         etCalle = findViewById(R.id.etRegistroClienteCalle);
         etColonia = findViewById(R.id.etRegistroClienteColonia);

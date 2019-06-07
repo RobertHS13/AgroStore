@@ -218,31 +218,31 @@
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCiudad"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCiudad" />
 
-                <EditText
-                    android:id="@+id/etRegistroClienteEstado"
+                <Spinner
+                    android:id="@+id/sEstado"
                     android:layout_width="288dp"
-                    android:layout_height="0dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:hint="Estado"
-                    android:inputType="textPostalAddress"
-                    android:textColor="@color/colorGrisClaro"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCodigoPostal"
-                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCodigoPostal" />
+                    android:spinnerMode="dropdown"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCodigoPostal"
+                    tools:layout_marginStart="50dp" />
 
-                <EditText
-                    android:id="@+id/etRegistroClientePais"
+                <Spinner
+                    android:id="@+id/sPais"
                     android:layout_width="288dp"
-                    android:layout_height="0dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:hint="País"
-                    android:inputType="textPostalAddress"
-                    android:textColor="@color/colorGrisClaro"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteEstado"
-                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteEstado" />
+                    android:spinnerMode="dropdown"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintTop_toBottomOf="@+id/sEstado"
+                    tools:layout_marginStart="50dp" />
 
                 <EditText
                     android:id="@+id/etRegistroClienteContrasena"
@@ -302,9 +302,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClientePais"
+                    app:layout_constraintBottom_toBottomOf="@+id/sPais"
                     app:layout_constraintStart_toStartOf="@+id/imageView33"
-                    app:layout_constraintTop_toTopOf="@+id/etRegistroClientePais"
+                    app:layout_constraintTop_toTopOf="@+id/sPais"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -312,9 +312,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteEstado"
+                    app:layout_constraintBottom_toBottomOf="@+id/sEstado"
                     app:layout_constraintStart_toStartOf="@+id/imageView12"
-                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteEstado"
+                    app:layout_constraintTop_toTopOf="@+id/sEstado"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -331,12 +331,12 @@
                     android:id="@+id/ibRegistroClienteFechaNac"
                     android:layout_width="323dp"
                     android:layout_height="63dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClientePais"
+                    app:layout_constraintTop_toBottomOf="@+id/sPais"
                     app:srcCompat="@drawable/fecha_nacimiento" />
 
                 <CheckBox
