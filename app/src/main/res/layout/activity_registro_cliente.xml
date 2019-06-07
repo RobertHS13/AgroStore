@@ -222,7 +222,7 @@
                     android:id="@+id/sPais"
                     android:layout_width="288dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:spinnerMode="dropdown"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
@@ -239,6 +239,7 @@
                     android:text="Seleccione el país"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView12"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCodigoPostal" />
 
@@ -250,6 +251,7 @@
                     android:text="Seleccione el estado"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@+id/sPais"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView33"
                     app:layout_constraintTop_toBottomOf="@+id/sPais" />
 
@@ -257,7 +259,7 @@
                     android:id="@+id/sEstado"
                     android:layout_width="288dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:spinnerMode="dropdown"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
