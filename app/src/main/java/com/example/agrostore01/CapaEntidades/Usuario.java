@@ -127,10 +127,11 @@ public class Usuario extends Entidad implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(idUsuario);
-        dest.writeString(contrasenaUsuario);
+        dest.writeByteArray(foto);
         dest.writeInt(idTipo);
         dest.writeLong(idDetalles);
-        dest.writeByteArray(foto);
+        dest.writeString(usuario);
+        dest.writeString(contrasenaUsuario);
         dest.writeString(correo);
     }
 

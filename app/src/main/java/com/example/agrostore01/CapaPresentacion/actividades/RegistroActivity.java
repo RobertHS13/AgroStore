@@ -7,34 +7,36 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.agrostore01.R;
+
 public class RegistroActivity extends AppCompatActivity {
 
-    private ImageButton ibProductor, ibCliente;
+    private ImageButton ibCliente;
+    private ImageButton ibProductor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        ibProductor=(ImageButton)findViewById(R.id.imageButton3);
-        ibCliente=(ImageButton)findViewById(R.id.imageButton4);
+        ibCliente = findViewById(R.id.imageButtonCuentaCliente);
+        ibProductor = findViewById(R.id.imageButtonCuentaProductor);
 
-        ibProductor.setOnClickListener(ibProductorListener);
         ibCliente.setOnClickListener(ibClienteListener);
+        ibProductor.setOnClickListener(ibProductorListener);
     }
-
-    private final View.OnClickListener ibProductorListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent= new Intent(RegistroActivity.this,RegistroClienteActivity.class);
-            startActivity(intent);
-        }
-    };
 
     private final View.OnClickListener ibClienteListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent= new Intent(RegistroActivity.this,RegistroProductorActivity.class);
+            Intent intent = new Intent(RegistroActivity.this, RegistroClienteActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private final View.OnClickListener ibProductorListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(RegistroActivity.this, RegistroProductorActivity.class);
             startActivity(intent);
         }
     };
@@ -42,16 +44,14 @@ public class RegistroActivity extends AppCompatActivity {
     public ImageButton getIbProductor() {
         return ibProductor;
     }
-
     public ImageButton getIbCliente() {
         return ibCliente;
     }
-
     public View.OnClickListener getIbProductorListener() {
         return ibProductorListener;
     }
-
     public View.OnClickListener getIbClienteListener() {
         return ibClienteListener;
     }
+
 }

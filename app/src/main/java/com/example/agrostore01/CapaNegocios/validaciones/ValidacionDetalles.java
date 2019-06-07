@@ -10,74 +10,135 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
 
     @Override
     public boolean validar() {
-        return validarIdDetalles() && validarCalle() && validarColonia() &&validarCiudad() &&validarEstado() && validarPais() && validarCp() && validarEscrituraOPermiso() && validarEstrellas() && validarRfc()&& validarFirmaElectronica()&&validarNombres()&&validarApellidos();
+        return validarIdDetalles() && validarCalle() && validarColonia() &&
+                validarCiudad() && validarEstado() && validarPais() &&
+                validarCp() && validarEscrituraOPermiso() && validarEstrellas() &&
+                validarRfc() && validarFirmaElectronica() && validarNombres() && validarApellidos();
+    }
 
-        //return false;
-    }
-    public boolean validarIdDetalles(){
-        if (entidad.getIdDetalles() == 0)
+    public boolean validarIdDetalles() {
+        System.out.println("Validating Detalles.IdDetalles :" + entidad.getIdDetalles());
+
+        if (entidad.getIdDetalles() <= -1)
             return false;
-        return  true;
+
+        return true;
     }
+
     public boolean validarCalle() {
+        System.out.println("Validating Detalles.Calle :" + entidad.getCalle());
+
+        if (entidad.getCalle() == null)
+            return false;
+
         if (entidad.getCalle().isEmpty())
             return false;
+
         return true;
     }
-    public boolean validarCiudad(){
+
+    public boolean validarCiudad() {
+        System.out.println("Validating Detalles.Ciudad :" + entidad.getCuidad());
+
+        if (entidad.getCuidad() == null)
+            return false;
+
         if (entidad.getCuidad().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarColonia(){
-        if (entidad.getColonia().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarPais(){
-        if (entidad.getPais().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarEstado(){
-        if (entidad.getEstado().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarCp(){
-        if (entidad.getCp()==0)
-            return false;
-        return true;
-    }
-    public boolean validarEscrituraOPermiso(){
-        if (entidad.getEscrituraOPermiso().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarApellidos(){
-        if (entidad.getApellidos().isEmpty())
-            return false;
-        return true;
-    }
-    public boolean validarEstrellas(){
-        if (entidad.getEstrellas()==0)
             return false;
 
         return true;
     }
-    public boolean validarNombres(){
+    public boolean validarColonia() {
+        System.out.println("Validating Detalles.Colonia :" + entidad.getColonia());
+
+        if (entidad.getColonia() == null)
+            return false;
+
+        if (entidad.getColonia().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarPais() {
+        System.out.println("Validating Detalles.Pais :" + entidad.getPais());
+
+        if (entidad.getPais() == null)
+            return false;
+
+        if (entidad.getPais().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarEstado() {
+        System.out.println("Validating Detalles.Estado :" + entidad.getEstado());
+
+        if (entidad.getEstado() == null)
+            return false;
+
+        if (entidad.getEstado().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarCp() {
+        System.out.println("Validating Detalles.CodigoPostal :" + entidad.getCp());
+
+        if (entidad.getCp() <= -1)
+            return false;
+
+        return true;
+    }
+
+    public boolean validarEscrituraOPermiso() {
+        System.out.println("Validating Detalles.EscrituraOPermiso :" + entidad.getEscrituraOPermiso());
+        return true;
+    }
+
+    public boolean validarApellidos() {
+        System.out.println("Validating Detalles.Apellidos :" + entidad.getApellidos());
+
+        if (entidad.getApellidos() == null)
+            return false;
+
+        if (entidad.getApellidos().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarEstrellas() {
+        System.out.println("Validating Detalles.Estrellas :" + entidad.getEstrellas());
+
+        if (entidad.getEstrellas() <= -1)
+            return false;
+
+        return true;
+    }
+
+    public boolean validarNombres() {
+        System.out.println("Validating Detalles.Nombres :" + entidad.getNombres());
+
+        if (entidad.getNombres() == null)
+            return false;
+
         if (entidad.getNombres().isEmpty())
             return false;
+
         return true;
     }
-    public boolean validarFirmaElectronica(){
-        if (entidad.getFirmaElectronica().isEmpty())
-            return false;
+
+    public boolean validarFirmaElectronica() {
+        System.out.println("Validating Detalles.FirmaElectronica :" + entidad.getFirmaElectronica());
         return true;
     }
-    public boolean validarRfc(){
-        if (entidad.getRfc().isEmpty())
-            return false;
+
+    public boolean validarRfc() {
+        System.out.println("Validating Detalles.Rfc :" + entidad.getRfc());
         return true;
     }
+
 }

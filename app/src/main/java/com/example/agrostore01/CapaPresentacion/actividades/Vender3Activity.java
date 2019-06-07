@@ -21,6 +21,8 @@ public class Vender3Activity extends RecieveBundlesActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vender3);
 
+        recieveBundles(this);
+
         buttonSiguiente = findViewById(R.id.buttonSiguienteVender3);
         buttonSiguiente.setOnClickListener(buttonSiguienteOnClick);
     }
@@ -29,6 +31,7 @@ public class Vender3Activity extends RecieveBundlesActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(Vender3Activity.this, Vender4Activity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
             startActivity(intent);
         }
     };

@@ -25,9 +25,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etCodigoPostal"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteCodigoPostal"
                     app:layout_constraintStart_toStartOf="@+id/imageView30"
-                    app:layout_constraintTop_toTopOf="@+id/etCodigoPostal"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteCodigoPostal"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -36,9 +36,9 @@
                     android:layout_height="29dp"
                     android:layout_marginStart="4dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etPais"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClientePais"
                     app:layout_constraintStart_toStartOf="@+id/imageView36"
-                    app:layout_constraintTop_toTopOf="@+id/etPais"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClientePais"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -46,9 +46,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etColonia"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteColonia"
                     app:layout_constraintStart_toStartOf="@+id/imageView38"
-                    app:layout_constraintTop_toTopOf="@+id/etColonia"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteColonia"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -56,9 +56,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etCiudad"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteCiudad"
                     app:layout_constraintStart_toStartOf="@+id/imageView44"
-                    app:layout_constraintTop_toTopOf="@+id/etCiudad"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteCiudad"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -66,9 +66,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etCalle"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteCalle"
                     app:layout_constraintStart_toStartOf="@+id/imageView26"
-                    app:layout_constraintTop_toTopOf="@+id/etCalle"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteCalle"
                     app:srcCompat="@drawable/empresa" />
 
                 <TextView
@@ -111,7 +111,7 @@
                     android:id="@+id/imageView56"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ibRegistrar"
+                    app:layout_constraintBottom_toBottomOf="@+id/ibRegistroClienteRegistrar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.962"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,9 +124,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etEstado"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteEstado"
                     app:layout_constraintStart_toStartOf="@+id/imageView46"
-                    app:layout_constraintTop_toTopOf="@+id/etEstado"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteEstado"
                     app:srcCompat="@drawable/empresa" />
 
                 <ImageView
@@ -144,9 +144,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etContrasena"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteContrasena"
                     app:layout_constraintStart_toStartOf="@+id/imageView19"
-                    app:layout_constraintTop_toTopOf="@+id/etContrasena"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteContrasena"
                     app:srcCompat="@drawable/password" />
 
                 <ImageView
@@ -160,7 +160,7 @@
                     app:srcCompat="@drawable/email" />
 
                 <EditText
-                    android:id="@+id/etConfirmarContra"
+                    android:id="@+id/etRegistroClienteConfirmarContrasena"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -169,17 +169,17 @@
                     android:inputType="textPassword"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etContrasena"
-                    app:layout_constraintTop_toBottomOf="@+id/etContrasena" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteContrasena"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteContrasena" />
 
                 <ImageView
                     android:id="@+id/imageView19"
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etConfirmarContra"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteConfirmarContrasena"
                     app:layout_constraintStart_toStartOf="@+id/imageView11"
-                    app:layout_constraintTop_toTopOf="@+id/etConfirmarContra"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteConfirmarContrasena"
                     app:srcCompat="@drawable/password" />
 
                 <EditText
@@ -204,11 +204,11 @@
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etPais"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClientePais"
                     app:srcCompat="@drawable/fecha_nacimiento" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/cbRegistroClienteTerminos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Acepto términos y condiciones"
@@ -229,7 +229,7 @@
                     app:srcCompat="@drawable/permiso_de_exportacion" />
 
                 <EditText
-                    android:id="@+id/etCalle"
+                    android:id="@+id/etRegistroClienteCalle"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="4dp"
@@ -247,11 +247,11 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etUsuario"
-                    app:layout_constraintEnd_toStartOf="@+id/etUsuario"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteUsuario"
+                    app:layout_constraintEnd_toStartOf="@+id/etRegistroClienteUsuario"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/etUsuario"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteUsuario"
                     app:srcCompat="@drawable/usuario" />
 
                 <ImageView
@@ -259,9 +259,9 @@
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
-                    app:layout_constraintBottom_toBottomOf="@+id/etNombre"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteNombres"
                     app:layout_constraintStart_toStartOf="@+id/imageView18"
-                    app:layout_constraintTop_toTopOf="@+id/etNombre"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteNombres"
                     app:srcCompat="@drawable/usuario" />
 
                 <ImageView
@@ -286,10 +286,10 @@
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView19"
-                    app:layout_constraintTop_toBottomOf="@+id/etConfirmarContra" />
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteConfirmarContrasena" />
 
                 <ImageButton
-                    android:id="@+id/ibRegistrar"
+                    android:id="@+id/ibRegistroClienteRegistrar"
                     android:layout_width="323dp"
                     android:layout_height="63dp"
                     android:layout_marginTop="10dp"
@@ -299,7 +299,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageButton15"
                     app:layout_constraintStart_toStartOf="@+id/imageButton15"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+                    app:layout_constraintTop_toBottomOf="@+id/cbRegistroClienteTerminos"
                     app:srcCompat="@drawable/tbn_registrar" />
 
                 <EditText
@@ -328,7 +328,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageView24" />
 
                 <EditText
-                    android:id="@+id/etContrasena"
+                    android:id="@+id/etRegistroClienteContrasena"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -337,11 +337,11 @@
                     android:inputType="textPassword"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etNombre"
-                    app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteNombres"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteNombres" />
 
                 <EditText
-                    android:id="@+id/etNombre"
+                    android:id="@+id/etRegistroClienteNombres"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -350,11 +350,11 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etUsuario"
-                    app:layout_constraintTop_toBottomOf="@+id/etUsuario" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteUsuario"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteUsuario" />
 
                 <EditText
-                    android:id="@+id/etUsuario"
+                    android:id="@+id/etRegistroClienteUsuario"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
@@ -369,7 +369,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
                 <EditText
-                    android:id="@+id/etColonia"
+                    android:id="@+id/etRegistroClienteColonia"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -378,11 +378,11 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etCalle"
-                    app:layout_constraintTop_toBottomOf="@+id/etCalle" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCalle"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCalle" />
 
                 <EditText
-                    android:id="@+id/etCiudad"
+                    android:id="@+id/etRegistroClienteCiudad"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -391,11 +391,11 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etColonia"
-                    app:layout_constraintTop_toBottomOf="@+id/etColonia" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteColonia"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteColonia" />
 
                 <EditText
-                    android:id="@+id/etPais"
+                    android:id="@+id/etRegistroClientePais"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -404,11 +404,11 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etEstado"
-                    app:layout_constraintTop_toBottomOf="@+id/etEstado" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteEstado"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteEstado" />
 
                 <EditText
-                    android:id="@+id/etCodigoPostal"
+                    android:id="@+id/etRegistroClienteCodigoPostal"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -417,11 +417,11 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etCiudad"
-                    app:layout_constraintTop_toBottomOf="@+id/etCiudad" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCiudad"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCiudad" />
 
                 <EditText
-                    android:id="@+id/etEstado"
+                    android:id="@+id/etRegistroClienteEstado"
                     android:layout_width="288dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
@@ -430,8 +430,8 @@
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/etCodigoPostal"
-                    app:layout_constraintTop_toBottomOf="@+id/etCodigoPostal" />
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCodigoPostal"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCodigoPostal" />
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
