@@ -1,7 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         ibIniciarSesion = findViewById(R.id.imageButton);
         ibRecuperarCuenta = findViewById(R.id.ibRecuperarCuenta);
         ivFaq = findViewById(R.id.imageViewFaqLogin);
-        etCorreoElectronico = findViewById(R.id.etRegistroClienteCorreoElectronico);
+        etCorreoElectronico = findViewById(R.id.etRegistroClienteNombreUsuario);
         etContrasena = findViewById(R.id.etContra);
         ivContra = findViewById(R.id.ivContrasena);
         ivCorreo = findViewById(R.id.ivCorreo);
