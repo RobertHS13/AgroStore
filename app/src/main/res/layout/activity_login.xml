@@ -86,7 +86,7 @@
                 tools:layout_editor_absoluteY="214dp">
 
                 <ImageView
-                    android:id="@+id/imageView27"
+                    android:id="@+id/ivCorreo"
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
@@ -114,12 +114,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView28"
+                    android:id="@+id/ivContrasena"
                     android:layout_width="40dp"
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/etContra"
-                    app:layout_constraintStart_toStartOf="@+id/imageView27"
+                    app:layout_constraintStart_toStartOf="@+id/ivCorreo"
                     app:layout_constraintTop_toTopOf="@+id/etContra"
                     app:srcCompat="@drawable/password" />
 
@@ -141,12 +141,12 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <Space
+            <ProgressBar
+                android:id="@+id/pbIconoCarga"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:visibility="invisible" />
 
             <ImageButton
                 android:id="@+id/imageButton"
