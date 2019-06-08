@@ -6,15 +6,15 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorUsuario;
@@ -28,12 +28,13 @@ import java.util.Calendar;
 public class RegistroClienteActivity extends AppCompatActivity {
 
     private EditText etUsuario, etNombres, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
-    private EditText etCalle, etColonia, etCiudad, etCodigoPostal, etEstado, etPais;
+    private EditText etCalle, etColonia, etCiudad, etCodigoPostal;
     private ImageButton ibFecha, ibRegistrar;
     private CheckBox cbTerminos;
     private String sFecha;
     private TextView tvFecha;
     private int dia, mes, anno;
+    private Spinner sEstado, sPais;
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
@@ -49,13 +50,14 @@ public class RegistroClienteActivity extends AppCompatActivity {
         etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
         etCorreoElectronico = findViewById(R.id.etRegistroClienteCorreoElectronico);
         etCorreoRespaldo = findViewById(R.id.etRegistroClienteCorreoRespaldo);
+        sEstado = findViewById(R.id.sEstado);
+        sPais = findViewById(R.id.sPais);
 
         etCalle = findViewById(R.id.etRegistroClienteCalle);
         etColonia = findViewById(R.id.etRegistroClienteColonia);
         etCiudad = findViewById(R.id.etRegistroClienteCiudad);
         etCodigoPostal = findViewById(R.id.etRegistroClienteCodigoPostal);
-        etEstado = findViewById(R.id.etRegistroClienteEstado);
-        etPais = findViewById(R.id.etRegistroClientePais);
+
 
         ibFecha = findViewById(R.id.ibRegistroClienteFechaNac);
         ibRegistrar = findViewById(R.id.ibRegistroClienteRegistrar);
@@ -64,6 +66,18 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
         ibFecha.setOnClickListener(ibFechaListener);
         ibRegistrar.setOnClickListener(ibRegistrarListener);
+
+        String[] paises = new String[] {"México"};
+        ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(this, R.layout.list_item_spinner, paises);
+        sPais.setAdapter(adapterPais);
+
+        String[] estados = new String[] {"Aguascalientes","Baja California","Baja California Sur","Campeche","Coahuila de Zaragoza","Colima"
+                ,"Chiapas","Chihuahua","Distrito Federal","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","México","Michoacán de Ocampo"
+                ,"Morelos","Nayarit","Nuevo León","Oaxaca","Puebla","Querétaro","Quintana Roo","San Luis Potosí","Sinaloa","Sonora","Tabasco"
+                ,"Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"};
+        ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(this, R.layout.list_item_spinner, estados);
+        sEstado.setAdapter(adapterEstado);
+
     }
 
     private final View.OnClickListener ibFechaListener = new View.OnClickListener() {
@@ -116,8 +130,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
             String calle = etCalle.getText().toString();
             String colonia = etColonia.getText().toString();
             String ciudad = etCiudad.getText().toString();
-            String estado = etEstado.getText().toString();
-            String pais = etPais.getText().toString();
+            String estado = sEstado.getSelectedItem().toString();
+            String pais = sPais.getSelectedItem().toString();
             String codigoPostal = etCodigoPostal.getText().toString();
             int cp = codigoPostal.isEmpty()? 0 : Integer.parseInt(codigoPostal);
             String escrituraOPermiso = "";
@@ -199,6 +213,8 @@ public class RegistroClienteActivity extends AppCompatActivity {
     public EditText getEtConfirmarContrasena() { return etConfirmarContrasena; }
     public EditText getEtCorreoElectronico() { return etCorreoElectronico; }
     public EditText getEtCorreoRespaldo() { return etCorreoRespaldo; }
+
+
 }
 
 

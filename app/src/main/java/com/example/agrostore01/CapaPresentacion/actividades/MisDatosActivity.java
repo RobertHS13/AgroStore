@@ -29,7 +29,7 @@ public class MisDatosActivity extends RecieveBundlesActivity {
         tvUsuario = findViewById(R.id.tvUsuario);
         tvEmail = findViewById(R.id.tvEmail);
         tvTelefono = findViewById(R.id.tvTelefono);
-        tvDireccion = findViewById(R.id.tvDireccion);
+        tvDireccion = findViewById(R.id.tvCiudad);
 
         ibActualizar.setOnClickListener(ibActualizarListener);
 
