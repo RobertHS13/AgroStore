@@ -2,7 +2,6 @@ package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -32,7 +31,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
         etUsuario = findViewById(R.id.tvUsuario);
         etEmail = findViewById(R.id.tvEmail);
         etTelefono = findViewById(R.id.tvTelefono);
-        etDireccion = findViewById(R.id.tvDireccion);
+        etDireccion = findViewById(R.id.tvCiudad);
         ibGuardar.setOnClickListener(ibGuardarListener);
     }
 
