@@ -15,11 +15,11 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import java.util.Calendar;
 
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaNegocios.escritores.EscritorUsuario;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionDetalles;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionUsuario;
 import com.example.agrostore01.R;
@@ -28,7 +28,7 @@ public class RegistroProductorActivity extends AppCompatActivity {
 
     private EditText etUsuario, etNombres, etContrasena, etConfirmarContrasena, etCorreoElectronico, etNumTel, etCorreoRespaldo;
     private EditText etCalle, etColonia, etCiudad, etCodigoPostal;
-    private ImageButton ibRegistrar, ibFecha;
+    private ImageButton ibFecha, ibRegistrar;
     private CheckBox cbTerminos;
     private String sFecha;
     private TextView tvFecha;
@@ -57,8 +57,6 @@ public class RegistroProductorActivity extends AppCompatActivity {
         etColonia = findViewById(R.id.etRegistroClienteColonia);
         etCiudad = findViewById(R.id.etRegistroClienteCiudad);
         etCodigoPostal = findViewById(R.id.etRegistroClienteCodigoPostal);
-        //etEstado = findViewById(R.id.etRegistroClienteEstado);
-        //etPais = findViewById(R.id.etRegistroClientePais);
 
         ibFecha = findViewById(R.id.ibFechaNacimiento);
         tvFecha = findViewById(R.id.tvFecha);
@@ -69,14 +67,14 @@ public class RegistroProductorActivity extends AppCompatActivity {
         ibRegistrar.setOnClickListener(ibRegistrarListener);
 
         String[] paises = new String[] {"México"};
-        ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(this, R.layout.list_item_spinner, paises);
+        ArrayAdapter<String> adapterPais = new ArrayAdapter<>(this, R.layout.list_item_spinner, paises);
         sPais.setAdapter(adapterPais);
 
         String[] estados = new String[] {"Aguascalientes","Baja California","Baja California Sur","Campeche","Coahuila de Zaragoza","Colima"
                 ,"Chiapas","Chihuahua","Distrito Federal","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","México","Michoacán de Ocampo"
                 ,"Morelos","Nayarit","Nuevo León","Oaxaca","Puebla","Querétaro","Quintana Roo","San Luis Potosí","Sinaloa","Sonora","Tabasco"
                 ,"Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"};
-        ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(this, R.layout.list_item_spinner, estados);
+        ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado.setAdapter(adapterEstado);
     }
 
@@ -110,7 +108,14 @@ public class RegistroProductorActivity extends AppCompatActivity {
 
     private class VerificarRegistro extends AsyncTask<Void, Void, Void> {
 
+        private final String ERROR_TERMINOS_Y_CONDICIONES = "Debes aceptar los terminos y condiciones";
+        private final String ERROR_CONTRASENAS_DIFERENTES = "Las contrasenas no coinciden";
+        private final String ERROR_DATOS_USUARIO = "Verifica que hayas ingresado correctamente tus datos de usuario";
+        private final String ERROR_DATOS_DETALLES = "Verifica que hayas ingresado correctamente tu domicilio";
+        private final String ERROR_TRANSACCION = "Ocurrio un error al realizar el registro. Compruebe su conexion a Internet e intentelo de nuevo";
+
         private boolean exito;
+        private String mensajeError;
 
         @Override
         protected void onPreExecute() {
@@ -119,7 +124,7 @@ public class RegistroProductorActivity extends AppCompatActivity {
             // Datos del usuario
             String idUsuario = "User" + etUsuario.getText().toString();
             byte[] foto = null;
-            int idTipo = 0;
+            int idTipo = 1;
             long idDetalles = 0;
             String nombreUsuario = etUsuario.getText().toString();
             String contrasena = etContrasena.getText().toString();
@@ -139,16 +144,16 @@ public class RegistroProductorActivity extends AppCompatActivity {
             String rfc = "";
             String firmaElectronica = "";
             String nombres = etNombres.getText().toString();
-            String apellidos = etNombres.getText().toString();
+            String apellidos = "Apellido '" + etNombres.getText().toString() + "'";
 
             if (!cbTerminos.isChecked()) {
-                Toast.makeText(RegistroProductorActivity.this, "Debes aceptar los terminos y condiciones", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_TERMINOS_Y_CONDICIONES;
                 exito = false;
                 return;
             }
 
             if (!contrasena.equals(confirmarContrasena)) {
-                Toast.makeText(RegistroProductorActivity.this, "Verifica las contraseñas", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_CONTRASENAS_DIFERENTES;
                 exito = false;
                 return;
             }
@@ -163,13 +168,13 @@ public class RegistroProductorActivity extends AppCompatActivity {
             boolean validarDetalles = validacionDetalles.validar();
 
             if (!validarUsuario) {
-                Toast.makeText(RegistroProductorActivity.this, "Verifica que hayas ingresado correctamente tus datos de usuario", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_DATOS_USUARIO;
                 exito = false;
                 return;
             }
 
             if (!validarDetalles) {
-                Toast.makeText(RegistroProductorActivity.this, "Verifica que hayas ingresado correctamente tu domicilio", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_DATOS_DETALLES;
                 exito = false;
                 return;
             }
@@ -179,6 +184,20 @@ public class RegistroProductorActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            if (!exito)
+                return null;
+
+            EscritorUsuario escritorUsuario = new EscritorUsuario(
+                    EscritorUsuario.OPERACION_REGISTRAR_USUARIO,
+                    usuario,
+                    detallesUsuario
+            );
+
+            exito = escritorUsuario.ejecutarCambios();
+
+            if (!exito)
+                mensajeError = ERROR_TRANSACCION;
+
             return null;
         }
 
@@ -186,8 +205,10 @@ public class RegistroProductorActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            if (!exito)
+            if (!exito) {
+                Toast.makeText(RegistroProductorActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
+            }
 
             Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);

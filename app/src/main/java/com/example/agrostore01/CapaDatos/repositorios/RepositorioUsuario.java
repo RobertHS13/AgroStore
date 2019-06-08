@@ -265,36 +265,4 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         }
     }
 
-    @Override
-    public boolean registrarUsuario(Usuario usuario, DetallesUsuario detallesUsuario) {
-        parametros = new ArrayList<>();
-
-        parametros.add(detallesUsuario.getNombres());
-        parametros.add(detallesUsuario.getApellidos());
-        parametros.add(detallesUsuario.getCalle());
-        parametros.add(detallesUsuario.getColonia());
-        parametros.add(detallesUsuario.getEstado());
-        parametros.add(detallesUsuario.getPais());
-        parametros.add(detallesUsuario.getCp());
-        parametros.add(detallesUsuario.getEscrituraOPermiso());
-        parametros.add(detallesUsuario.getEstrellas());
-        parametros.add(detallesUsuario.getRfc());
-        parametros.add(detallesUsuario.getFirmaElectronica());
-        parametros.add(detallesUsuario.getCuidad());
-
-        parametros.add(usuario.getIdUsuario());
-        parametros.add(usuario.getUsuario());
-        parametros.add(usuario.getContrasenaUsuario());
-        parametros.add(usuario.getCorreo());
-        parametros.add(usuario.getFoto());
-        parametros.add(usuario.getIdTipo());
-
-        try {
-            return ejecutarProcedimiento(sqlProcRegistrarUsuario);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

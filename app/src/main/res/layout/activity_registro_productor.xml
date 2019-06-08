@@ -361,7 +361,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:ems="10"
-                    android:hint="Usuario"
+                    android:hint="Nombre de Usuario"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"

@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorUsuario;
-import com.example.agrostore01.CapaNegocios.validaciones.ValidacionCarrito;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionDetalles;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionUsuario;
 import com.example.agrostore01.R;
@@ -48,7 +47,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
         etNombres = findViewById(R.id.etRegistroClienteNombres);
         etContrasena = findViewById(R.id.etRegistroClienteContrasena);
         etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
-        etCorreoElectronico = findViewById(R.id.etRegistroClienteCorreoElectronico);
+        etCorreoElectronico = findViewById(R.id.etRegistroClienteNombreUsuario);
         etCorreoRespaldo = findViewById(R.id.etRegistroClienteCorreoRespaldo);
         sEstado = findViewById(R.id.sEstado);
         sPais = findViewById(R.id.sPais);
@@ -57,7 +56,6 @@ public class RegistroClienteActivity extends AppCompatActivity {
         etColonia = findViewById(R.id.etRegistroClienteColonia);
         etCiudad = findViewById(R.id.etRegistroClienteCiudad);
         etCodigoPostal = findViewById(R.id.etRegistroClienteCodigoPostal);
-
 
         ibFecha = findViewById(R.id.ibRegistroClienteFechaNac);
         ibRegistrar = findViewById(R.id.ibRegistroClienteRegistrar);
@@ -68,16 +66,15 @@ public class RegistroClienteActivity extends AppCompatActivity {
         ibRegistrar.setOnClickListener(ibRegistrarListener);
 
         String[] paises = new String[] {"México"};
-        ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(this, R.layout.list_item_spinner, paises);
+        ArrayAdapter<String> adapterPais = new ArrayAdapter<>(this, R.layout.list_item_spinner, paises);
         sPais.setAdapter(adapterPais);
 
         String[] estados = new String[] {"Aguascalientes","Baja California","Baja California Sur","Campeche","Coahuila de Zaragoza","Colima"
                 ,"Chiapas","Chihuahua","Distrito Federal","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","México","Michoacán de Ocampo"
                 ,"Morelos","Nayarit","Nuevo León","Oaxaca","Puebla","Querétaro","Quintana Roo","San Luis Potosí","Sinaloa","Sonora","Tabasco"
                 ,"Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"};
-        ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(this, R.layout.list_item_spinner, estados);
+        ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado.setAdapter(adapterEstado);
-
     }
 
     private final View.OnClickListener ibFechaListener = new View.OnClickListener() {
@@ -110,7 +107,14 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
     private class VerificarRegistro extends AsyncTask<Void, Void, Void> {
 
+        private final String ERROR_TERMINOS_Y_CONDICIONES = "Debes aceptar los terminos y condiciones";
+        private final String ERROR_CONTRASENAS_DIFERENTES = "Las contrasenas no coinciden";
+        private final String ERROR_DATOS_USUARIO = "Verifica que hayas ingresado correctamente tus datos de usuario";
+        private final String ERROR_DATOS_DETALLES = "Verifica que hayas ingresado correctamente tu domicilio";
+        private final String ERROR_TRANSACCION = "Ocurrio un error al realizar el registro. Compruebe su conexion a Internet e intentelo de nuevo";
+
         private boolean exito;
+        private String mensajeError;
 
         @Override
         protected void onPreExecute() {
@@ -139,16 +143,16 @@ public class RegistroClienteActivity extends AppCompatActivity {
             String rfc = "";
             String firmaElectronica = "";
             String nombres = etNombres.getText().toString();
-            String apellidos = etNombres.getText().toString();
+            String apellidos = "Apellido '" + etNombres.getText().toString() + "'";
 
             if (!cbTerminos.isChecked()) {
-                Toast.makeText(RegistroClienteActivity.this, "Debes aceptar los terminos y condiciones", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_TERMINOS_Y_CONDICIONES;
                 exito = false;
                 return;
             }
 
             if (!contrasena.equals(confirmarContrasena)) {
-                Toast.makeText(RegistroClienteActivity.this, "Verifica las contraseñas", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_CONTRASENAS_DIFERENTES;
                 exito = false;
                 return;
             }
@@ -163,13 +167,13 @@ public class RegistroClienteActivity extends AppCompatActivity {
             boolean validarDetalles = validacionDetalles.validar();
 
             if (!validarUsuario) {
-                Toast.makeText(RegistroClienteActivity.this, "Verifica que hayas ingresado correctamente tus datos de usuario", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_DATOS_USUARIO;
                 exito = false;
                 return;
             }
 
             if (!validarDetalles) {
-                Toast.makeText(RegistroClienteActivity.this, "Verifica que hayas ingresado correctamente tu domicilio", Toast.LENGTH_SHORT).show();
+                mensajeError = ERROR_DATOS_DETALLES;
                 exito = false;
                 return;
             }
@@ -190,6 +194,9 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
             exito = escritorUsuario.ejecutarCambios();
 
+            if (!exito)
+                mensajeError = ERROR_TRANSACCION;
+
             return null;
         }
 
@@ -198,11 +205,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
 
             if (!exito) {
-                Toast.makeText(
-                        RegistroClienteActivity.this,
-                        "Ocurrio un error al realizar el registro. Intentelo de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+                Toast.makeText(RegistroClienteActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -223,8 +226,4 @@ public class RegistroClienteActivity extends AppCompatActivity {
     public EditText getEtConfirmarContrasena() { return etConfirmarContrasena; }
     public EditText getEtCorreoElectronico() { return etCorreoElectronico; }
     public EditText getEtCorreoRespaldo() { return etCorreoRespaldo; }
-
-
 }
-
-

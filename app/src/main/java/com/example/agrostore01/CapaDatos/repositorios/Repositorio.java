@@ -102,30 +102,6 @@ public class Repositorio {
             System.out.println("~~~~~~~~");
             System.out.println("~~~~~~~~");
 
-            procedimiento.executeUpdate();
-
-            return true;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        finally {
-            parametros.clear();
-        }
-    }
-
-    protected boolean ejecutarProcedimiento(String sql) {
-        try {
-            procedimiento = bd.getConexion().prepareCall(sql);
-
-            int i = 1;
-            for (Object p : parametros)
-                procedimiento.setObject(i++, p);
-
-            System.out.println("Procedimiento: " + sql);
-            System.out.println("Parametros de entrada: " + parametros);
-
             procedimiento.execute();
 
             return true;

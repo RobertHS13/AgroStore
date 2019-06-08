@@ -44,16 +44,12 @@ public class BuscarActivity extends RecieveBundlesActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
 
-        System.out.println("Just entered BuscarActivity");
-        Toast.makeText(this, "Just entered BuscarActivity", Toast.LENGTH_LONG).show();
-
         recieveBundles(this);
 
         buttonFiltrar = findViewById(R.id.buttonFiltrar);
         buttonFiltrar.setOnClickListener(buttonFiltrarListener);
 
-        //Object[] items = new Object[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Object[] items = new Object[] {};
+        Object[] items = new Object[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         BusquedaAdapter adaptador = new BusquedaAdapter(this, R.layout.list_item_buscar, items);
         listViewBuscar = findViewById(R.id.listViewBuscar);
         listViewBuscar.setAdapter(adaptador);
@@ -73,11 +69,11 @@ public class BuscarActivity extends RecieveBundlesActivity {
             case TIPO_CATEGORIA: {
                 Toast.makeText(this, "Tipo de busqueda 'CATEGORIA'", Toast.LENGTH_LONG).show();
 
-                /*LectorProducto lectorProducto = new LectorProducto();
+                LectorProducto lectorProducto = new LectorProducto();
                 List<Integer> idProductos = lectorProducto.getIdProductosConCategoria(categoria);
 
                 System.out.println("Se obtuvieron los siguientes productos con la categoria '" + categoria + "'");
-                System.out.println(idProductos);*/
+                System.out.println(idProductos);
 
                 break;
             }
