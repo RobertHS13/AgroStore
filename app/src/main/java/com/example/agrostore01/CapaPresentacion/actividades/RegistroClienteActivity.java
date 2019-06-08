@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaNegocios.escritores.EscritorUsuario;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionCarrito;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionDetalles;
 import com.example.agrostore01.CapaNegocios.validaciones.ValidacionUsuario;
@@ -104,7 +105,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             // Datos del usuario
             String idUsuario = "User" + etUsuario.getText().toString();
             byte[] foto = null;
-            int idTipo = 0;
+            int idTipo = 2;
             long idDetalles = 0;
             String nombreUsuario = etUsuario.getText().toString();
             String contrasena = etContrasena.getText().toString();
@@ -164,6 +165,13 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            if (!exito)
+                return null;
+
+            EscritorUsuario escritorUsuario = new EscritorUsuario(EscritorUsuario.OPERACION_REGISTRAR_USUARIO, usuario, detallesUsuario);
+
+            exito = escritorUsuario.ejecutarCambios();
+
             return null;
         }
 

@@ -3,9 +3,11 @@ package com.example.agrostore01.CapaNegocios.validaciones;
 import com.example.agrostore01.CapaEntidades.Venta;
 
 public class ValidacionVenta extends  Validacion<Venta> {
+
     public ValidacionVenta(Venta venta) {
         super(venta);
     }
+
     public boolean validarIdVenta(){
         if (entidad.getIdVenta()==0)
             return false;
