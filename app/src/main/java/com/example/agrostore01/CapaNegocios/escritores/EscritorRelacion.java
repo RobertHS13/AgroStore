@@ -4,7 +4,6 @@ public abstract class EscritorRelacion <Entidad> extends Escritor<Entidad>{
 
     public static int OPERACION_BAJA_ESPECIFICA = 4;
 
-
     public EscritorRelacion(int operacion, Entidad entidad) {
         super(operacion, entidad);
     }

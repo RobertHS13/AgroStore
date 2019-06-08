@@ -28,7 +28,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
         recieveBundles(this);
 
         ibGuardar = findViewById(R.id.ibGuardar);
-        etNombre= findViewById(R.id.tvNombre);
+        etNombre = findViewById(R.id.tvNombre);
         etUsuario = findViewById(R.id.tvUsuario);
         etEmail = findViewById(R.id.tvEmail);
         etTelefono = findViewById(R.id.tvTelefono);

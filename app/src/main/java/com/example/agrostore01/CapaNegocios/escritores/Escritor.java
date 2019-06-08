@@ -1,10 +1,10 @@
 package com.example.agrostore01.CapaNegocios.escritores;
 
-public abstract class Escritor <Entidad> {
-    public static int OPERACION_ALTA=1;
-    public static int OPERACION_BAJA=2;
-    public static int OPERACION_CAMBIO=3;
+public abstract class Escritor<Entidad> {
 
+    public static int OPERACION_ALTA = 1;
+    public static int OPERACION_BAJA = 2;
+    public static int OPERACION_CAMBIO = 3;
 
     protected int operacion;
     protected Entidad entidad;

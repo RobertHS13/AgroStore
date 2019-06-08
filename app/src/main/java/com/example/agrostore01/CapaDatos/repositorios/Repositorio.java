@@ -45,19 +45,15 @@ public class Repositorio {
 
             return true;
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return false;
-        }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         finally {
             parametros.clear();
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -74,13 +70,45 @@ public class Repositorio {
 
             return sentencia.executeQuery();
         }
-        catch (NullPointerException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        catch (SQLException e) {
+        finally {
+            parametros.clear();
+        }
+    }
+
+    protected boolean ejecutarProcedimiento(String sql) {
+        try {
+            procedimiento = bd.getConexion().prepareCall(sql);
+
+            int i = 1;
+            for (Object p : parametros)
+                procedimiento.setObject(i++, p);
+
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("Procedimiento: " + sql);
+            System.out.println("Parametros de entrada: " + parametros);
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+            System.out.println("~~~~~~~~");
+
+            procedimiento.executeUpdate();
+
+            return true;
+        }
+        catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
         finally {
             parametros.clear();
@@ -96,8 +124,7 @@ public class Repositorio {
             for (Object p : parametros)
                 procedimiento.setObject(i++, p);
 
-            for (Integer type : parametrosDeSalida)
-            {
+            for (Integer type : parametrosDeSalida) {
                 System.out.println("Setting sql type " + type + " on index " + i);
                 procedimiento.registerOutParameter(i++, type);
             }
@@ -124,11 +151,7 @@ public class Repositorio {
 
             return null;
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }

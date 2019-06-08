@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +69,11 @@ public class BuscarFragment extends RecieveBundlesFragment {
     private final View.OnClickListener imageViewHortalizasOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), BuscarActivity.class);
+            Intent intent = new Intent(v.getContext(), BuscarActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+
+            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
+            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_HORTALIZAS);
 
             startActivity(intent);
         }
@@ -80,8 +82,11 @@ public class BuscarFragment extends RecieveBundlesFragment {
     private final View.OnClickListener imageViewSemillasOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), BuscarActivity.class);
+            Intent intent = new Intent(v.getContext(), BuscarActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+
+            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
+            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_SEMILLAS);
 
             startActivity(intent);
         }
@@ -90,8 +95,11 @@ public class BuscarFragment extends RecieveBundlesFragment {
     private final View.OnClickListener imageViewCarnesOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), BuscarActivity.class);
+            Intent intent = new Intent(v.getContext(), BuscarActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+
+            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
+            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_CARNES);
 
             startActivity(intent);
         }
@@ -100,8 +108,11 @@ public class BuscarFragment extends RecieveBundlesFragment {
     private final View.OnClickListener imageViewLacteosOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), BuscarActivity.class);
+            Intent intent = new Intent(v.getContext(), BuscarActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+
+            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
+            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_LACTEOS);
 
             startActivity(intent);
         }

@@ -1,12 +1,11 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.TerrenosUsuario;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioTerrenosUsuario extends RepositorioRelacion implements IContrato<TerrenosUsuario> {
+public class RepositorioTerrenosUsuario extends RepositorioRelacion implements IContratoRelacion<TerrenosUsuario> {
 
     public RepositorioTerrenosUsuario(){
         this.sqlAlta = "insert into TerrenoUsuario values (?, ?)";
@@ -21,8 +20,8 @@ public class RepositorioTerrenosUsuario extends RepositorioRelacion implements I
     }
     @Override
     public boolean alta(TerrenosUsuario e) {
-        parametros= new ArrayList<>();
-        //parametros.add(e.getIdUsuario());
+        parametros = new ArrayList<>();
+        parametros.add(e.getIdUsuario());
         parametros.add(e.getIdTerreno());
         return ejecutarConsulta(sqlAlta);
     }
@@ -56,14 +55,14 @@ public class RepositorioTerrenosUsuario extends RepositorioRelacion implements I
             long idTerreno = resultado.getInt("IDTerreno");
             return new TerrenosUsuario(idUsuario,idTerreno);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -81,14 +80,45 @@ public class RepositorioTerrenosUsuario extends RepositorioRelacion implements I
                 terrenosUsuarios.add(new TerrenosUsuario(idUsuario,idTerreno));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return terrenosUsuarios;
+    }
+
+    @Override
+    public boolean bajaEspecifica(TerrenosUsuario e) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<TerrenosUsuario> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<TerrenosUsuario> terrenosUsuarios = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                String idUsuario = resultado.getString("IDUsuario");
+                long idTerreno = resultado.getInt("IDTerreno");
+                terrenosUsuarios.add(new TerrenosUsuario(idUsuario,idTerreno));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return terrenosUsuarios;
     }

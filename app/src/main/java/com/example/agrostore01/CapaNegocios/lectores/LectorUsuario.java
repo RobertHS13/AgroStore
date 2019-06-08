@@ -21,6 +21,10 @@ public class LectorUsuario extends Lector<Usuario> {
 
     public Usuario getEntidadNombreUsuario(String nombreUsuario) { return repositorio.seleccionarNombreUsuario(nombreUsuario); }
 
+    public boolean confirmarContrasena(String idUsuario, String contrasena) {
+        return repositorio.confirmarContrasena(idUsuario, contrasena);
+    }
+
     public boolean confirmarExistencia(String idUsuario, String contrasena) {
         return repositorio.confirmarExistencia(idUsuario, contrasena);
     }

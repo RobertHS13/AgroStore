@@ -57,14 +57,14 @@ public class RepositorioTipoUsuario extends Repositorio implements IContrato<Tip
             String tipoUsuario = resultado.getString("TipoUsuario");
             return new TipoUsuario(idTipo,tipoUsuario);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -82,14 +82,14 @@ public class RepositorioTipoUsuario extends Repositorio implements IContrato<Tip
                 tipoUsuarios.add(new TipoUsuario(idTipo,tipoUsuario));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return tipoUsuarios;
     }

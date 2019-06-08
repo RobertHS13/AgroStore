@@ -7,18 +7,16 @@ public class ValidacionEmpresaCertificados extends  Validacion<EmpresaCertificad
         super(empresaCertificados);
     }
 
-    /*
-        *   private int idCertificados;
-        private int idEmpresa;
-
-        * */
     public boolean validarIdCertificados(){
-        if (entidad.getIdCertificados()==0)
+        System.out.println("Validating EmpresaCertificados.IdCertificados " + entidad.getIdCertificados());
+        if (entidad.getIdCertificados()<=-1)
             return false;
         return true;
     }
+
     public boolean validarIdEmpresa(){
-        if (entidad.getIdEmpresa()==0)
+        System.out.println("Validating EmpresaCertificados. "+entidad.getIdEmpresa());
+        if (entidad.getIdEmpresa()<=-1)
             return false;
 
         return true;

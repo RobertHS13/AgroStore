@@ -67,14 +67,14 @@ public class RepositorioTarjetas extends Repositorio implements IContrato<Tarjet
 
             return new Tarjetas(/*IDTargeta*/numTarjeta,cdv,mes,año);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -96,16 +96,16 @@ public class RepositorioTarjetas extends Repositorio implements IContrato<Tarjet
                 tarjetas.add(new Tarjetas(/*IDTargeta*/numTarjeta,cdv,mes,año));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return tarjetas;
     }
-    }
+}
 

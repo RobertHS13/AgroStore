@@ -8,13 +8,25 @@ import java.util.Arrays;
 
 public class Producto extends Entidad implements Parcelable {
 
+    /*
+    CREATE PROCEDURE PROC_ESP_BUSQ_CATEGORIA
+    @CATEGORIA VARCHAR(100)
+    AS
+    SELECT IDNumProducto FROM ProductoTerreno
+    INNER JOIN Producto
+    ON Producto.IDProducto = ProductoTerreno.IDProducto
+    INNER JOIN Categorias
+    ON Producto.IDCategoria = Categorias.IDCategoria
+    WHERE Categorias.Nombre = @CATEGORIA
+    */
+
     private long idProducto;
     private String producto;
     private java.math.BigDecimal precioTonelada;
+    private java.math.BigDecimal precioKilogramo;
     private byte[] foto;
     private boolean temporada;
     private int idCategoria;
-    private java.math.BigDecimal precioKilogramo;
 
     public Producto() {
     }

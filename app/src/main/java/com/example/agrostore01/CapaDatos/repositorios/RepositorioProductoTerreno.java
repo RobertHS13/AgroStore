@@ -1,12 +1,13 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.ProductoTerreno;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioProductoTerreno extends Repositorio implements IContrato<ProductoTerreno> {
+public class RepositorioProductoTerreno extends Repositorio implements IContratoRelacion<ProductoTerreno> {
 
     public RepositorioProductoTerreno(){
         this.sqlAlta = "insert into ProductoTerreno values (?, ?)";
@@ -62,14 +63,14 @@ public class RepositorioProductoTerreno extends Repositorio implements IContrato
 
             return new ProductoTerreno(idnumprod,idproducto,idterreno);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -88,15 +89,49 @@ public class RepositorioProductoTerreno extends Repositorio implements IContrato
                 productoTerrenos.add(new ProductoTerreno(idnumprod,idproducto,idterreno));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return productoTerrenos;
     }
+
+    @Override
+    public boolean bajaEspecifica(ProductoTerreno e) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<ProductoTerreno> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<ProductoTerreno> productoTerrenos = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                long idnumprod= resultado.getLong("IDNumProducto");
+                long idproducto = resultado.getLong("IDProducto");
+                long idterreno =resultado.getLong("IDTerreno");
+                productoTerrenos.add(new ProductoTerreno(idnumprod,idproducto,idterreno));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return productoTerrenos;
+    }
+
 }
