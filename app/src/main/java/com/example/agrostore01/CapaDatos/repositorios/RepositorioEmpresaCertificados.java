@@ -1,12 +1,13 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.EmpresaCertificados;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioEmpresaCertificados extends Repositorio implements IContrato<EmpresaCertificados> {
+public class RepositorioEmpresaCertificados extends Repositorio implements IContratoRelacion<EmpresaCertificados> {
 
     public RepositorioEmpresaCertificados(){
         this.sqlAlta = "insert into EmpresaCertificado values (?, ?)";
@@ -59,14 +60,14 @@ public class RepositorioEmpresaCertificados extends Repositorio implements ICont
 
             return new EmpresaCertificados(IDEmpresa,IDCertificados);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -85,16 +86,50 @@ public class RepositorioEmpresaCertificados extends Repositorio implements ICont
                 empresaCertificados.add(new EmpresaCertificados(IDEmpresa,IDCertificados));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return empresaCertificados;
     }
+
+    @Override
+    public boolean bajaEspecifica(EmpresaCertificados e) {
+        return false;
     }
+
+    @Override
+    public ArrayList<EmpresaCertificados> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<EmpresaCertificados> empresaCertificados = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                int IDEmpresa = resultado.getInt("IDEmpresa");
+                int IDCertificados= resultado.getInt("IDCertificado");
+
+                empresaCertificados.add(new EmpresaCertificados(IDEmpresa,IDCertificados));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return empresaCertificados;
+    }
+
+}
 

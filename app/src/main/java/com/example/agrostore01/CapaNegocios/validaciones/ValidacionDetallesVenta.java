@@ -6,33 +6,46 @@ public class ValidacionDetallesVenta extends  Validacion<DetalleVenta> {
     public ValidacionDetallesVenta(DetalleVenta detalleVenta) {
         super(detalleVenta);
     }
+
     public boolean validarIdDetalle(){
-        if (entidad.getIdDetalle()==0)
+        System.out.println("Validating DetalleVenta.IdDetalle "+ entidad.getIdDetalle());
+        if (entidad.getIdDetalle()<= -1)
             return false;
+
         return true;
     }
     public boolean validarIdTerreno(){
-        if (entidad.getIdTerreno()==0)
+        System.out.println("Validating DetalleVenta.IdTerreno "+ entidad.getIdTerreno());
+
+        if (entidad.getIdTerreno()<=-1)
             return false;
+
         return true;
     }
+
     public boolean validarFecha(){
-        if (entidad.getFecha().toString().isEmpty())
-            return false;
+        System.out.println("Validating DetalleVenta.Fecha "+ entidad.getFecha());
         return true;
     }
     public boolean validarPrecioTonelada(){
-        if (entidad.getPrecioTonelada().longValue()==0)
+        System.out.println("Validating DetalleVenta.PrecioTonelada "+entidad.getPrecioTonelada());
+        if (entidad.getPrecioTonelada().longValue()<=0)
             return false;
         return true;
     }
     public boolean validarProducto(){
+        System.out.println("Validating DetalleVenta.Producto "+ entidad.getProducto());
+
+        if (entidad.getProducto() == null)
+            return false;
         if (entidad.getProducto().isEmpty())
             return false;
         return true;
     }
     public boolean validarTamano(){
-        if (entidad.getTamaño()==0)
+        System.out.println("Validating DetalleVenta.Tamano "+entidad.getTamaño());
+
+        if (entidad.getTamaño()<=-1)
             return false;
         return true;
     }

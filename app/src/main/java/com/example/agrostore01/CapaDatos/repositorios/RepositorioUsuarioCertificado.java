@@ -1,12 +1,12 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.UsuarioCertificado;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioUsuarioCertificado extends Repositorio implements IContrato<UsuarioCertificado> {
+public class RepositorioUsuarioCertificado extends Repositorio implements IContratoRelacion<UsuarioCertificado> {
+
     public RepositorioUsuarioCertificado(){
         this.sqlAlta = "insert into UsuarioCertificado values (?, ?)";
         this.sqlBaja = "delete from UsuarioCertificado where IDUsuario = ?";
@@ -16,13 +16,12 @@ public class RepositorioUsuarioCertificado extends Repositorio implements IContr
                 "where IDUsuario = ?";
         this.sqlSeleccionarId = "select * from UsuarioCertificado where IDUsuario = ?";
         this.sqlSeleccionarTodo = "select * from UsuarioCertificado";
-
-
     }
+
     @Override
     public boolean alta(UsuarioCertificado e) {
         parametros = new ArrayList<>();
-        //parametros.add(e.getIdUsuario());
+        parametros.add(e.getIdUsuario());
         parametros.add(e.getIdCertificados());
         return ejecutarConsulta(sqlAlta);
     }
@@ -56,14 +55,14 @@ public class RepositorioUsuarioCertificado extends Repositorio implements IContr
             int idCertificado = resultado.getInt("IDCertificado");
             return new UsuarioCertificado(idUsuario,idCertificado);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -81,14 +80,46 @@ public class RepositorioUsuarioCertificado extends Repositorio implements IContr
                 usuarioCertificados.add(new UsuarioCertificado(idUsuario,idCertificado));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return usuarioCertificados;
+    }
+
+    @Override
+    public boolean bajaEspecifica(UsuarioCertificado e) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<UsuarioCertificado> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<UsuarioCertificado> usuarioCertificados = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                String idUsuario = resultado.getString("IDUsuario");
+                int idCertificado = resultado.getInt("IDCertificado");
+                usuarioCertificados.add(new UsuarioCertificado(idUsuario,idCertificado));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return usuarioCertificados;
     }

@@ -182,7 +182,11 @@ public class RegistroClienteActivity extends AppCompatActivity {
             if (!exito)
                 return null;
 
-            EscritorUsuario escritorUsuario = new EscritorUsuario(EscritorUsuario.OPERACION_REGISTRAR_USUARIO, usuario, detallesUsuario);
+            EscritorUsuario escritorUsuario = new EscritorUsuario(
+                    EscritorUsuario.OPERACION_REGISTRAR_USUARIO,
+                    usuario,
+                    detallesUsuario
+            );
 
             exito = escritorUsuario.ejecutarCambios();
 
@@ -193,8 +197,14 @@ public class RegistroClienteActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            if (!exito)
+            if (!exito) {
+                Toast.makeText(
+                        RegistroClienteActivity.this,
+                        "Ocurrio un error al realizar el registro. Intentelo de nuevo",
+                        Toast.LENGTH_LONG
+                ).show();
                 return;
+            }
 
             Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);

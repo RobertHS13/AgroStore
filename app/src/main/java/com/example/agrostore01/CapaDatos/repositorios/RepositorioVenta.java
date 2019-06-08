@@ -1,12 +1,11 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.Venta;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioVenta extends Repositorio implements IContrato<Venta> {
+public class RepositorioVenta extends Repositorio implements IContratoRelacion<Venta> {
 
     public RepositorioVenta(){
         this.sqlAlta = "insert into Venta values (?, ?, ?)";
@@ -65,14 +64,14 @@ public class RepositorioVenta extends Repositorio implements IContrato<Venta> {
 
             return new Venta(idVenta,idUsuarioAgricultor,idUsuarioCliente,idDetalle);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -92,14 +91,48 @@ public class RepositorioVenta extends Repositorio implements IContrato<Venta> {
                 ventas.add(new Venta(idVenta,idUsuarioAgricultor,idUsuarioCliente,idDetalle));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return ventas;
+    }
+
+    @Override
+    public boolean bajaEspecifica(Venta e) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<Venta> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<Venta> ventas = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                long idVenta = resultado.getLong("IDVenta");
+                String idUsuarioAgricultor = resultado.getString("IDUsuarioAgricultor");
+                String idUsuarioCliente= resultado.getString("IDUsuarioCliente");
+                long idDetalle = resultado.getLong("IDDetalle");
+                ventas.add(new Venta(idVenta,idUsuarioAgricultor,idUsuarioCliente,idDetalle));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return ventas;
     }

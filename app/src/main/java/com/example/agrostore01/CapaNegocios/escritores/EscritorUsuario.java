@@ -26,6 +26,7 @@ public class EscritorUsuario extends Escritor<Usuario> {
 
     @Override
     public boolean ejecutarCambios() {
+
         if (operacion == OPERACION_ALTA)
             return repositorio.alta(entidad);
 

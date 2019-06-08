@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class RepositorioUsuario extends Repositorio implements IContratoUsuario {
 
     private String sqlSeleccionarNombreUsuario;
+    private String sqlProcConfirmarContrasena;
     private String sqlProcConfirmarExistencia;
     private String sqlProcSeleccionarContrasena;
     private String sqlProcRegistrarUsuario;
@@ -30,6 +31,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         this.sqlSeleccionarTodo = "select * from Usuario";
         this.sqlSeleccionarNombreUsuario = "select * from [Usuario] where [Usuario].Usuario = ?";
 
+        this.sqlProcConfirmarContrasena = "call { PROC_USUARIO_CONFIRMAR_CONTRASENA(?, ?) }";
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
         this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
@@ -85,18 +87,14 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
             String correo = resultado.getString("Correo");
             return new Usuario(idUsuario, foto, idtipo, iddetalles, usuario, contraseña, correo);
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
         catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -119,18 +117,14 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
                 usuarios.add(new Usuario(idUsuario, foto, idtipo, iddetalles, usuario, contrasena, correo));
             }
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return usuarios;
     }
@@ -153,18 +147,39 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
             String correo = resultado.getString("Correo");
             return new Usuario(idUsuario, foto, idtipo, iddetalles, usuario, contraseña, correo);
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
+    @Override
+    public boolean confirmarContrasena(String idUsuario, String contrasena) {
+        parametros = new ArrayList<>();
+        parametrosDeSalida = new ArrayList<>();
+
+        parametros.add(idUsuario);
+        parametros.add(contrasena);
+        parametrosDeSalida.add(Types.BOOLEAN);
+
+        resultado = ejecutarProcedimientoConSalida(sqlProcConfirmarContrasena);
+        try {
+            if (resultado != null)
+                while (resultado.next()) {}
+
+            boolean success = procedimiento.getBoolean(3);
+
+            System.out.println("The output paramter is: " + success);
+            return success;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -187,11 +202,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
             System.out.println("The output paramter is: " + success);
             return success;
         }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-            return false;
-        }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -215,13 +226,42 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
             System.out.println("The output paramter is: " + contrasena);
             return contrasena;
         }
-        catch (NullPointerException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-        catch (SQLException e) {
+    }
+
+    @Override
+    public boolean registrarUsuario(Usuario usuario, DetallesUsuario detallesUsuario) {
+        parametros = new ArrayList<>();
+
+        parametros.add(detallesUsuario.getNombres());
+        parametros.add(detallesUsuario.getApellidos());
+        parametros.add(detallesUsuario.getCalle());
+        parametros.add(detallesUsuario.getColonia());
+        parametros.add(detallesUsuario.getEstado());
+        parametros.add(detallesUsuario.getPais());
+        parametros.add(detallesUsuario.getCp());
+        parametros.add(detallesUsuario.getEscrituraOPermiso());
+        parametros.add(detallesUsuario.getEstrellas());
+        parametros.add(detallesUsuario.getRfc());
+        parametros.add(detallesUsuario.getFirmaElectronica());
+        parametros.add(detallesUsuario.getCuidad());
+
+        parametros.add(usuario.getIdUsuario());
+        parametros.add(usuario.getUsuario());
+        parametros.add(usuario.getContrasenaUsuario());
+        parametros.add(usuario.getCorreo());
+        parametros.add(usuario.getFoto());
+        parametros.add(usuario.getIdTipo());
+
+        try {
+            return ejecutarProcedimiento(sqlProcRegistrarUsuario);
+        }
+        catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 

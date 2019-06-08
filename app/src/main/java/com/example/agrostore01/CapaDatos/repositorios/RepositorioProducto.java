@@ -1,13 +1,17 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoProducto;
 import com.example.agrostore01.CapaEntidades.Producto;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 
-public class RepositorioProducto extends Repositorio implements IContrato<Producto> {
+public class RepositorioProducto extends Repositorio implements IContratoProducto {
+
+    private String sqlProcBusquedaCategoria;
 
     public RepositorioProducto(){
         this.sqlAlta = "insert into Producto values (?, ?, ?, ?, ?, ?)";
@@ -24,6 +28,7 @@ public class RepositorioProducto extends Repositorio implements IContrato<Produc
         this.sqlSeleccionarId = "select * from Producto where IDProducto = ?";
         this.sqlSeleccionarTodo = "select * from Producto";
 
+        this.sqlProcBusquedaCategoria = "call { PROC_ESP_BUSQ_CATEGORIA(?) }";
     }
     @Override
     public boolean alta(Producto e) {
@@ -118,5 +123,25 @@ public class RepositorioProducto extends Repositorio implements IContrato<Produc
         }
         return productos;
     }
-    }
 
+    @Override
+    public List<Integer> seleccionarIdProductosConCategoria(String categoria) {
+        parametros = new ArrayList<>();
+        parametros.add(categoria);
+
+        resultado = ejecutarProcedimientoConSalida(sqlProcBusquedaCategoria);
+        List<Integer> productos = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                int idProducto = resultado.getInt("IDNumProducto");
+                productos.add(idProducto);
+            }
+            return productos;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}

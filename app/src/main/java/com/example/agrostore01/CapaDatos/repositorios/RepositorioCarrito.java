@@ -1,13 +1,14 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.Carrito;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioCarrito extends Repositorio implements IContrato<Carrito> {
+public class RepositorioCarrito extends Repositorio implements IContratoRelacion<Carrito> {
 
     public RepositorioCarrito(){
         this.sqlAlta="insert into Carrito values (?)";
@@ -17,7 +18,6 @@ public class RepositorioCarrito extends Repositorio implements IContrato<Carrito
                 "where IDCarrito = ?";
         this.sqlSeleccionarId="select * from Carrito where IDCarrito = ?";
         this.sqlSeleccionarTodo="select * from Carrito";
-
     }
 
     @Override
@@ -59,14 +59,14 @@ public class RepositorioCarrito extends Repositorio implements IContrato<Carrito
 
             return new Carrito(IDCarrito,IDUsuario);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -84,15 +84,48 @@ public class RepositorioCarrito extends Repositorio implements IContrato<Carrito
                 carrito.add(new Carrito(IDCarrito,IDUsuario));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return carrito;
     }
+
+    @Override
+    public boolean bajaEspecifica(Carrito e) {
+        return false;
+    }
+
+    @Override
+    public ArrayList<Carrito> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<Carrito> carrito = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                int IDCarrito = resultado.getInt("IDCarrito");
+                String IDUsuario = resultado.getString("IDUsuario");
+                carrito.add(new Carrito(IDCarrito,IDUsuario));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return carrito;
+    }
+
 }

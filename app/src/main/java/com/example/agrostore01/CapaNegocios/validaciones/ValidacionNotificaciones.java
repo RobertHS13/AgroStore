@@ -9,12 +9,19 @@ public class ValidacionNotificaciones extends Validacion<Notificaciones> {
     }
 
     public boolean validarDetalle(){
+        System.out.println("Validating Notificaciones.Detalle " + entidad.getDetalle());
+
+        if (entidad.getDetalle() == null)
+            return false;
+
         if (entidad.getDetalle().isEmpty())
             return false;
+
         return true;
     }
     public boolean validarIdNotificacion(){
-        if (entidad.getIdNotificacion()==0)
+        System.out.println("Validating Notificaciones.IdNotificacion " + entidad.getIdNotificacion());
+        if (entidad.getIdNotificacion()<=-1)
             return false;
         return true;
     }

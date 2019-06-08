@@ -2,12 +2,13 @@ package com.example.agrostore01.CapaDatos.repositorios;
 
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.CompraUsuario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioCompraUsuario extends Repositorio implements IContrato<CompraUsuario> {
+public class RepositorioCompraUsuario extends Repositorio implements IContratoRelacion<CompraUsuario> {
     public RepositorioCompraUsuario() {
         this.sqlAlta = "insert into CompraUsuario values (?,?)";
         this.sqlBaja = "delete from CompraUSuario where IDUsuario = ?";
@@ -56,14 +57,14 @@ public class RepositorioCompraUsuario extends Repositorio implements IContrato<C
             long idProductocomprado = resultado.getLong("IDProductoComprado");
             return new CompraUsuario(idUsuario,idProductocomprado);
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
     }
 
@@ -81,21 +82,50 @@ public class RepositorioCompraUsuario extends Repositorio implements IContrato<C
                 compraUsuarios.add(new CompraUsuario(idUsuario,idProductocomprado));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }
         finally {
-            try { if (resultado != null) resultado.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (sentencia != null) sentencia.close(); } catch (SQLException e) { e.printStackTrace(); }
-            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
         }
         return compraUsuarios;
     }
 
 
-
-
-
+    @Override
+    public boolean bajaEspecifica(CompraUsuario e) {
+        return false;
     }
+
+    @Override
+    public ArrayList<CompraUsuario> seleccionarTodosId(Object id) {
+        parametros = new ArrayList<>();
+        parametros.add(id);
+
+        resultado = ejecutarLectura(sqlSeleccionarId);
+        ArrayList<CompraUsuario> compraUsuarios = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                String idUsuario = resultado.getString("IDUsuario");
+                long idProductocomprado = resultado.getLong("IDProductoComprado");
+                compraUsuarios.add(new CompraUsuario(idUsuario,idProductocomprado));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+        return compraUsuarios;
+    }
+
+}
 
