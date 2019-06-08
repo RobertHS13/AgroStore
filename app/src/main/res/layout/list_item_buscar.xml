@@ -27,12 +27,13 @@
             android:layout_height="wrap_content"
             android:text="Semillas del ermitaño"
             android:textSize="20sp"/>
+
         <TextView
             android:id="@+id/textViewItemBuscarPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="$50"
-            android:textSize="30sp"/>   
+            android:textSize="30sp"/>
 
         <Space
             android:layout_width="wrap_content"
@@ -75,4 +76,5 @@
             android:textSize="17sp"/>
         
     </LinearLayout>
+
 </LinearLayout>

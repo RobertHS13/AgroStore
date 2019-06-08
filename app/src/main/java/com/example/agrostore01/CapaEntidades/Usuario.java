@@ -90,6 +90,10 @@ public class Usuario extends Entidad implements Parcelable {
         this.idDetalles = idDetalles;
     }
 
+    public String getUsuario() { return usuario; }
+
+    public void setUsuario(String usuario) { this.usuario = usuario; }
+
     public byte[] getFoto() {
         return foto;
     }

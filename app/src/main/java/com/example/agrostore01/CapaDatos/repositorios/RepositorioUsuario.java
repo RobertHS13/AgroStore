@@ -1,6 +1,7 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContratoUsuario;
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
     private String sqlSeleccionarNombreUsuario;
     private String sqlProcConfirmarExistencia;
     private String sqlProcSeleccionarContrasena;
+    private String sqlProcRegistrarUsuario;
 
     public RepositorioUsuario(){
         this.sqlAlta = "insert into Usuario values (?, ?, ?, ?, ?)";
@@ -30,6 +32,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
 
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
+        this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
     }
 
     @Override
@@ -219,6 +222,39 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean registrarUsuario(Usuario usuario, DetallesUsuario detallesUsuario) {
+        parametros = new ArrayList<>();
+
+        parametros.add(detallesUsuario.getNombres());
+        parametros.add(detallesUsuario.getApellidos());
+        parametros.add(detallesUsuario.getCalle());
+        parametros.add(detallesUsuario.getColonia());
+        parametros.add(detallesUsuario.getEstado());
+        parametros.add(detallesUsuario.getPais());
+        parametros.add(detallesUsuario.getCp());
+        parametros.add(detallesUsuario.getEscrituraOPermiso());
+        parametros.add(detallesUsuario.getEstrellas());
+        parametros.add(detallesUsuario.getRfc());
+        parametros.add(detallesUsuario.getFirmaElectronica());
+        parametros.add(detallesUsuario.getCuidad());
+
+        parametros.add(usuario.getIdUsuario());
+        parametros.add(usuario.getUsuario());
+        parametros.add(usuario.getContrasenaUsuario());
+        parametros.add(usuario.getCorreo());
+        parametros.add(usuario.getFoto());
+        parametros.add(usuario.getIdTipo());
+
+        try {
+            return ejecutarProcedimiento(sqlProcRegistrarUsuario);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
