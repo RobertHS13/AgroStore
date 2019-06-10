@@ -24,11 +24,13 @@
                     android:id="@+id/imageViewItemDetallesProducto"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
+                    android:layout_margin="10dp"
                     android:src="@drawable/ermitanio"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center|bottom"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/textViewItemDetallesTitulo"
@@ -42,42 +44,21 @@
                         android:layout_height="wrap_content"
                         android:text="$50"
                         android:textSize="30sp"/>
-
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="20dp" />
-
-                    <LinearLayout
-                        android:id="@+id/linearLayoutItemBuscar"
-                        android:layout_width="match_parent"
+                    <RatingBar
+                        android:id="@+id/rbItemDetallesEstrellas"
+                        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/calif1"/>
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/calif1"/>
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/calif1"/>
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/calif1"/>
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/calif1"/>
-
-                    </LinearLayout>
-
+                        android:layout_marginBottom="10dp"
+                        android:clickable="false"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:rating="3.5"/>
                     <TextView
-                        android:id="@+id/textViewItemBuscarLocalidad"
+                        android:id="@+id/textViewItemDetallesLocalidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="373K - Tamaulipas"
@@ -210,6 +191,7 @@
                     android:layout_width="15dp"
                     android:layout_height="0dp" />
                 <TextView
+                    android:id="@+id/tvDetallesProductoVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Maestro Karim"
@@ -231,6 +213,7 @@
                     android:layout_width="15dp"
                     android:layout_height="0dp" />
                 <TextView
+                    android:id="@+id/tvDetallesProductoNombreProducto"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Semillas del ermitaño"
@@ -252,12 +235,10 @@
                     android:layout_width="15dp"
                     android:layout_height="0dp" />
                 <TextView
+                    android:id="@+id/tvDetallesProductoDescripcion"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="semillas en forma de frijoles color verde
-                 que permite recuperar la vitalidad de
-                 tu cuerpo en algun caso de accidente, siempre y cuando sean golpes fisicos.
-                    NO CURA ENFERMEDADES"
+                    android:text="semillas en forma de frijoles color verde que permite recuperar la vitalidad de tu cuerpo en algun caso de accidente, siempre y cuando sean golpes fisicos. NO CURA ENFERMEDADES"
                     android:textSize="15sp"/>
             </LinearLayout>
             <Space
@@ -283,7 +264,6 @@
                     android:text="Déposito en banco o en efectivo"
                     android:textSize="15sp"
                     android:gravity="top"/>
-
             </LinearLayout>
 
             <LinearLayout

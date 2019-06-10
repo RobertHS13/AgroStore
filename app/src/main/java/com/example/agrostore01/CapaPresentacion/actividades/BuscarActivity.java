@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
@@ -23,29 +22,20 @@ import java.util.List;
 
 public class BuscarActivity extends RecieveBundlesActivity {
 
-    public static final String TIPO_BUSQUEDA = "Busqueda";
-
-    public static final int TIPO_CATEGORIA = 1;
-    public static final String BUSQUEDA_CATEGORIA = "BusquedaCategoria";
-    public static final String BUSQUEDA_CATEGORIA_HORTALIZAS = "Hortalizas";
-    public static final String BUSQUEDA_CATEGORIA_SEMILLAS = "Semillas";
-    public static final String BUSQUEDA_CATEGORIA_CARNES = "Carnes";
-    public static final String BUSQUEDA_CATEGORIA_LACTEOS = "Lacteos";
-
-    public static final int TIPO_NOMBRE_PRODUCTO = 2;
-    public static final String BUSQUEDA_NOMBRE_PRODUCTO = "BusquedaNombreProducto";
-
-    public static final int TIPO_FILTROS = 3;
-
     private SearchView buscador;
     private Button buttonFiltrar;
     private ListView listViewBuscar;
 
     private Usuario usuario = new Usuario();
 
-    private int busqueda = -1;
-    private String categoria;
-    private String nombreProducto;
+    // Variables de tipoBusqueda
+    private String tipoBusqueda;
+    private String filtroCategoria;
+    private String filtroNombreProducto;
+
+    // Productos buscados
+    private List<Integer> idProductos;
+    private List<VistaBusquedaProducto> vistasProductos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +59,8 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
-            busqueda = TIPO_NOMBRE_PRODUCTO;
-            nombreProducto = query;
+            tipoBusqueda = FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO;
+            filtroNombreProducto = query;
 
             new RealizarBusqueda().execute();
 
@@ -86,7 +76,6 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private class RealizarBusqueda extends AsyncTask<Void, Void, Void> {
 
         private LectorProducto lectorProducto = new LectorProducto();
-        List<VistaBusquedaProducto> vistasProductos;
 
         @Override
         protected void onPreExecute() {
@@ -96,18 +85,14 @@ public class BuscarActivity extends RecieveBundlesActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            switch (busqueda) {
-                case -1: {
-                    System.out.println("Ningun tipo de busqueda detectado (-1)");
-                    break;
-                }
+            switch (tipoBusqueda) {
 
-                case TIPO_CATEGORIA: {
-                    System.out.println("Tipo de busqueda 'CATEGORIA' '" + categoria + "'");
+                case FiltrosActivity.BUSQUEDA_CATEGORIA: {
+                    System.out.println("Tipo de tipoBusqueda 'CATEGORIA' '" + filtroCategoria + "'");
 
-                    List<Integer> idProductos = lectorProducto.getIdProductosConCategoria(categoria);
+                    idProductos = lectorProducto.getIdProductosConCategoria(filtroCategoria);
 
-                    System.out.println("Se obtuvieron los siguientes productos con la categoria '" + categoria + "'");
+                    System.out.println("Se obtuvieron los siguientes productos con el filtroCategoria '" + filtroCategoria + "'");
                     System.out.println(idProductos);
 
                     LectorVistaBusquedaProducto lectorVistaBusquedaProducto = new LectorVistaBusquedaProducto();
@@ -123,12 +108,12 @@ public class BuscarActivity extends RecieveBundlesActivity {
                     break;
                 }
 
-                case TIPO_NOMBRE_PRODUCTO: {
-                    System.out.println("Tipo de busqueda 'NOMBRE PRODUCTO' '" + nombreProducto + "'");
+                case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
+                    System.out.println("Tipo de tipoBusqueda 'NOMBRE PRODUCTO' '" + filtroNombreProducto + "'");
 
-                    List<Integer> idProductos = lectorProducto.getIdProductosConNombre(nombreProducto);
+                    idProductos = lectorProducto.getIdProductosConNombre(filtroNombreProducto);
 
-                    System.out.println("Se obtuvieron los siguientes productos con el nombre '" + nombreProducto + "'");
+                    System.out.println("Se obtuvieron los siguientes productos con el nombre '" + filtroNombreProducto + "'");
                     System.out.println(idProductos);
 
                     LectorVistaBusquedaProducto lectorVistaBusquedaProducto = new LectorVistaBusquedaProducto();
@@ -144,13 +129,13 @@ public class BuscarActivity extends RecieveBundlesActivity {
                     break;
                 }
 
-                case TIPO_FILTROS: {
-                    System.out.println("Tipo de busqueda 'FILTROS'");
+                case FiltrosActivity.BUSQUEDA_FILTRO: {
+                    System.out.println("Tipo de tipoBusqueda 'FILTROS'");
                     break;
                 }
 
                 default: {
-                    System.out.println("Ningun tipo de busqueda detectado (d)");
+                    System.out.println("Ningun tipo de tipoBusqueda detectado");
                 }
             }
 
@@ -166,7 +151,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
                 listViewBuscar.setAdapter(adaptador);
             }
 
-            System.out.println("Terminado el hilo de busqueda");
+            System.out.println("Terminado el hilo de tipoBusqueda");
         }
     }
 
@@ -181,7 +166,15 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private AdapterView.OnItemClickListener listViewBuscarListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            System.out.println("Clicked item " + position);
+            System.out.println("Item id is " + idProductos.get(position));
+            System.out.println("Vista producto is " + vistasProductos.get(position));
+
             Intent intent = new Intent(view.getContext(), DetallesProductoActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra("idProducto", idProductos.get(position));
+            intent.putExtra("vistaProducto", vistasProductos.get(position));
+
             startActivity(intent);
         }
     };
@@ -192,29 +185,25 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
         usuario = intent.getParcelableExtra(usuario.getClassName());
 
-        if (!intent.hasExtra(TIPO_BUSQUEDA)) {
-            busqueda = -1;
+        if (!intent.hasExtra(FiltrosActivity.TIPO_BUSQUEDA)) {
             return;
         }
 
-        busqueda = intent.getIntExtra(TIPO_BUSQUEDA, -1);
+        tipoBusqueda = intent.getStringExtra(FiltrosActivity.TIPO_BUSQUEDA);
 
-        switch (busqueda) {
-            case -1: {
-                return;
-            }
+        switch (tipoBusqueda) {
 
-            case TIPO_CATEGORIA: {
-                categoria = intent.getStringExtra(BUSQUEDA_CATEGORIA);
+            case FiltrosActivity.BUSQUEDA_CATEGORIA: {
+                filtroCategoria = intent.getStringExtra(FiltrosActivity.BUSQUEDA_CATEGORIA);
                 break;
             }
 
-            case TIPO_NOMBRE_PRODUCTO: {
-                nombreProducto = intent.getStringExtra(BUSQUEDA_NOMBRE_PRODUCTO);
+            case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
+                filtroNombreProducto = intent.getStringExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
                 break;
             }
 
-            case TIPO_FILTROS: {
+            case FiltrosActivity.BUSQUEDA_FILTRO: {
                 break;
             }
 
