@@ -7,22 +7,19 @@ import java.util.ArrayList;
 
 public class LectorCompraUsuario extends LectorRelacion<CompraUsuario> {
     private RepositorioCompraUsuario repositorio = new RepositorioCompraUsuario();
-    //check meth
     @Override
     public ArrayList<CompraUsuario> getEntidadesId(Object id) {
-        return null;
+        return repositorio.seleccionarTodosId(id);
     }
 
     @Override
     public CompraUsuario getEntidadId(Object id) {
-         //return repositorio.
-        return null;
-
+         return repositorio.seleccionarId(id);
     }
 
     @Override
     public ArrayList<CompraUsuario> getEntidades() {
-        // return repositorio.selectionarTodo();
-        return null;
+        return repositorio.seleccionarTodo();
+
     }
 }

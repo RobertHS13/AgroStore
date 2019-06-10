@@ -1,5 +1,4 @@
 package com.example.agrostore01.CapaDatos.repositorios;
-
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
 import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.ProductoTerreno;

@@ -11,13 +11,13 @@ public class ValidacionProductoTerreno extends Validacion<ProductoTerreno> {
     public boolean validarIdNumProducto(){
         System.out.println("Validating ProductoTerreno.IdNumProducto " + entidad.getIdNumProduc());
 
-        if (entidad.getIdNumProduc()<=0)
+        if (entidad.getIdNumProduc()<=-1)
             return false;
         return true;
     }
     public boolean validarIdProducto(){
         System.out.println("Validating ProductoTerreno.IdProducto " + entidad.getIdProducto());
-        if (entidad.getIdProducto()<=0)
+        if (entidad.getIdProducto()<=-1)
             return false;
 
         return true;
@@ -25,7 +25,29 @@ public class ValidacionProductoTerreno extends Validacion<ProductoTerreno> {
     public boolean validarIdTerreno(){
         System.out.println("Validating ProductoTerreno.IdTerreno " + entidad.getIdTerreno());
 
-        if (entidad.getIdTerreno()<=0)
+        if (entidad.getIdTerreno()<=-1)
+            return false;
+
+        return true;
+    }
+    public boolean validarPrecio(){
+        System.out.println("Validating ProductoTerreno.Precio "+  entidad.getPrecio());
+        //check this afrer------
+            return true;
+    }
+    public boolean validarHectareas(){
+        System.out.println("Validating ProductoTerreno.Hectareas " + entidad.getHectareas());
+        if (entidad.getHectareas() <=-1)
+            return false;
+
+        return true;
+    }
+    public boolean validarDescripcion(){
+        System.out.println("Validating ProductoTerreno.Descripcion "+ entidad.getDescripcion());
+        if (entidad.getDescripcion() == null)
+            return false;
+
+        if (entidad.getDescripcion().isEmpty())
             return false;
 
         return true;
