@@ -13,6 +13,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaPresentacion.actividades.FiltrosActivity;
 import com.example.agrostore01.CapaPresentacion.actividades.RecieveBundlesFragment;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.actividades.BuscarActivity;
@@ -56,8 +57,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(getActivity(), BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_NOMBRE_PRODUCTO);
-            intent.putExtra(BuscarActivity.BUSQUEDA_NOMBRE_PRODUCTO, query);
+            intent.putExtra(FiltrosActivity.TIPO_BUSQUEDA, FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
+            intent.putExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO, query);
 
             startActivity(intent);
             return false;
@@ -75,8 +76,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
-            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_HORTALIZAS);
+            intent.putExtra(FiltrosActivity.TIPO_BUSQUEDA, FiltrosActivity.BUSQUEDA_CATEGORIA);
+            intent.putExtra(FiltrosActivity.BUSQUEDA_CATEGORIA, FiltrosActivity.BUSQUEDA_CATEGORIA_HORTALIZAS);
 
             startActivity(intent);
         }
@@ -88,8 +89,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
-            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_SEMILLAS);
+            intent.putExtra(FiltrosActivity.TIPO_BUSQUEDA, FiltrosActivity.BUSQUEDA_CATEGORIA);
+            intent.putExtra(FiltrosActivity.BUSQUEDA_CATEGORIA, FiltrosActivity.BUSQUEDA_CATEGORIA_SEMILLAS);
 
             startActivity(intent);
         }
@@ -101,8 +102,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
-            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_CARNES);
+            intent.putExtra(FiltrosActivity.TIPO_BUSQUEDA, FiltrosActivity.BUSQUEDA_CATEGORIA);
+            intent.putExtra(FiltrosActivity.BUSQUEDA_CATEGORIA, FiltrosActivity.BUSQUEDA_CATEGORIA_CARNES);
 
             startActivity(intent);
         }
@@ -114,8 +115,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
-            intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_LACTEOS);
+            intent.putExtra(FiltrosActivity.TIPO_BUSQUEDA, FiltrosActivity.BUSQUEDA_CATEGORIA);
+            intent.putExtra(FiltrosActivity.BUSQUEDA_CATEGORIA, FiltrosActivity.BUSQUEDA_CATEGORIA_LACTEOS);
 
             startActivity(intent);
         }

@@ -3,30 +3,34 @@ package com.example.agrostore01.CapaEntidades;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
+
 public class ProductoTerreno extends Entidad implements Parcelable {
 
     private long idNumProduc;
     private long idProducto;
     private long idTerreno;
+    private java.math.BigDecimal precio;
+    private int hectareas;
+    private String descripcion;
 
-    public ProductoTerreno() {
-    }
+    public ProductoTerreno() {}
 
-    public ProductoTerreno(long idProducto, long idTerreno) {
-        this.idProducto = idProducto;
-        this.idTerreno = idTerreno;
-    }
-
-    public ProductoTerreno(long idNumProduc, long idProducto, long idTerreno) {
+    public ProductoTerreno(long idNumProduc, long idProducto, long idTerreno, BigDecimal precio, int hectareas, String descripcion) {
         this.idNumProduc = idNumProduc;
         this.idProducto = idProducto;
         this.idTerreno = idTerreno;
+        this.precio = precio;
+        this.hectareas = hectareas;
+        this.descripcion = descripcion;
     }
 
     protected ProductoTerreno(Parcel in) {
         idNumProduc = in.readLong();
         idProducto = in.readLong();
         idTerreno = in.readLong();
+        hectareas = in.readInt();
+        descripcion = in.readString();
     }
 
     public static final Creator<ProductoTerreno> CREATOR = new Creator<ProductoTerreno>() {
@@ -65,13 +69,28 @@ public class ProductoTerreno extends Entidad implements Parcelable {
         this.idTerreno = idTerreno;
     }
 
-    @Override
-    public String toString() {
-        return "ProductoTerreno{" +
-                "idNumProduc=" + idNumProduc +
-                ", idProducto=" + idProducto +
-                ", idTerreno=" + idTerreno +
-                '}';
+    public BigDecimal getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+
+    public int getHectareas() {
+        return hectareas;
+    }
+
+    public void setHectareas(int hectareas) {
+        this.hectareas = hectareas;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
@@ -84,5 +103,7 @@ public class ProductoTerreno extends Entidad implements Parcelable {
         dest.writeLong(idNumProduc);
         dest.writeLong(idProducto);
         dest.writeLong(idTerreno);
+        dest.writeInt(hectareas);
+        dest.writeString(descripcion);
     }
 }

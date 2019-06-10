@@ -15,16 +15,7 @@ public class Certificados extends Entidad implements Parcelable {
     private java.sql.Timestamp fechaExpedido;
     private byte[] sello;
 
-    public Certificados() {
-    }
-
-    public Certificados(String nombre, Timestamp vigencia, String tituloCertificado, Timestamp fechaExpedido, byte[] sello) {
-        this.nombre = nombre;
-        this.vigencia = vigencia;
-        this.tituloCertificado = tituloCertificado;
-        this.fechaExpedido = fechaExpedido;
-        this.sello = sello;
-    }
+    public Certificados() {}
 
     public Certificados(int idCertificados, String nombre, Timestamp vigencia, String tituloCertificado, Timestamp fechaExpedido, byte[] sello) {
         this.idCertificados = idCertificados;
@@ -103,18 +94,6 @@ public class Certificados extends Entidad implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "Certificados{" +
-                "idCertificados=" + idCertificados +
-                ", nombre='" + nombre + '\'' +
-                ", vigencia=" + vigencia +
-                ", tituloCertificado='" + tituloCertificado + '\'' +
-                ", fechaExpedido=" + fechaExpedido +
-                ", sello=" + Arrays.toString(sello) +
-                '}';
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -125,5 +104,17 @@ public class Certificados extends Entidad implements Parcelable {
         dest.writeString(nombre);
         dest.writeString(tituloCertificado);
         dest.writeByteArray(sello);
+    }
+
+    @Override
+    public String toString() {
+        return "Certificados{" +
+                "idCertificados=" + idCertificados +
+                ", nombre='" + nombre + '\'' +
+                ", vigencia=" + vigencia +
+                ", tituloCertificado='" + tituloCertificado + '\'' +
+                ", fechaExpedido=" + fechaExpedido +
+                ", sello=" + Arrays.toString(sello) +
+                '}';
     }
 }

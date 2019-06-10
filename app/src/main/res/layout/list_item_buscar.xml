@@ -36,35 +36,17 @@
         <Space
             android:layout_width="wrap_content"
             android:layout_height="20dp" />
-        
-        <LinearLayout
-            android:id="@+id/linearLayoutItemBuscar"
-            android:layout_width="match_parent"
+
+        <RatingBar
+            android:id="@+id/rbItemBuscarEstrellas"
+            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/calif1"/>
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/calif1"/>
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/calif1"/>
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/calif1"/>
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/calif1"/>
-            
-        </LinearLayout>
+            android:layout_marginBottom="10dp"
+            android:clickable="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="3.5"/>
 
         <TextView
             android:id="@+id/textViewItemBuscarLocalidad"

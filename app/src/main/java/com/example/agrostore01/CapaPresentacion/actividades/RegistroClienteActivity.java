@@ -26,7 +26,7 @@ import java.util.Calendar;
 
 public class RegistroClienteActivity extends AppCompatActivity {
 
-    private EditText etUsuario, etNombres, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
+    private EditText etUsuario, etNombres, etApellidos, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
     private EditText etCalle, etColonia, etCiudad, etCodigoPostal;
     private ImageButton ibFecha, ibRegistrar;
     private CheckBox cbTerminos;
@@ -45,6 +45,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
         etUsuario = findViewById(R.id.etRegistroClienteUsuario);
         etNombres = findViewById(R.id.etRegistroClienteNombres);
+        etApellidos = findViewById(R.id.etRegistroClienteApellido);
         etContrasena = findViewById(R.id.etRegistroClienteContrasena);
         etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
         etCorreoElectronico = findViewById(R.id.etRegistroClienteNombreUsuario);
@@ -131,7 +132,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
             // Detalles del usuario
             String nombres = etNombres.getText().toString();
-            String apellidos = "'Apellido " + etNombres.getText().toString() + "'";
+            String apellidos = etApellidos.getText().toString();
             String calle = etCalle.getText().toString();
             String colonia = etColonia.getText().toString();
             String estado = sEstado.getSelectedItem().toString();

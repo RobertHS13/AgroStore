@@ -16,19 +16,27 @@ import java.math.BigDecimal;
 
 public class FiltrosActivity extends AppCompatActivity {
 
-    public static final String TIPO_FILTRO_CATEGORIA = "FiltroCategoria";
+    // Tipos de busqueda
+
+    public static final String TIPO_BUSQUEDA = "TipoBusqueda";
+
+    public static final String BUSQUEDA_CATEGORIA = "BusquedaCategoria";
+    public static final String BUSQUEDA_CATEGORIA_HORTALIZAS = "Hortalizas";
+    public static final String BUSQUEDA_CATEGORIA_SEMILLAS = "Semillas";
+    public static final String BUSQUEDA_CATEGORIA_CARNES = "Carnes";
+    public static final String BUSQUEDA_CATEGORIA_LACTEOS = "Lacteos";
+
+    public static final String BUSQUEDA_NOMBRE_PRODUCTO = "BusquedaNombreProducto";
+
+    public static final String BUSQUEDA_FILTRO = "BusquedaFiltros";
     public static final String FILTRO_CATEGORIA_HORTALIZAS = "Hortalizas";
     public static final String FILTRO_CATEGORIA_SEMILLAS = "Semillas";
     public static final String FILTRO_CATEGORIA_CARNES = "Carnes";
     public static final String FILTRO_CATEGORIA_LACTEOS = "Lacteos";
-
-    public static final String TIPO_FILTRO_TEMPORADA = "FiltroTemporada";
     public static final String FILTRO_TEMPORADA_INVIERNO = "Invierno";
     public static final String FILTRO_TEMPORADA_OTONO = "Otono";
     public static final String FILTRO_TEMPORADA_PRIMAVERA = "Primavera";
     public static final String FILTRO_TEMPORADA_VERANO = "Verano";
-
-    public static final String TIPO_FILTRO_TIEMPO_COSECHA = "FiltroTiempoCosecha";
     public static final String FILTRO_TIEMPO_COSECHA_MENOS_MES = "-mes";
     public static final String FILTRO_TIEMPO_COSECHA_MENOS_ANIO = "-anio";
     public static final String FILTRO_TIEMPO_COSECHA_MAS_ANIO = "+anio";
