@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RepositorioCertificados extends Repositorio implements IContrato<Certificados> {
-    public RepositorioCertificados(){
+
+    public RepositorioCertificados() {
         this.sqlAlta="inser into Certificado values (?,?,?,?,?)";
         this.sqlBaja="delete from Certificado where IDCertificado = ?";
         this.sqlCambio="update Certificado set " +
@@ -23,7 +24,6 @@ public class RepositorioCertificados extends Repositorio implements IContrato<Ce
                 "where IDCertificados= ?";
         this.sqlSeleccionarId="select * from Certificado where IDCertificado = ?";
         this.sqlSeleccionarTodo="select * from Certificado";
-
     }
 
 

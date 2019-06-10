@@ -132,9 +132,9 @@ public class RepositorioProductoTerreno extends Repositorio implements IContrato
 
         try {
             while (resultado.next()) {
-                long idnumprod= resultado.getLong("IDNumProducto");
+                long idnumprod = resultado.getLong("IDNumProducto");
                 long idproducto = resultado.getLong("IDProducto");
-                long idterreno =resultado.getLong("IDTerreno");
+                long idterreno = resultado.getLong("IDTerreno");
                 BigDecimal precio = resultado.getBigDecimal("Precio");
                 int hectareas = resultado.getInt("Hectareas");
                 String descripcion = resultado.getString("Descripcion");
