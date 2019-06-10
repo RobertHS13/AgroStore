@@ -77,7 +77,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textViewItemBuscarVentas"
+                        android:id="@+id/textViewItemBuscarLocalidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="373K - Tamaulipas"

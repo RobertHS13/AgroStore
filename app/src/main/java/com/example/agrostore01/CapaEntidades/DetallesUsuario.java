@@ -6,25 +6,27 @@ import android.os.Parcelable;
 public class DetallesUsuario extends Entidad implements Parcelable {
 
     private long idDetalles;
+    private String nombres;
+    private String apellidos;
     private String calle;
     private String colonia;
-    private String cuidad;
     private String estado;
     private String pais;
     private int cp;
     private String escrituraOPermiso;
-    private double estrellas;
+    private float estrellas;
     private String rfc;
     private String firmaElectronica;
-    private String nombres;
-    private String apellidos;
+    private String cuidad;
+    private String fechaNac; // anio-mes-dia
 
-    public DetallesUsuario() { }
+    public DetallesUsuario() {}
 
-    public DetallesUsuario(String calle, String colonia, String cuidad, String estado, String pais, int cp, String escrituraOPermiso, double estrellas, String rfc, String firmaElectronica, String nombres, String apellidos) {
+    public DetallesUsuario(String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.calle = calle;
         this.colonia = colonia;
-        this.cuidad = cuidad;
         this.estado = estado;
         this.pais = pais;
         this.cp = cp;
@@ -32,15 +34,16 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.estrellas = estrellas;
         this.rfc = rfc;
         this.firmaElectronica = firmaElectronica;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
+        this.cuidad = cuidad;
+        this.fechaNac = fechaNac;
     }
 
-    public DetallesUsuario(long idDetalles, String calle, String colonia, String cuidad, String estado, String pais, int cp, String escrituraOPermiso, double estrellas, String rfc, String firmaElectronica, String nombres, String apellidos) {
+    public DetallesUsuario(long idDetalles, String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac) {
         this.idDetalles = idDetalles;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.calle = calle;
         this.colonia = colonia;
-        this.cuidad = cuidad;
         this.estado = estado;
         this.pais = pais;
         this.cp = cp;
@@ -48,24 +51,25 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.estrellas = estrellas;
         this.rfc = rfc;
         this.firmaElectronica = firmaElectronica;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
+        this.cuidad = cuidad;
+        this.fechaNac = fechaNac;
     }
 
     protected DetallesUsuario(Parcel in) {
         idDetalles = in.readLong();
+        nombres = in.readString();
+        apellidos = in.readString();
         calle = in.readString();
         colonia = in.readString();
-        cuidad = in.readString();
         estado = in.readString();
         pais = in.readString();
         cp = in.readInt();
         escrituraOPermiso = in.readString();
-        estrellas = in.readDouble();
+        estrellas = in.readFloat();
         rfc = in.readString();
         firmaElectronica = in.readString();
-        nombres = in.readString();
-        apellidos = in.readString();
+        cuidad = in.readString();
+        fechaNac = in.readString();
     }
 
     public static final Creator<DetallesUsuario> CREATOR = new Creator<DetallesUsuario>() {
@@ -88,6 +92,22 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.idDetalles = idDetalles;
     }
 
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     public String getCalle() {
         return calle;
     }
@@ -102,14 +122,6 @@ public class DetallesUsuario extends Entidad implements Parcelable {
 
     public void setColonia(String colonia) {
         this.colonia = colonia;
-    }
-
-    public String getCuidad() {
-        return cuidad;
-    }
-
-    public void setCuidad(String cuidad) {
-        this.cuidad = cuidad;
     }
 
     public String getEstado() {
@@ -144,11 +156,11 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.escrituraOPermiso = escrituraOPermiso;
     }
 
-    public double getEstrellas() {
+    public float getEstrellas() {
         return estrellas;
     }
 
-    public void setEstrellas(double estrellas) {
+    public void setEstrellas(float estrellas) {
         this.estrellas = estrellas;
     }
 
@@ -168,29 +180,30 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.firmaElectronica = firmaElectronica;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getCuidad() {
+        return cuidad;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setCuidad(String cuidad) {
+        this.cuidad = cuidad;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getFechaNac() {
+        return fechaNac;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setFechaNac(String fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     @Override
     public String toString() {
         return "DetallesUsuario{" +
                 "idDetalles=" + idDetalles +
+                ", nombres='" + nombres + '\'' +
+                ", apellidos='" + apellidos + '\'' +
                 ", calle='" + calle + '\'' +
                 ", colonia='" + colonia + '\'' +
-                ", cuidad='" + cuidad + '\'' +
                 ", estado='" + estado + '\'' +
                 ", pais='" + pais + '\'' +
                 ", cp=" + cp +
@@ -198,8 +211,8 @@ public class DetallesUsuario extends Entidad implements Parcelable {
                 ", estrellas=" + estrellas +
                 ", rfc='" + rfc + '\'' +
                 ", firmaElectronica='" + firmaElectronica + '\'' +
-                ", nombres='" + nombres + '\'' +
-                ", apellidos='" + apellidos + '\'' +
+                ", cuidad='" + cuidad + '\'' +
+                ", fechaNac='" + fechaNac + '\'' +
                 '}';
     }
 
@@ -211,17 +224,18 @@ public class DetallesUsuario extends Entidad implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(idDetalles);
+        dest.writeString(nombres);
+        dest.writeString(apellidos);
         dest.writeString(calle);
         dest.writeString(colonia);
-        dest.writeString(cuidad);
         dest.writeString(estado);
         dest.writeString(pais);
         dest.writeInt(cp);
         dest.writeString(escrituraOPermiso);
-        dest.writeDouble(estrellas);
+        dest.writeFloat(estrellas);
         dest.writeString(rfc);
         dest.writeString(firmaElectronica);
-        dest.writeString(nombres);
-        dest.writeString(apellidos);
+        dest.writeString(cuidad);
+        dest.writeString(fechaNac);
     }
 }

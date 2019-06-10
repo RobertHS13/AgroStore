@@ -6,54 +6,69 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.agrostore01.AgroUtils;
+import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
 import com.example.agrostore01.R;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.List;
 
-public class BusquedaAdapter extends ArrayAdapter {
+public class BusquedaAdapter extends ArrayAdapter<VistaBusquedaProducto> {
 
     static class Datos {
         public ImageView imageViewItemBuscar;
         public TextView textViewItemBuscarTitulo;
         public TextView textViewItemBuscarPrecio;
-        public LinearLayout linearLayoutItemBuscar;
-        public TextView textViewItemBuscarVentas;
+        public TextView textViewItemBuscarLocalidad;
     }
 
     private  Context context;
     private int layoutResourceId;
-    private ArrayList lista;
+    private List<VistaBusquedaProducto> lista;
 
-    public BusquedaAdapter(Context context, int resource, Object[] objects) {
+    public BusquedaAdapter(Context context, int resource, List<VistaBusquedaProducto> objects) {
         super(context, resource, objects);
 
         this.context = context;
         this.layoutResourceId = resource;
-        this.lista = lista;
+        this.lista = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Datos data = null;
+        Datos datos;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layoutResourceId, parent, false);
-            data = new Datos();
+            datos = new Datos();
 
-            data.imageViewItemBuscar = convertView.findViewById(R.id.imageViewItemBuscar);
-            data.textViewItemBuscarTitulo = convertView.findViewById(R.id.textViewItemBuscarTitulo);
-            data.textViewItemBuscarPrecio = convertView.findViewById(R.id.textViewItemBuscarPrecio);
-            data.linearLayoutItemBuscar = convertView.findViewById(R.id.linearLayoutItemBuscar);
-            data.textViewItemBuscarVentas = convertView.findViewById(R.id.textViewItemBuscarVentas);
+            datos.imageViewItemBuscar = convertView.findViewById(R.id.imageViewItemBuscar);
+            datos.textViewItemBuscarTitulo = convertView.findViewById(R.id.textViewItemBuscarTitulo);
+            datos.textViewItemBuscarPrecio = convertView.findViewById(R.id.textViewItemBuscarPrecio);
+            datos.textViewItemBuscarLocalidad = convertView.findViewById(R.id.textViewItemBuscarLocalidad);
 
-            convertView.setTag(data);
+            convertView.setTag(datos);
 
         } else {
-            data = (Datos) convertView.getTag();
+            datos = (Datos) convertView.getTag();
         }
+
+        // Llenar campos del list item
+        VistaBusquedaProducto vistaBusquedaProducto = lista.get(position);
+
+        String titulo = vistaBusquedaProducto.getProducto();
+        String precio = "$" + vistaBusquedaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) + ", " + vistaBusquedaProducto.getHectareas() + " hectareas";
+        String localidad = vistaBusquedaProducto.getCiudad() + ", " + vistaBusquedaProducto.getEstado();
+
+        datos.textViewItemBuscarTitulo.setText(titulo);
+        datos.textViewItemBuscarPrecio.setText(precio);
+        datos.textViewItemBuscarLocalidad.setText(localidad);
+
+        //AgroUtils.setImageViewByteArray(datos.imageViewItemBuscar, vistaBusquedaProducto.getFoto());
+
+        // ano-mes-dia
 
         return convertView;
     }

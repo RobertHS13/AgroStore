@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepositorioDetallesUsuario extends Repositorio implements IContrato<DetallesUsuario> {
+
     public RepositorioDetallesUsuario() {
-        this.sqlAlta = "insert into DetallesUsuario values (?,?,?,?,?,?,?,?,?,?,?)";
+        this.sqlAlta = "insert into DetallesUsuario values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         this.sqlBaja = "delete from DetallesUsuario where IDDetalles = ?";
         this.sqlCambio = "update DetallesUsuario set" +
                 "IDDetalles = ?," +
@@ -23,12 +24,12 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
                 "ESTRELLAS = ?," +
                 "RFC = ?," +
                 "FirmaElectronica  = ?," +
-                "Ciudad = ?" +
+                "Ciudad = ?, " +
+                "Fecha = ? " +
                 "where IDDetalles = ?";
-        this.sqlSeleccionarId = "select * from DetallesUsuario where idDetalles = ?";
+        this.sqlSeleccionarId = "select * from DetallesUsuario where IDDetalles = ?";
         this.sqlSeleccionarTodo = "select * from DetallesUsuario";
     }
-
 
     @Override
     public boolean alta(DetallesUsuario e) {
@@ -46,6 +47,7 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
         parametros.add(e.getRfc());
         parametros.add(e.getFirmaElectronica());
         parametros.add(e.getCuidad());
+        parametros.add(e.getFechaNac());
         return ejecutarConsulta(sqlAlta);
     }
 
@@ -72,6 +74,7 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
         parametros.add(e.getRfc());
         parametros.add(e.getFirmaElectronica());
         parametros.add(e.getCuidad());
+        parametros.add(e.getFechaNac());
         parametros.add(id);
         return ejecutarConsulta(sqlCambio);
     }
@@ -85,20 +88,23 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
 
         try {
             resultado.next();
+
             long IDDetalles = resultado.getLong("IDDetalles");
+            String Nombre = resultado.getString("Nombre");
+            String Apellido = resultado.getString("Apellido");
             String Calle = resultado.getString("Calle");
             String Colonia =resultado.getString("Colonia");
-            String Ciudad = resultado.getString("Ciudad");
             String Estado = resultado.getString("Estado");
             String Pais = resultado.getString("Pais");
-            int CP =resultado.getInt("CP");
+            int CP = resultado.getInt("CP");
             String EscrituraPermiso = resultado.getString("EscrituraPermiso");
-            double ESTRELLAS = resultado.getDouble("ESTRELLAS");
+            float ESTRELLAS = resultado.getFloat("ESTRELLAS");
             String RFC = resultado.getString("RFC");
             String FirmaElectronica = resultado.getString("FirmaElectronica");
-            String Nombres = resultado.getString("Nombre");
-            String Apellidos = resultado.getString("Apellido");
-            return new DetallesUsuario(IDDetalles,Calle,Colonia,Ciudad,Estado,Pais,CP,EscrituraPermiso,ESTRELLAS,RFC,FirmaElectronica,Nombres,Apellidos);
+            String Ciudad = resultado.getString("Ciudad");
+            String Fecha = resultado.getString("Fecha");
+
+            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -121,19 +127,21 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
         try {
             while (resultado.next()) {
                 long IDDetalles = resultado.getLong("IDDetalles");
+                String Nombre = resultado.getString("Nombre");
+                String Apellido = resultado.getString("Apellido");
                 String Calle = resultado.getString("Calle");
                 String Colonia =resultado.getString("Colonia");
-                String Ciudad = resultado.getString("Ciudad");
                 String Estado = resultado.getString("Estado");
                 String Pais = resultado.getString("Pais");
                 int CP =resultado.getInt("CP");
                 String EscrituraPermiso = resultado.getString("EscrituraPermiso");
-                double ESTRELLAS = resultado.getDouble("ESTRELLAS");
+                float ESTRELLAS = resultado.getFloat("ESTRELLAS");
                 String RFC = resultado.getString("RFC");
                 String FirmaElectronica = resultado.getString("FirmaElectronica");
-                String Nombres = resultado.getString("Nombre");
-                String Apellidos = resultado.getString("Apellido");
-                detallesUsuarios.add(new DetallesUsuario(IDDetalles,Calle,Colonia,Ciudad,Estado,Pais,CP,EscrituraPermiso,ESTRELLAS,RFC,FirmaElectronica,Nombres,Apellidos));
+                String Ciudad = resultado.getString("Ciudad");
+                String Fecha = resultado.getString("Fecha");
+
+                detallesUsuarios.add(new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha));
             }
         }
         catch (SQLException e) {
@@ -147,5 +155,6 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
         }
         return detallesUsuarios;
     }
-    }
+
+}
 

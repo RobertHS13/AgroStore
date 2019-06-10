@@ -54,7 +54,10 @@ public class BuscarFragment extends RecieveBundlesFragment {
         @Override
         public boolean onQueryTextSubmit(String query) {
             Intent intent = new Intent(getActivity(), BuscarActivity.class);
+
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_NOMBRE_PRODUCTO);
+            intent.putExtra(BuscarActivity.BUSQUEDA_NOMBRE_PRODUCTO, query);
 
             startActivity(intent);
             return false;
@@ -70,8 +73,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
 
+            intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
             intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_HORTALIZAS);
 
@@ -83,8 +86,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
 
+            intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
             intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_SEMILLAS);
 
@@ -96,8 +99,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
 
+            intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
             intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_CARNES);
 
@@ -109,8 +112,8 @@ public class BuscarFragment extends RecieveBundlesFragment {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), BuscarActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
 
+            intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(BuscarActivity.TIPO_BUSQUEDA, BuscarActivity.TIPO_CATEGORIA);
             intent.putExtra(BuscarActivity.BUSQUEDA_CATEGORIA, BuscarActivity.BUSQUEDA_CATEGORIA_LACTEOS);
 

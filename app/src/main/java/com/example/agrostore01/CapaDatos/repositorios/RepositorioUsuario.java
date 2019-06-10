@@ -34,7 +34,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         this.sqlProcConfirmarContrasena = "call { PROC_USUARIO_CONFIRMAR_CONTRASENA(?, ?) }";
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
-        this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
+        this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
     }
 
     @Override
@@ -248,6 +248,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         parametros.add(detallesUsuario.getRfc());
         parametros.add(detallesUsuario.getFirmaElectronica());
         parametros.add(detallesUsuario.getCuidad());
+        parametros.add(detallesUsuario.getFechaNac());
 
         parametros.add(usuario.getIdUsuario());
         parametros.add(usuario.getUsuario());
