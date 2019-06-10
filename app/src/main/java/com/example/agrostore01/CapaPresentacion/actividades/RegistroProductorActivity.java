@@ -89,12 +89,11 @@ public class RegistroProductorActivity extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(v.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    sFecha = (dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    sFecha = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
                     tvFecha.setText(sFecha);
                     tvFecha.setVisibility(View.VISIBLE);
                 }
-            }
-            , anno, mes, dia);
+            }, anno, mes, dia);
             datePickerDialog.show();
         }
     };
@@ -132,19 +131,20 @@ public class RegistroProductorActivity extends AppCompatActivity {
             String correoElectronico = etCorreoElectronico.getText().toString();
 
             // Detalles del usuario
+            String nombres = etNombres.getText().toString();
+            String apellidos = "Apellido '" + etNombres.getText().toString() + "'";
             String calle = etCalle.getText().toString();
             String colonia = etColonia.getText().toString();
-            String ciudad = etCiudad.getText().toString();
             String estado = sEstado.getSelectedItem().toString();
             String pais = sPais.getSelectedItem().toString();
             String codigoPostal = etCodigoPostal.getText().toString();
             int cp = codigoPostal.isEmpty()? 0 : Integer.parseInt(codigoPostal);
             String escrituraOPermiso = "";
-            double estrellas = 0;
+            float estrellas = 0;
             String rfc = "";
             String firmaElectronica = "";
-            String nombres = etNombres.getText().toString();
-            String apellidos = "Apellido '" + etNombres.getText().toString() + "'";
+            String ciudad = etCiudad.getText().toString();
+            String fechaNac = sFecha;
 
             if (!cbTerminos.isChecked()) {
                 mensajeError = ERROR_TERMINOS_Y_CONDICIONES;
@@ -159,7 +159,7 @@ public class RegistroProductorActivity extends AppCompatActivity {
             }
 
             usuario = new Usuario(idUsuario, foto, idTipo, idDetalles, nombreUsuario, contrasena, correoElectronico);
-            detallesUsuario = new DetallesUsuario(calle, colonia, ciudad, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, nombres, apellidos);
+            detallesUsuario = new DetallesUsuario(nombres, apellidos, calle, colonia, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, ciudad, fechaNac);
 
             ValidacionUsuario validacionUsuario = new ValidacionUsuario(usuario);
             boolean validarUsuario = validacionUsuario.validar();

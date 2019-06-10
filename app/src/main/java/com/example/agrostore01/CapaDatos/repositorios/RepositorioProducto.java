@@ -12,6 +12,7 @@ import java.util.List;
 public class RepositorioProducto extends Repositorio implements IContratoProducto {
 
     private String sqlProcBusquedaCategoria;
+    private String sqlProcBusquedaNombre;
 
     public RepositorioProducto(){
         this.sqlAlta = "insert into Producto values (?, ?, ?, ?, ?, ?)";
@@ -28,8 +29,10 @@ public class RepositorioProducto extends Repositorio implements IContratoProduct
         this.sqlSeleccionarId = "select * from Producto where IDProducto = ?";
         this.sqlSeleccionarTodo = "select * from Producto";
 
-        this.sqlProcBusquedaCategoria = "call { PROC_ESP_BUSQ_CATEGORIA(?) }";
+        this.sqlProcBusquedaCategoria = "{ call PROC_ESP_BUSQ_CATEGORIA(?) }";
+        this.sqlProcBusquedaNombre = "{ call PROC_ESP_BUSQ_PRODUCTO(?) }";
     }
+
     @Override
     public boolean alta(Producto e) {
         parametros = new ArrayList<>();
@@ -130,6 +133,27 @@ public class RepositorioProducto extends Repositorio implements IContratoProduct
         parametros.add(categoria);
 
         resultado = ejecutarProcedimientoConSalida(sqlProcBusquedaCategoria);
+        List<Integer> productos = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                int idProducto = resultado.getInt("IDNumProducto");
+                productos.add(idProducto);
+            }
+            return productos;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Integer> seleccionarIdProductosConNombre(String nombre) {
+        parametros = new ArrayList<>();
+        parametros.add(nombre);
+
+        resultado = ejecutarProcedimientoConSalida(sqlProcBusquedaNombre);
         List<Integer> productos = new ArrayList<>();
 
         try {

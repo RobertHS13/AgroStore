@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".CapaPresentacion.actividades.FiltrosActivity">
 
     <ScrollView
@@ -24,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Precios"
+                android:text="Precio"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -32,43 +33,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Hasta $80"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="$80 - $250"
-                        android:textSize="17sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="mas de $250"
-                        android:textSize="17sp" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="30dp"
-                    android:layout_height="0dp" />
+                    android:text="Elige un rango de precio"
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -78,6 +51,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/etFiltroPrecioMin"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:hint="Minimo"
@@ -91,9 +65,10 @@
                         android:background="@android:color/darker_gray" />
 
                     <EditText
+                        android:id="@+id/etFiltroPrecioMax"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
-                        android:hint="Minimo"
+                        android:hint="Maximo"
                         android:inputType="numberDecimal"
                         android:textAlignment="center" />
 
@@ -110,7 +85,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Producto"
+                android:text="Categoria"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -126,28 +101,33 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/ivFiltroCategoriaLacteo"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="10dp"
                         android:src="@drawable/lacteos_icono" />
 
                     <ImageView
+                        android:id="@+id/ivFiltroCategoriaCarne"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="10dp"
                         android:src="@drawable/carnes_icono" />
 
                     <ImageView
+                        android:id="@+id/ivFiltroCategoriaSemilla"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="10dp"
                         android:src="@drawable/semillas_icono" />
 
                     <ImageView
+                        android:id="@+id/ivFiltroCategoriaHortaliza"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_margin="10dp"
@@ -177,28 +157,33 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/ivFiltroTemporadaPrimavera"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/primavera" />
 
                 <ImageView
+                    android:id="@+id/ivFiltroTemporadaVerano"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/verano" />
 
                 <ImageView
+                    android:id="@+id/ivFiltroTemporadaOtono"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/otonio" />
 
                 <ImageView
+                    android:id="@+id/ivFiltroTemporadaInvierno"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
@@ -224,55 +209,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="5dp" />
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="Pais"
+                android:textSize="17sp"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/sFiltroPais"
+                android:layout_width="288dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:spinnerMode="dropdown"
+                android:textSize="24sp" />
 
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/chiapas" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="Estado"
+                android:textSize="17sp" />
 
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/guerrero" />
-
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/queretaro" />
-
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/veracruz" />
-
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/yucatan" />
-
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/tabasco" />
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+            <Spinner
+                android:id="@+id/sFiltroEstado"
+                android:layout_width="288dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:spinnerMode="dropdown"
+                android:textSize="24sp"/>
 
             <View
                 android:layout_width="match_parent"
@@ -283,7 +252,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:text="Certificaciones"
                 android:textAlignment="center"
                 android:textColor="#006064"
@@ -300,7 +268,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -358,22 +326,26 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/ivFiltroTiempoMenosMes"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/unomes" />
 
                 <ImageView
+                    android:id="@+id/ivFiltroTiempoMenosAnio"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
                     android:src="@drawable/unoanio" />
 
                 <ImageView
+                    android:id="@+id/ivFiltroTiempoMasAnio"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
@@ -397,61 +369,22 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="5dp" />
+                android:layout_height="10dp" />
 
-            <Space
+            <RatingBar
+                android:id="@+id/rbFiltroReputacion"
                 android:layout_width="wrap_content"
-                android:layout_height="5dp" />
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/calif1" />
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/calif2" />
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/calif3" />
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/calif4" />
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/calif5" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:rating="3.5"/>
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="5dp" />
 
             <Button
+                android:id="@+id/bAplicarFiltros"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -462,6 +395,5 @@
                 android:textSize="18dp" />
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

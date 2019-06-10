@@ -13,13 +13,37 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return validarIdDetalles() && validarCalle() && validarColonia() &&
                 validarCiudad() && validarEstado() && validarPais() &&
                 validarCp() && validarEscrituraOPermiso() && validarEstrellas() &&
-                validarRfc() && validarFirmaElectronica() && validarNombres() && validarApellidos();
+                validarRfc() && validarFirmaElectronica() && validarNombres() && validarApellidos() && validarFecha();
     }
 
     public boolean validarIdDetalles() {
         System.out.println("Validating Detalles.IdDetalles :" + entidad.getIdDetalles());
 
         if (entidad.getIdDetalles() <= -1)
+            return false;
+
+        return true;
+    }
+
+    public boolean validarNombres() {
+        System.out.println("Validating Detalles.Nombres :" + entidad.getNombres());
+
+        if (entidad.getNombres() == null)
+            return false;
+
+        if (entidad.getNombres().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarApellidos() {
+        System.out.println("Validating Detalles.Apellidos :" + entidad.getApellidos());
+
+        if (entidad.getApellidos() == null)
+            return false;
+
+        if (entidad.getApellidos().isEmpty())
             return false;
 
         return true;
@@ -37,17 +61,6 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return true;
     }
 
-    public boolean validarCiudad() {
-        System.out.println("Validating Detalles.Ciudad :" + entidad.getCuidad());
-
-        if (entidad.getCuidad() == null)
-            return false;
-
-        if (entidad.getCuidad().isEmpty())
-            return false;
-
-        return true;
-    }
     public boolean validarColonia() {
         System.out.println("Validating Detalles.Colonia :" + entidad.getColonia());
 
@@ -60,18 +73,6 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return true;
     }
 
-    public boolean validarPais() {
-        System.out.println("Validating Detalles.Pais :" + entidad.getPais());
-
-        if (entidad.getPais() == null)
-            return false;
-
-        if (entidad.getPais().isEmpty())
-            return false;
-
-        return true;
-    }
-
     public boolean validarEstado() {
         System.out.println("Validating Detalles.Estado :" + entidad.getEstado());
 
@@ -79,6 +80,18 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
             return false;
 
         if (entidad.getEstado().isEmpty())
+            return false;
+
+        return true;
+    }
+
+    public boolean validarPais() {
+        System.out.println("Validating Detalles.Pais :" + entidad.getPais());
+
+        if (entidad.getPais() == null)
+            return false;
+
+        if (entidad.getPais().isEmpty())
             return false;
 
         return true;
@@ -98,18 +111,6 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return true;
     }
 
-    public boolean validarApellidos() {
-        System.out.println("Validating Detalles.Apellidos :" + entidad.getApellidos());
-
-        if (entidad.getApellidos() == null)
-            return false;
-
-        if (entidad.getApellidos().isEmpty())
-            return false;
-
-        return true;
-    }
-
     public boolean validarEstrellas() {
         System.out.println("Validating Detalles.Estrellas :" + entidad.getEstrellas());
 
@@ -119,15 +120,8 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return true;
     }
 
-    public boolean validarNombres() {
-        System.out.println("Validating Detalles.Nombres :" + entidad.getNombres());
-
-        if (entidad.getNombres() == null)
-            return false;
-
-        if (entidad.getNombres().isEmpty())
-            return false;
-
+    public boolean validarRfc() {
+        System.out.println("Validating Detalles.Rfc :" + entidad.getRfc());
         return true;
     }
 
@@ -136,9 +130,40 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return true;
     }
 
-    public boolean validarRfc() {
-        System.out.println("Validating Detalles.Rfc :" + entidad.getRfc());
+
+    public boolean validarCiudad() {
+        System.out.println("Validating Detalles.Ciudad :" + entidad.getCuidad());
+
+        if (entidad.getCuidad() == null)
+            return false;
+
+        if (entidad.getCuidad().isEmpty())
+            return false;
+
         return true;
+    }
+
+    public boolean validarFecha() {
+        System.out.println("Validating Detalles.Fecha :" + entidad.getFechaNac());
+
+        if (entidad.getFechaNac() == null)
+            return true;
+
+        String[] datos = entidad.getFechaNac().split("-");
+
+        if (datos.length != 3)
+            return false;
+
+        try {
+            Integer.parseInt(datos[0]);
+            Integer.parseInt(datos[1]);
+            Integer.parseInt(datos[2]);
+            return true;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }
