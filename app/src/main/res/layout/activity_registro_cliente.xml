@@ -32,6 +32,32 @@
                     app:layout_constraintTop_toTopOf="@+id/etRegistroClienteUsuario"
                     app:srcCompat="@drawable/usuario" />
 
+                <ImageView
+                    android:id="@+id/imageView27"
+                    android:layout_width="40dp"
+                    android:layout_height="29dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteApellido"
+                    app:layout_constraintEnd_toStartOf="@+id/etRegistroClienteUsuario"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/etRegistroClienteApellido"
+                    app:srcCompat="@drawable/usuario" />
+
+                <EditText
+                    android:id="@+id/etRegistroClienteApellido"
+                    android:layout_width="288dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Apellido"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteNombres"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/etRegistroClienteNombres"
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteNombres" />
+
                 <EditText
                     android:id="@+id/etRegistroClienteUsuario"
                     android:layout_width="288dp"
@@ -280,7 +306,7 @@
                     android:textColor="@color/colorGrisClaro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteNombres"
-                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteNombres" />
+                    app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteApellido" />
 
                 <ImageView
                     android:id="@+id/imageView29"
