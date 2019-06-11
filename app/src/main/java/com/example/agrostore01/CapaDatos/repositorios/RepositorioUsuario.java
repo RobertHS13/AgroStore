@@ -31,7 +31,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         this.sqlSeleccionarTodo = "select * from Usuario";
         this.sqlSeleccionarNombreUsuario = "select * from [Usuario] where [Usuario].Usuario = ?";
 
-        this.sqlProcConfirmarContrasena = "call { PROC_USUARIO_CONFIRMAR_CONTRASENA(?, ?) }";
+        this.sqlProcConfirmarContrasena = "{ call PROC_USUARIO_CONFIRMAR_CONTRASEÑA(?, ?, ?) }";
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
         this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
@@ -264,6 +264,11 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean actualizarContrasena(Usuario usuario) {
+        return false;
     }
 
 }

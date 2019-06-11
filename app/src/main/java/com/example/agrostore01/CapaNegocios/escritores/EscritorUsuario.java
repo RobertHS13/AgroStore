@@ -7,6 +7,7 @@ import com.example.agrostore01.CapaEntidades.Usuario;
 public class EscritorUsuario extends Escritor<Usuario> {
 
     public static int OPERACION_REGISTRAR_USUARIO = 4;
+    public static int OPERACION_ACTUALIZAR_CONTRASENA = 5;
 
     private RepositorioUsuario repositorio = new RepositorioUsuario();
     private DetallesUsuario detallesUsuario;
@@ -38,6 +39,9 @@ public class EscritorUsuario extends Escritor<Usuario> {
 
         if (operacion == OPERACION_REGISTRAR_USUARIO)
             return repositorio.registrarUsuario(entidad, detallesUsuario);
+
+        if (operacion == OPERACION_ACTUALIZAR_CONTRASENA)
+            return repositorio.actualizarContrasena(entidad);
 
         return false;
     }

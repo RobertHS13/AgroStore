@@ -1,11 +1,8 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
 import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.CompraUsuario;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepositorioCompraUsuario extends Repositorio implements IContratoRelacion<CompraUsuario> {
@@ -18,8 +15,8 @@ public class RepositorioCompraUsuario extends Repositorio implements IContratoRe
                 "where IDUsuario = ?";
         this.sqlSeleccionarId = "select * from CompraUSuario where IDUsuario = ?";
         this.sqlSeleccionarTodo = "select * from CompraUSuario";
-
     }
+
     @Override
     public boolean alta(CompraUsuario e) {
        parametros = new ArrayList<>();

@@ -2,15 +2,18 @@ package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaNegocios.lectores.LectorUsuario;
 import com.example.agrostore01.R;
 
 public class ClaveActivity extends RecieveBundlesActivity {
@@ -34,23 +37,47 @@ public class ClaveActivity extends RecieveBundlesActivity {
         ibSeguridad.setOnClickListener(ibSeguridadListener);
     }
 
+    private class VerificarContrasena extends AsyncTask<Void, Void, Void> {
+
+        private LectorUsuario lectorUsuario = new LectorUsuario();
+        private String contrasena;
+        boolean exito;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            contrasena = etClave.getText().toString();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            exito = lectorUsuario.confirmarContrasena(usuario.getIdUsuario(), contrasena);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (exito) {
+                Intent intent = new Intent(ClaveActivity.this, SeguridadActivity.class);
+                intent.putExtra(usuario.getClassName(), usuario);
+                intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+
+                startActivity(intent);
+            } else {
+                Toast.makeText(ClaveActivity.this, "La contrasena es incorrecta", Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
     private final View.OnClickListener ibSeguridadListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(ClaveActivity.this, SeguridadActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-
-            startActivity(intent);
+            new VerificarContrasena().execute();
         }
     };
-
-    public ImageButton getIbSeguridad() {
-        return ibSeguridad;
-    }
-    public EditText getEtClave() {
-        return etClave;
-    }
 
     @Override
     public void recieveBundles(Context context) {
@@ -58,4 +85,10 @@ public class ClaveActivity extends RecieveBundlesActivity {
         detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
     }
 
+    public ImageButton getIbSeguridad() {
+        return ibSeguridad;
+    }
+    public EditText getEtClave() {
+        return etClave;
+    }
 }

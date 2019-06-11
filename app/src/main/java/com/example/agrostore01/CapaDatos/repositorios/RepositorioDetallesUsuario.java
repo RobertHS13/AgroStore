@@ -1,12 +1,16 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoDetallesUsuario;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
+import com.example.agrostore01.CapaEntidades.Usuario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioDetallesUsuario extends Repositorio implements IContrato<DetallesUsuario> {
+public class RepositorioDetallesUsuario extends Repositorio implements IContratoDetallesUsuario {
+
+    private String sqlProcMostrarDetallesUsuario;
 
     public RepositorioDetallesUsuario() {
         this.sqlAlta = "insert into DetallesUsuario values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -29,6 +33,8 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
                 "where IDDetalles = ?";
         this.sqlSeleccionarId = "select * from DetallesUsuario where IDDetalles = ?";
         this.sqlSeleccionarTodo = "select * from DetallesUsuario";
+
+        this.sqlProcMostrarDetallesUsuario = "{ call PROC_MOSTRAR_DetallesUsuario(?) }";
     }
 
     @Override
@@ -156,5 +162,42 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
         return detallesUsuarios;
     }
 
+    @Override
+    public DetallesUsuario mostrarDetallesUsuario(String idUsuario) {
+        parametros = new ArrayList<>();
+        parametros.add(idUsuario);
+
+        resultado = ejecutarProcedimientoConSalida(sqlProcMostrarDetallesUsuario);
+
+        try {
+            resultado.next();
+
+            long IDDetalles = resultado.getLong("IDDetalles");
+            String Nombre = resultado.getString("Nombre");
+            String Apellido = resultado.getString("Apellido");
+            String Calle = resultado.getString("Calle");
+            String Colonia =resultado.getString("Colonia");
+            String Estado = resultado.getString("Estado");
+            String Pais = resultado.getString("Pais");
+            int CP = resultado.getInt("CP");
+            String EscrituraPermiso = resultado.getString("EscrituraPermiso");
+            float ESTRELLAS = resultado.getFloat("ESTRELLAS");
+            String RFC = resultado.getString("RFC");
+            String FirmaElectronica = resultado.getString("FirmaElectronica");
+            String Ciudad = resultado.getString("Ciudad");
+            String Fecha = resultado.getString("Fecha");
+
+            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            try { if (resultado != null) resultado.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (sentencia != null) sentencia.close(); } catch (Exception e) { e.printStackTrace(); }
+            try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
 }
 
