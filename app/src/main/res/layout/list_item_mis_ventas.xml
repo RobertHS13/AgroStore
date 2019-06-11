@@ -8,9 +8,11 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageViewItemMisVentas"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:id="@+id/ivMisVentas"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_margin="15dp"
+        android:layout_gravity="center|start"
         android:src="@drawable/zanahorias"/>
 
     <Space
@@ -18,36 +20,70 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayoutItemMisVentas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|left"
+        android:layout_height="wrap_content"
+        android:gravity="start"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PEDIDO:"
+            android:text="Venta:"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvMisVentasNumeroVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="#00002323"
+            android:textColor="#454957"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Producto:"
             android:textColor="#000000"
             android:textSize="15sp"/>
         <TextView
-            android:id="@+id/textViewItemMisVentasPedido"
+            android:id="@+id/tvMisVentasProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="#1374837"
-            android:textColor="#454957"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FF454957"
+            android:text="Plantas feas"
             android:textSize="15sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COMPRADOR:"
+            android:text="Precio:"
             android:textColor="#000000"
             android:textSize="15sp"/>
         <TextView
-            android:id="@+id/textViewItemMisVentasCliente"
+            android:id="@+id/tvMisVentasPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#454957"
-            android:text="Pomona Sprout"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FF454957"
+            android:text="$10"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha:"
+            android:textColor="#000000"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/tvMisVentasFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FF454957"
+            android:text="Maestro Karim"
             android:textSize="15sp"/>
 
     </LinearLayout>
