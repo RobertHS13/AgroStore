@@ -1,12 +1,17 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoNotificaciones;
 import com.example.agrostore01.CapaEntidades.Notificaciones;
+import com.example.agrostore01.CapaEntidades.vistas.VistaTerreno;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class RepositorioNotificaciones extends Repositorio implements IContrato<Notificaciones> {
+public class RepositorioNotificaciones extends Repositorio implements IContratoNotificaciones {
+
+    private String sqlProcNotificaciones;
 
     public RepositorioNotificaciones(){
         this.sqlAlta = "insert into Notificaciones values (?)";
@@ -18,7 +23,9 @@ public class RepositorioNotificaciones extends Repositorio implements IContrato<
         this.sqlSeleccionarId = "select * from Notificaciones where IDNotificaciones = ?";
         this.sqlSeleccionarTodo = "select * from Notificaciones";
 
+        this.sqlProcNotificaciones = "{ call PROC_ESP_NOTIFICACIONES(?) }";
     }
+
     @Override
     public boolean alta(Notificaciones e) {
     parametros = new ArrayList<>();
@@ -92,5 +99,27 @@ public class RepositorioNotificaciones extends Repositorio implements IContrato<
         }
         return notificaciones;
     }
-    }
 
+    @Override
+    public List<String> getNotificaciones(String idUsuario) {
+        try {
+            parametros = new ArrayList<>();
+            parametros.add(idUsuario);
+
+            List<String> notificaciones = new ArrayList<>();
+
+            resultado = ejecutarProcedimientoConSalida(sqlProcNotificaciones);
+
+            while (resultado.next()) {
+                String notificacion = resultado.getString("Detalle");
+                notificaciones.add(notificacion);
+            }
+
+            return notificaciones;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
