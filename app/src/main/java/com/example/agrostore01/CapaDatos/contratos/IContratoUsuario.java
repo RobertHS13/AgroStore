@@ -10,5 +10,6 @@ public interface IContratoUsuario extends IContrato<Usuario> {
     boolean confirmarExistencia(String idUsuario, String contrasena);
     String seleccionarContrasena(String idUsuario);
     boolean registrarUsuario(Usuario usuario, DetallesUsuario detallesUsuario);
+    boolean actualizarContrasena(Usuario usuario);
 
 }
