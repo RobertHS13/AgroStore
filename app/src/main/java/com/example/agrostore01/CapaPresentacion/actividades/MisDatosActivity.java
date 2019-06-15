@@ -13,8 +13,9 @@ import com.example.agrostore01.R;
 
 public class MisDatosActivity extends RecieveBundlesActivity {
 
+    private TextView tvNombre, tvUsuario, tvEmail, tvTelefono;
+    private TextView tvCalle, tvColonia, tvCiudad, tvCodigoPostal, tvEstado, tvPais;
     private ImageButton ibActualizar;
-    private TextView tvNombre, tvUsuario, tvEmail, tvTelefono, tvDireccion;
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
@@ -24,16 +25,36 @@ public class MisDatosActivity extends RecieveBundlesActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_datos);
 
-        ibActualizar = findViewById(R.id.ibActualizar);
+        recieveBundles(this);
+
         tvNombre = findViewById(R.id.tvNombre);
         tvUsuario = findViewById(R.id.tvUsuario);
         tvEmail = findViewById(R.id.tvEmail);
         tvTelefono = findViewById(R.id.tvTelefono);
-        tvDireccion = findViewById(R.id.tvCiudad);
 
+        tvCalle = findViewById(R.id.tvCalle);
+        tvColonia = findViewById(R.id.tvColonia);
+        tvCiudad = findViewById(R.id.tvCiudad);
+        tvCodigoPostal = findViewById(R.id.tvCp);
+        tvEstado = findViewById(R.id.tvEstado);
+        tvPais = findViewById(R.id.tvPais);
+
+        ibActualizar = findViewById(R.id.ibActualizar);
         ibActualizar.setOnClickListener(ibActualizarListener);
 
-        recieveBundles(this);
+        // Llenar campos
+        String nombre = detallesUsuario.getNombres() + " " + detallesUsuario.getApellidos();
+        tvNombre.setText(nombre);
+        tvUsuario.setText(usuario.getUsuario());
+        tvEmail.setText(usuario.getCorreo());
+        tvTelefono.setText("831-114-6563");
+
+        tvCalle.setText(detallesUsuario.getCalle());
+        tvColonia.setText(detallesUsuario.getColonia());
+        tvCiudad.setText(detallesUsuario.getCuidad());
+        tvCodigoPostal.setText(String.valueOf(detallesUsuario.getCp()));
+        tvEstado.setText(detallesUsuario.getEstado());
+        tvPais.setText(detallesUsuario.getPais());
     }
 
     @Override
@@ -55,24 +76,5 @@ public class MisDatosActivity extends RecieveBundlesActivity {
             startActivity(intent);
         }
     };
-
-    public ImageButton getIbActualizar() {
-        return ibActualizar;
-    }
-    public TextView getTvNombre() {
-        return tvNombre;
-    }
-    public TextView getTvUsuario() {
-        return tvUsuario;
-    }
-    public TextView getTvEmail() {
-        return tvEmail;
-    }
-    public TextView getTvTelefono() {
-        return tvTelefono;
-    }
-    public TextView getTvDireccion() {
-        return tvDireccion;
-    }
 
 }

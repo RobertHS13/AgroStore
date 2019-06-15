@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class RepositorioUsuario extends Repositorio implements IContratoUsuario {
 
     private String sqlSeleccionarNombreUsuario;
+    private String sqlProcActualizarContrasena;
+    private String sqlProcActualizarDatos;
     private String sqlProcConfirmarContrasena;
     private String sqlProcConfirmarExistencia;
     private String sqlProcSeleccionarContrasena;
@@ -31,6 +33,8 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         this.sqlSeleccionarTodo = "select * from Usuario";
         this.sqlSeleccionarNombreUsuario = "select * from [Usuario] where [Usuario].Usuario = ?";
 
+        this.sqlProcActualizarContrasena = "{ call PROC_ESP_NUEVA_CONTRASEÑA(?, ?) }";
+        this.sqlProcActualizarDatos = "{ call PROC_ESP_CAMBIO_USUARIO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
         this.sqlProcConfirmarContrasena = "{ call PROC_USUARIO_CONFIRMAR_CONTRASEÑA(?, ?, ?) }";
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
@@ -267,8 +271,50 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
     }
 
     @Override
-    public boolean actualizarContrasena(Usuario usuario) {
-        return false;
+    public boolean actualizarContrasena(String idUsuario, String nuevaContrasena) {
+        parametros = new ArrayList<>();
+        parametros.add(idUsuario);
+        parametros.add(nuevaContrasena);
+
+        try {
+            return ejecutarProcedimiento(sqlProcActualizarContrasena);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizarDatos(Usuario usuario, DetallesUsuario detallesUsuario) {
+        parametros = new ArrayList<>();
+
+        parametros.add(usuario.getIdDetalles());
+        parametros.add(detallesUsuario.getNombres());
+        parametros.add(detallesUsuario.getApellidos());
+        parametros.add(detallesUsuario.getCalle());
+        parametros.add(detallesUsuario.getColonia());
+        parametros.add(detallesUsuario.getEstado());
+        parametros.add(detallesUsuario.getPais());
+        parametros.add(detallesUsuario.getCp());
+        parametros.add(detallesUsuario.getEscrituraOPermiso());
+        parametros.add(detallesUsuario.getEstrellas());
+        parametros.add(detallesUsuario.getRfc());
+        parametros.add(detallesUsuario.getFirmaElectronica());
+        parametros.add(detallesUsuario.getCuidad());
+        parametros.add(detallesUsuario.getFechaNac());
+
+        parametros.add(usuario.getIdUsuario());
+        parametros.add(usuario.getCorreo());
+        parametros.add(usuario.getFoto());
+
+        try {
+            return ejecutarProcedimiento(sqlProcActualizarDatos);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

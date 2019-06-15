@@ -27,14 +27,6 @@ public class RepositorioMisCompras extends Repositorio implements IContratoMisCo
             resultado = ejecutarProcedimientoConSalida(sqlProcMisCompras);
 
             while (resultado.next()) {
-
-                /**
-                 * private int numeroDeCompra;
-                 *     private int numeroDeLote;
-                 *     private boolean estado;
-                 *     private String tiempo;
-                 */
-
                 int numeroDeCompra = resultado.getInt("Numero de Compra");
                 int numeroDeLote = resultado.getInt("Numero de lote");
                 boolean estado = resultado.getBoolean("Estado");

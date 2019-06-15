@@ -5,55 +5,25 @@
     android:layout_height="wrap_content"
     android:background="#E8EAF6"
     android:layout_margin="@dimen/activity_vertical_margin"
+    android:gravity="center|start"
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageViewItemNotifyCliente"
+        android:id="@+id/ivNotificacion"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_margin="8dp"
         android:src="@drawable/ermitanio"/>
 
     <Space
         android:layout_width="10dp"
         android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutItemNotifyCliente"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center|left"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A "
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/textViewNotifyUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Goku"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" le ha "
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/textViewItemNotifyReaction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:text="interesado"
-            android:textSize="15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" nuestro producto "
-            android:textSize="15sp"/>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvNotificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esta es una notificacion"
+        android:textSize="15sp"/>
 
 </LinearLayout>

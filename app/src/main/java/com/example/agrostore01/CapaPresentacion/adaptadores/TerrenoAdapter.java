@@ -6,55 +6,62 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.agrostore01.CapaEntidades.Terreno;
 import com.example.agrostore01.R;
 
-import java.util.ArrayList;
-public class TerrenoAdapter extends ArrayAdapter {
+import java.util.List;
+
+public class TerrenoAdapter extends ArrayAdapter<Terreno> {
 
     static class Datos {
-        public ImageView imageViewItemTerreno;
-        public TextView textViewItemNombreTerreno;
-        public TextView textViewItemTamano;
-        public TextView textViewItemMedidas;
-        public TextView textViewItemTipoTerreno;
-        public LinearLayout linearLayoutItemTerreno;
+        ImageView ivTerreno;
+        TextView tvNombreTerreno;
+        TextView tvTamano;
+        TextView tvTipo;
     }
 
-    private  Context context;
+    private Context context;
     private int layoutResourceId;
-    private ArrayList lista;
+    private List<Terreno> lista;
 
-    public TerrenoAdapter(Context context, int resource, Object[] objects) {
+    public TerrenoAdapter(Context context, int resource, List<Terreno> objects) {
         super(context, resource, objects);
 
         this.context = context;
         this.layoutResourceId = resource;
-        this.lista = lista;
+        this.lista = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Datos data = null;
+        Datos data;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layoutResourceId, parent, false);
             data = new Datos();
 
-            data.imageViewItemTerreno = convertView.findViewById(R.id.imageViewItemTerreno);
-            data.textViewItemNombreTerreno = convertView.findViewById(R.id.textViewItemNombreTerreno);
-            data.textViewItemTamano = convertView.findViewById(R.id.textViewItemTamano);
-            data.textViewItemMedidas = convertView.findViewById(R.id.textViewItemMedidas);
-            data.linearLayoutItemTerreno = convertView.findViewById(R.id.linearLayoutItemTerreno);
-            data.textViewItemTipoTerreno = convertView.findViewById(R.id.textViewItemTipoTerreno);
+            data.ivTerreno = convertView.findViewById(R.id.imageViewItemTerreno);
+            data.tvNombreTerreno = convertView.findViewById(R.id.textViewItemNombreTerreno);
+            data.tvTamano = convertView.findViewById(R.id.textViewItemTamano);
+            data.tvTipo = convertView.findViewById(R.id.textViewItemTipoTerreno);
 
             convertView.setTag(data);
 
         } else {
             data = (Datos) convertView.getTag();
         }
+
+        Terreno terreno = lista.get(position);
+
+        String nombreTerreno = "Terreno " + terreno.getIdTerreno();
+        String tamano = terreno.getTamaño() + " " + terreno.getMedida();
+        String tipo = terreno.getTipo();
+
+        data.tvNombreTerreno.setText(nombreTerreno);
+        data.tvTamano.setText(tamano);
+        data.tvTipo.setText(tipo);
 
         return convertView;
     }

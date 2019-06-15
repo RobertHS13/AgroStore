@@ -1,5 +1,7 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +12,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 
+import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
 import java.math.BigDecimal;
 
-public class FiltrosActivity extends AppCompatActivity {
+public class FiltrosActivity extends RecieveBundlesActivity {
 
     // Tipos de busqueda
 
@@ -29,14 +32,23 @@ public class FiltrosActivity extends AppCompatActivity {
     public static final String BUSQUEDA_NOMBRE_PRODUCTO = "BusquedaNombreProducto";
 
     public static final String BUSQUEDA_FILTRO = "BusquedaFiltros";
+    public static final String FILTRO_PRECIO_MIN = "FiltroPrecioMin";
+    public static final String FILTRO_PRECIO_MAX = "FiltroPrecioMax";
+    public static final String FILTRO_PRODUCTO = "FiltroProducto";
+    public static final String FILTRO_CATEGORIA = "FiltroCategoria";
     public static final String FILTRO_CATEGORIA_HORTALIZAS = "Hortalizas";
     public static final String FILTRO_CATEGORIA_SEMILLAS = "Semillas";
     public static final String FILTRO_CATEGORIA_CARNES = "Carnes";
     public static final String FILTRO_CATEGORIA_LACTEOS = "Lacteos";
+    public static final String FILTRO_TEMPORADA = "FiltroTemporada";
     public static final String FILTRO_TEMPORADA_INVIERNO = "Invierno";
     public static final String FILTRO_TEMPORADA_OTONO = "Otono";
     public static final String FILTRO_TEMPORADA_PRIMAVERA = "Primavera";
     public static final String FILTRO_TEMPORADA_VERANO = "Verano";
+    public static final String FILTRO_PAIS = "FiltroPais";
+    public static final String FILTRO_ESTADO = "FiltroEstado";
+    public static final String FILTRO_ESTRELLAS = "FiltroEstrellas";
+    public static final String FILTRO_TIEMPO_COSECHA = "FiltroTiempoCosecha";
     public static final String FILTRO_TIEMPO_COSECHA_MENOS_MES = "-mes";
     public static final String FILTRO_TIEMPO_COSECHA_MENOS_ANIO = "-anio";
     public static final String FILTRO_TIEMPO_COSECHA_MAS_ANIO = "+anio";
@@ -52,6 +64,8 @@ public class FiltrosActivity extends AppCompatActivity {
     private ImageView ivTiempoMenosMes, ivTiempoMenosAnio, ivTiempoMasAnio;
     private RatingBar rbEstrellas;
     private Button bAplicarFiltros;
+
+    private Usuario usuario = new Usuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +116,11 @@ public class FiltrosActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado = findViewById(R.id.sFiltroEstado);
         sEstado.setAdapter(adapterEstado);
+    }
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
     }
 
     private final View.OnClickListener ivCategoriaListener = new View.OnClickListener() {
@@ -276,8 +295,8 @@ public class FiltrosActivity extends AppCompatActivity {
         public void onClick(View v) {
             String precioMinStr = etPrecioMin.getText().toString();
             String precioMaxStr = etPrecioMax.getText().toString();
-            BigDecimal precioMin = (precioMinStr.isEmpty())? new BigDecimal(-1) : new BigDecimal(Double.parseDouble(precioMinStr));
-            BigDecimal precioMax = (precioMaxStr.isEmpty())? new BigDecimal(-1) : new BigDecimal(Double.parseDouble(precioMaxStr));
+            long precioMin = (precioMinStr.isEmpty())? -1 : Long.valueOf(precioMinStr);
+            long precioMax = (precioMaxStr.isEmpty())? -1 : Long.valueOf(precioMaxStr);
 
             String pais = sPais.getSelectedItem().toString();
             String estado = sEstado.getSelectedItem().toString();
@@ -292,6 +311,20 @@ public class FiltrosActivity extends AppCompatActivity {
                     "Locacion: " + estado + ", " + pais + "\n" +
                     "Tiempo cosecha: " + filtroTiempoCosecha + "\n" +
                     "Estrellas: " + estrellas);
+
+            Intent intent = new Intent(FiltrosActivity.this, BuscarActivity.class);
+
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(TIPO_BUSQUEDA, BUSQUEDA_FILTRO);
+            intent.putExtra(FILTRO_PRECIO_MIN, precioMin);
+            intent.putExtra(FILTRO_PRECIO_MAX, precioMax);
+            intent.putExtra(FILTRO_CATEGORIA, filtroCategoria);
+            intent.putExtra(FILTRO_TEMPORADA, filtroTemporada);
+            intent.putExtra(FILTRO_PAIS, pais);
+            intent.putExtra(FILTRO_ESTADO, estado);
+            intent.putExtra(FILTRO_ESTRELLAS, estrellas);
+
+            startActivity(intent);
         }
     };
 
