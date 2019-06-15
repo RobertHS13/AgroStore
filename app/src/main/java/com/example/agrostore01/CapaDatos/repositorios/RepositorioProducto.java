@@ -13,6 +13,7 @@ public class RepositorioProducto extends Repositorio implements IContratoProduct
 
     private String sqlProcBusquedaCategoria;
     private String sqlProcBusquedaNombre;
+    private String sqlProcBusquedaFiltros;
 
     public RepositorioProducto(){
         this.sqlAlta = "insert into Producto values (?, ?, ?, ?, ?, ?)";
@@ -31,6 +32,7 @@ public class RepositorioProducto extends Repositorio implements IContratoProduct
 
         this.sqlProcBusquedaCategoria = "{ call PROC_ESP_BUSQ_CATEGORIA(?) }";
         this.sqlProcBusquedaNombre = "{ call PROC_ESP_BUSQ_PRODUCTO(?) }";
+        this.sqlProcBusquedaFiltros = "{ call PROC_ESP_FILTROS(?, ?, ?, ?, ?, ?, ?, ?) }";
     }
 
     @Override
@@ -154,6 +156,36 @@ public class RepositorioProducto extends Repositorio implements IContratoProduct
         parametros.add(nombre);
 
         resultado = ejecutarProcedimientoConSalida(sqlProcBusquedaNombre);
+        List<Integer> productos = new ArrayList<>();
+
+        try {
+            while (resultado.next()) {
+                int idProducto = resultado.getInt("IDNumProducto");
+                productos.add(idProducto);
+            }
+            return productos;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Integer> seleccionarIdProductosConFiltros(long precioMin, long precioMax, String producto,
+                                                          String categoria, String temporada, String pais,
+                                                          String estado, float estrellas) {
+        parametros = new ArrayList<>();
+        parametros.add(precioMin);
+        parametros.add(precioMax);
+        parametros.add(producto);
+        parametros.add(categoria);
+        parametros.add(temporada);
+        parametros.add(pais);
+        parametros.add(estado);
+        parametros.add(estrellas);
+
+        resultado = ejecutarProcedimientoConSalida(sqlProcBusquedaFiltros);
         List<Integer> productos = new ArrayList<>();
 
         try {

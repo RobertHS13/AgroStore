@@ -4,18 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comentarios implements Parcelable {
 
     private long idComentarios;
     private String idUsuario;
     private String comentario;
-    private java.sql.Date fecha;
+    private Timestamp fecha;
     private String respuesta;
 
     public Comentarios() {}
 
-    public Comentarios(long idComentarios, String idUsuario, String comentario, Date fecha, String respuesta) {
+    public Comentarios(long idComentarios, String idUsuario, String comentario, Timestamp fecha, String respuesta) {
         this.idComentarios = idComentarios;
         this.idUsuario = idUsuario;
         this.comentario = comentario;
@@ -66,11 +67,11 @@ public class Comentarios implements Parcelable {
         this.comentario = comentario;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

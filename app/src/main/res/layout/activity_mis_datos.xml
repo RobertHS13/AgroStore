@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/colorGrisBajo"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/colorGrisBajo"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -287,7 +287,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <TextView
-                android:id="@+id/tvCodigoPostal"
+                android:id="@+id/tvCp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -334,7 +334,6 @@
                 android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView47"
                 app:srcCompat="@drawable/actualizar" />
 
         </LinearLayout>

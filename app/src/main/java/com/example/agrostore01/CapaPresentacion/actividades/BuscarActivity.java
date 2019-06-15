@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
@@ -28,10 +29,16 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
     private Usuario usuario = new Usuario();
 
-    // Variables de tipoBusqueda
+    // Variables de busqueda
     private String tipoBusqueda;
+    private long filtroPrecioMin;
+    private long filtroPrecioMax;
+    private String filtroProducto;
     private String filtroCategoria;
-    private String filtroNombreProducto;
+    private String filtroTemporada;
+    private String filtroPais;
+    private String filtroEstado;
+    private float filtroEstrellas;
 
     // Productos buscados
     private List<Integer> idProductos;
@@ -60,7 +67,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
         @Override
         public boolean onQueryTextSubmit(String query) {
             tipoBusqueda = FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO;
-            filtroNombreProducto = query;
+            filtroProducto = query;
 
             new RealizarBusqueda().execute();
 
@@ -76,6 +83,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private class RealizarBusqueda extends AsyncTask<Void, Void, Void> {
 
         private LectorProducto lectorProducto = new LectorProducto();
+        private boolean exito;
 
         @Override
         protected void onPreExecute() {
@@ -109,11 +117,11 @@ public class BuscarActivity extends RecieveBundlesActivity {
                 }
 
                 case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
-                    System.out.println("Tipo de tipoBusqueda 'NOMBRE PRODUCTO' '" + filtroNombreProducto + "'");
+                    System.out.println("Tipo de tipoBusqueda 'NOMBRE PRODUCTO' '" + filtroProducto + "'");
 
-                    idProductos = lectorProducto.getIdProductosConNombre(filtroNombreProducto);
+                    idProductos = lectorProducto.getIdProductosConNombre(filtroProducto);
 
-                    System.out.println("Se obtuvieron los siguientes productos con el nombre '" + filtroNombreProducto + "'");
+                    System.out.println("Se obtuvieron los siguientes productos con el nombre '" + filtroProducto + "'");
                     System.out.println(idProductos);
 
                     LectorVistaBusquedaProducto lectorVistaBusquedaProducto = new LectorVistaBusquedaProducto();
@@ -131,6 +139,31 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
                 case FiltrosActivity.BUSQUEDA_FILTRO: {
                     System.out.println("Tipo de tipoBusqueda 'FILTROS'");
+
+                    idProductos = lectorProducto.getIdProductosConFiltros(
+                            filtroPrecioMin,
+                            filtroPrecioMax,
+                            "",
+                            filtroCategoria,
+                            filtroTemporada,
+                            filtroPais,
+                            filtroEstado,
+                            filtroEstrellas
+                    );
+
+                    System.out.println("Se obtuvieron los siguientes productos con los filtros especificados");
+                    System.out.println(idProductos);
+
+                    LectorVistaBusquedaProducto lectorVistaBusquedaProducto = new LectorVistaBusquedaProducto();
+                    vistasProductos = new ArrayList<>();
+                    for (Integer id : idProductos) {
+                        VistaBusquedaProducto producto = lectorVistaBusquedaProducto.getEntidadId(id);
+                        vistasProductos.add(producto);
+                    }
+
+                    System.out.println("Las vistas para los productos son: ");
+                    System.out.println(vistasProductos);
+
                     break;
                 }
 
@@ -139,12 +172,23 @@ public class BuscarActivity extends RecieveBundlesActivity {
                 }
             }
 
+            exito = vistasProductos != null;
+
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!exito) {
+                Toast.makeText(
+                        BuscarActivity.this,
+                        "Hubo un error en la busqueda de los productos. Verifique su conexion a Internet e intentelo de nuevo.",
+                        Toast.LENGTH_LONG
+                ).show();
+                return;
+            }
 
             if (vistasProductos != null) {
                 BusquedaAdapter adaptador = new BusquedaAdapter(BuscarActivity.this, R.layout.list_item_buscar, vistasProductos);
@@ -159,6 +203,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), FiltrosActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
             startActivity(intent);
         }
     };
@@ -199,11 +244,18 @@ public class BuscarActivity extends RecieveBundlesActivity {
             }
 
             case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
-                filtroNombreProducto = intent.getStringExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
+                filtroProducto = intent.getStringExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
                 break;
             }
 
             case FiltrosActivity.BUSQUEDA_FILTRO: {
+                filtroPrecioMin = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MIN, -1);
+                filtroPrecioMax = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MAX, -1);
+                filtroCategoria = intent.getStringExtra(FiltrosActivity.FILTRO_CATEGORIA);
+                filtroTemporada = intent.getStringExtra(FiltrosActivity.FILTRO_TEMPORADA);
+                filtroPais = intent.getStringExtra(FiltrosActivity.FILTRO_PAIS);
+                filtroEstado = intent.getStringExtra(FiltrosActivity.FILTRO_ESTADO);
+                filtroEstrellas = intent.getFloatExtra(FiltrosActivity.FILTRO_ESTRELLAS, 0);
                 break;
             }
 

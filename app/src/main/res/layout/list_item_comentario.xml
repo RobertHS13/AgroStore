@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="6dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvComentarioNombreApellido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="0.75"
+            android:text="Nombre Apellido"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvComentarioFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Hace 3 horas"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvComentarioComentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Este es un comentario"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/tvComentarioResponder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Responder"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tvComentarioRespuesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Esta es la respuesta del comentario"
+        android:textAlignment="textEnd"
+        android:textSize="17sp"/>
+
+</LinearLayout>

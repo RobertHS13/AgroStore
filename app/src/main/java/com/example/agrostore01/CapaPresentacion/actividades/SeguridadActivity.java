@@ -47,8 +47,12 @@ public class SeguridadActivity extends RecieveBundlesActivity {
 
     private class ActualizarContrasena extends AsyncTask<Void, Void, Void>{
 
+        private final String ERROR_CONTRASENAS_INCORRECTAS = "Las contrasenas no coinciden. Intentelo de nuevo";
+        private final String ERROR_CONEXION_INTERNET = "Verifique su conexion a Internet e intentelo de nuevo";
+
         private String contrasena1;
         private String contrasena2;
+        private String mensajeError;
         private boolean exito;
 
         @Override
@@ -60,7 +64,8 @@ public class SeguridadActivity extends RecieveBundlesActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            if(!contrasena1.equals(contrasena2)){
+            if(!contrasena1.equals(contrasena2)) {
+                mensajeError = ERROR_CONEXION_INTERNET;
                 exito = false;
                 return null;
             }
@@ -68,6 +73,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
             usuario.setContrasenaUsuario(contrasena1);
             EscritorUsuario escritorUsuario = new EscritorUsuario(EscritorUsuario.OPERACION_ACTUALIZAR_CONTRASENA, usuario);
             exito = escritorUsuario.ejecutarCambios();
+
             return null;
         }
 
@@ -75,18 +81,19 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            if(exito){
-                Intent intent = new Intent(SeguridadActivity.this, PerfilUsuarioActivity.class);
-                intent.putExtra(usuario.getClassName(), usuario);
-                intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-
-                startActivity(intent);
-                finish();
-
-                Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(SeguridadActivity.this, "Error al actualizar la contrasena", Toast.LENGTH_LONG).show();
+            if (!exito) {
+                Toast.makeText(SeguridadActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                return;
             }
+
+            Intent intent = new Intent(SeguridadActivity.this, PerfilUsuarioActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+
+            startActivity(intent);
+            finish();
+
+            Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -27,4 +27,13 @@ public class LectorProducto extends Lector<Producto> {
     public List<Integer> getIdProductosConNombre(String nombre) {
         return repositorio.seleccionarIdProductosConNombre(nombre);
     }
+
+    public List<Integer> getIdProductosConFiltros(long precioMin, long precioMax, String producto,
+                                                  String categoria, String temporada, String pais,
+                                                  String estado, float estrellas) {
+
+        return repositorio.seleccionarIdProductosConFiltros(
+                precioMin, precioMax, producto, categoria, temporada, pais, estado, estrellas
+        );
+    }
 }

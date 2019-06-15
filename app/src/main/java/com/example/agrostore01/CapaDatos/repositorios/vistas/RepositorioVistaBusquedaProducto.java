@@ -12,7 +12,7 @@ public class RepositorioVistaBusquedaProducto extends Repositorio implements ICo
     private String sqlProcDetallesProducto;
 
     public RepositorioVistaBusquedaProducto() {
-        this.sqlProcDetallesProducto = "{ call PROC_ESP_DETALES_PROD(?) }";
+        this.sqlProcDetallesProducto = "{ call PROC_ESP_PRODUCTO_COMPLETO(?) }";
     }
 
     @Override
@@ -48,23 +48,24 @@ public class RepositorioVistaBusquedaProducto extends Repositorio implements ICo
 
             resultado = ejecutarProcedimientoConSalida(sqlProcDetallesProducto);
 
-            if (resultado.next()) {
-                String producto = resultado.getString("Producto");
-                byte[] foto = resultado.getBytes("Foto");
-                BigDecimal precio = resultado.getBigDecimal("Precio");
-                int hectareas = resultado.getInt("Hectareas");
-                String estado = resultado.getString("Estado");
-                String ciudad = resultado.getString("Ciudad");
+            resultado.next();
 
-                return new VistaBusquedaProducto(producto, foto, precio, hectareas, estado, ciudad);
-            }
+            String producto = resultado.getString("Producto");
+            String nombre = resultado.getString("Nombre");
+            String apellido = resultado.getString("Apellido");
+            byte[] foto = resultado.getBytes("Foto");
+            BigDecimal precio = resultado.getBigDecimal("Precio");
+            int hectareas = resultado.getInt("Hectareas");
+            String descripcion = resultado.getString("Descripcion");
+            String estado = resultado.getString("Estado");
+            String ciudad = resultado.getString("Ciudad");
+
+            return new VistaBusquedaProducto(producto, nombre, apellido, foto, precio, hectareas, descripcion, estado, ciudad);
         }
         catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
-        return null;
     }
 
 }

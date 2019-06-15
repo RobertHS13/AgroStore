@@ -2,16 +2,21 @@ package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-
+import com.example.agrostore01.CapaEntidades.Terreno;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaNegocios.lectores.LectorTerreno;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.adaptadores.TerrenoAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MiTerrenoActivity extends RecieveBundlesActivity {
 
@@ -30,11 +35,52 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
         ibAgregarTerreno = findViewById(R.id.ibAgregar);
         listViewTerrenos = findViewById(R.id.listViewTerreno);
 
-        Object[] items = new Object[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        TerrenoAdapter adaptador = new TerrenoAdapter(this, R.layout.list_item_terreno, items);
-        listViewTerrenos.setAdapter(adaptador);
-
         ibAgregarTerreno.setOnClickListener(ibAgregarTerrenoListener);
+
+        new ObtenerMisTerrenos().execute();
+    }
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+    }
+
+    private class ObtenerMisTerrenos extends AsyncTask<Void, Void, Void> {
+
+        private LectorTerreno lectorTerreno = new LectorTerreno();
+        private List<Terreno> terrenos = new ArrayList<>();
+        private boolean exito;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            terrenos = lectorTerreno.getMisTerrenos(usuario.getIdUsuario());
+
+            exito = terrenos != null;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (!exito) {
+                Toast.makeText(
+                        MiTerrenoActivity.this,
+                        "Comprueba tu conexion a Internet e intentalo de nuevo",
+                        Toast.LENGTH_LONG
+                ).show();
+                return;
+            }
+
+            TerrenoAdapter adaptador = new TerrenoAdapter(MiTerrenoActivity.this, R.layout.list_item_terreno, terrenos);
+            listViewTerrenos.setAdapter(adaptador);
+        }
     }
 
     private final View.OnClickListener ibAgregarTerrenoListener = new View.OnClickListener() {
@@ -46,17 +92,5 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
             startActivity(intent);
         }
     };
-
-    public ImageButton getIbAgregarTerreno() {
-        return ibAgregarTerreno;
-    }
-    public ListView getListViewTerrenos() {
-        return listViewTerrenos;
-    }
-
-    @Override
-    public void recieveBundles(Context context) {
-        usuario = getIntent().getParcelableExtra(usuario.getClassName());
-    }
 
 }

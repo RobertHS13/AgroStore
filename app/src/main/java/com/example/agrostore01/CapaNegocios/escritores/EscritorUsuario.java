@@ -8,6 +8,7 @@ public class EscritorUsuario extends Escritor<Usuario> {
 
     public static int OPERACION_REGISTRAR_USUARIO = 4;
     public static int OPERACION_ACTUALIZAR_CONTRASENA = 5;
+    public static int OPERACION_ACTUALIZAR_DATOS = 6;
 
     private RepositorioUsuario repositorio = new RepositorioUsuario();
     private DetallesUsuario detallesUsuario;
@@ -41,8 +42,12 @@ public class EscritorUsuario extends Escritor<Usuario> {
             return repositorio.registrarUsuario(entidad, detallesUsuario);
 
         if (operacion == OPERACION_ACTUALIZAR_CONTRASENA)
-            return repositorio.actualizarContrasena(entidad);
+            return repositorio.actualizarContrasena(entidad.getIdUsuario(), entidad.getContrasenaUsuario());
+
+        if (operacion == OPERACION_ACTUALIZAR_DATOS)
+            return repositorio.actualizarDatos(entidad, detallesUsuario);
 
         return false;
     }
+
 }

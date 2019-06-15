@@ -103,54 +103,56 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
             <EditText
-                android:id="@+id/etTamano"
+                android:id="@+id/etTerrenoTamanoAncho"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:ems="10"
-                android:hint="Tamaño"
-                android:inputType="number"
-                android:textColor="@color/colorGrisClaro"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
-
-            <EditText
-                android:id="@+id/etMedidasAn"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="Medidas ancho"
+                android:hint="Tamaño (ancho)"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorGrisClaro"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etTamano"
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/etMedidasAl"
+                android:id="@+id/etTerrenoTamanoAlto"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:ems="10"
-                android:hint="Medidas alto"
+                android:hint="Tamaño (alto)"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorGrisClaro"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etMedidasAn"
+                app:layout_constraintTop_toBottomOf="@+id/etTerrenoTamanoAncho"
+                app:layout_constraintVertical_bias="0.021" />
+
+            <EditText
+                android:id="@+id/etTerrenoMedida"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="Ej. hectareas, metros cuadrados, yardas, etc."
+                android:inputType="textPersonName"
+                android:textColor="@color/colorGrisClaro"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTerrenoTamanoAlto"
                 app:layout_constraintVertical_bias="0.021" />
 
             <TextView
@@ -163,8 +165,8 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/etMedidasAn"
-                app:layout_constraintTop_toBottomOf="@+id/etMedidasAl" />
+                app:layout_constraintStart_toStartOf="@+id/etTerrenoTamanoAncho"
+                app:layout_constraintTop_toBottomOf="@+id/etTerrenoTamanoAlto" />
 
             <Spinner
                 android:id="@+id/sTipoTerreno"
