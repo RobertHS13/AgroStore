@@ -160,7 +160,8 @@ public class RegistroProductorActivity extends AppCompatActivity {
             }
 
             usuario = new Usuario(idUsuario, foto, idTipo, idDetalles, nombreUsuario, contrasena, correoElectronico);
-            detallesUsuario = new DetallesUsuario(nombres, apellidos, calle, colonia, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, ciudad, fechaNac);
+            detallesUsuario = new DetallesUsuario(nombres, apellidos, calle, colonia, estado, pais, cp, escrituraOPermiso,
+                    estrellas, rfc, firmaElectronica, ciudad, fechaNac);
 
             ValidacionUsuario validacionUsuario = new ValidacionUsuario(usuario);
             boolean validarUsuario = validacionUsuario.validar();

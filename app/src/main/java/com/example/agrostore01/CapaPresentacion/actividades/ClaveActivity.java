@@ -69,7 +69,6 @@ public class ClaveActivity extends RecieveBundlesActivity {
                 Toast.makeText(ClaveActivity.this, "La contrasena es incorrecta", Toast.LENGTH_LONG).show();
             }
         }
-
     }
 
     private final View.OnClickListener ibSeguridadListener = new View.OnClickListener() {
